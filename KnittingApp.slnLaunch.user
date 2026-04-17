@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Новый профиль",
+    "Projects": [
+      {
+        "Path": "KnittingApp\\KnittingApp.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "KnittingApp.Client\\knittingapp.client.esproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]

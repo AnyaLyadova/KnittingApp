@@ -1,0 +1,21 @@
+﻿.modal-content .model-creation-form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.form-error {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c00;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.server-error {
+    background: #fff5f5;
+    border-color: #dc3545;
+}

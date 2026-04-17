@@ -1,0 +1,9 @@
+{
+        "bodyHeight": 60,
+        "topWidth": 50,
+        "bottomWidth": 50,
+        "armholeWidth": 24,
+        "armholeHeight": 20,
+        "neckWidth": 40,
+        "neckHeight": 8
+      }

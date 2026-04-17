@@ -1,0 +1,98 @@
+﻿.models-list-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .models-list-container h3 {
+        margin: 0 0 15px 0;
+        color: #333;
+        font-size: 18px;
+    }
+
+/* Область со скроллом */
+.models-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 5px;
+}
+
+    /* Кастомный скроллбар */
+    .models-scroll::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .models-scroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .models-scroll::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+        .models-scroll::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+/* Кнопка модели */
+.model-item {
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+    .model-item:hover {
+        background: #e9ecef;
+        border-color: #007bff;
+        transform: translateX(5px);
+    }
+
+.model-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+
+/* Состояния загрузки и ошибок */
+.loading-models,
+.empty-models {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+.error-models {
+    text-align: center;
+    padding: 20px;
+    color: #dc3545;
+    background: #fee;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.retry-btn {
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .retry-btn:hover {
+        background: #0056b3;
+    }
