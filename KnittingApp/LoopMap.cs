@@ -97,6 +97,8 @@ namespace KnittingApp
             int count = 1;
             foreach(var point in draft.draft)  //переносим контур выкройки в матрицу относительно нуля
               {
+                if (point == draft.StartPoint || point == draft.EndPoint) //пропускаем начальную и конечную точки, так как они в центре
+                    continue;
                   int m=(int)((nullPoint.Y-point.Y)/loopHeight);
                   int n=(int)((point.X-nullPoint.X)/loopWidth);
                 LoopSide side;

@@ -837,6 +837,9 @@
       "Point": {
         "type": "object",
         "properties": {
+          "visible": {
+            "type": "boolean"
+          },
           "x": {
             "type": "number",
             "format": "double"

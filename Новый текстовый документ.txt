@@ -1,9 +1,11 @@
 {
         "bodyHeight": 60,
-        "topWidth": 50,
-        "bottomWidth": 50,
-        "armholeWidth": 24,
+        "topWidth": 80,
+        "bottomWidth": 100,
+        "armholeWidth": 8,
         "armholeHeight": 20,
-        "neckWidth": 40,
-        "neckHeight": 8
+        "shoulderWidth": 15,
+        "shoulderHeight": 5,
+        "neckWidth": 20,
+        "neckHeight": 5
       }

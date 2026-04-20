@@ -42,20 +42,20 @@ namespace KnittingApp.Parts
             if (firstPart % 2 != 0)
             {
                 Point p = new Point(startPoint.X + loopWidth * (firstPart/2) + 1, startPoint.Y + loopHeight, name); //убавка
-                p.AddConnection(startPoint);
+              //  p.AddConnection(startPoint);
                 armholeDraft.AddPoint(p);
                 currentPoint = p;
             }
             else
             {
                 Point p = new Point(startPoint.X + loopWidth * (firstPart / 2), startPoint.Y + loopHeight, name);
-                p.AddConnection(startPoint);
+              //  p.AddConnection(startPoint);
                 armholeDraft.AddPoint(p);
                 currentPoint = p;
             }
 
             Point p1 = new Point(currentPoint.X + loopWidth * (firstPart / 2), currentPoint.Y + loopHeight, name);  //вторая убавка
-            p1.AddConnection(startPoint);
+         //   p1.AddConnection(startPoint);
             armholeDraft.AddPoint(p1);
             currentPoint = p1;
 
@@ -63,11 +63,11 @@ namespace KnittingApp.Parts
             for(int i = 1; i <= part; ++i)  //закрываем петли в каждом втором ряду
             {
                 Point p=new Point(currentPoint.X+loopWidth, currentPoint.Y+loopHeight, name); //убавка
-                p.AddConnection(currentPoint);
+               // p.AddConnection(currentPoint);
                 armholeDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper=new Point(currentPoint.X, currentPoint.Y+loopHeight, name); //подъем вверх
-                upper.AddConnection(currentPoint);
+               // upper.AddConnection(currentPoint);
                 armholeDraft.AddPoint(upper);
                 currentPoint = upper;
                 ++count;
@@ -75,20 +75,32 @@ namespace KnittingApp.Parts
             for(int i = 1; i <= part; ++i) //закрываем петли в каждом третьем ряду
             {
                 Point p = new Point(currentPoint.X + loopWidth, currentPoint.Y + loopHeight, name); //убавка
-                p.AddConnection(currentPoint);
+               // p.AddConnection(currentPoint);
                 armholeDraft.AddPoint(p);
                 currentPoint = p;
                 ++count;
-
-                    Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight*3, name); //3 раза подъем вверх
-                    upper.AddConnection(currentPoint);
+                for(int j = 0; j < 3; ++j)
+                {
+                    Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight, name); //3 раза подъем вверх
                     armholeDraft.AddPoint(upper);
                     currentPoint = upper;
-                    count+=3;
+                    ++count;
+                }
+                 //   Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight*3, name); //3 раза подъем вверх
+                  //  upper.AddConnection(currentPoint);
+                    /*armholeDraft.AddPoint(upper);
+                    currentPoint = upper;
+                    count+=3;*/
             }
             armholeLoopHeight -= count;
-            Point endPoint = new Point(currentPoint.X, currentPoint.Y + loopHeight * armholeLoopHeight, name);
-            armholeDraft.AddPoint(endPoint);
+            Point endPoint = null;
+            for(int i=0; i<armholeLoopHeight; ++i)
+            {
+                endPoint = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);  //оставшийся подъем
+                armholeDraft.AddPoint(endPoint);
+            }
+            //Point endPoint = new Point(currentPoint.X, currentPoint.Y + loopHeight * armholeLoopHeight, name);
+            
             armholeDraft.EndPoint = endPoint;
             return armholeDraft;
         }

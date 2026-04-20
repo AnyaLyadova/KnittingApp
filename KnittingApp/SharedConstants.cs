@@ -114,6 +114,11 @@
         };
 
 
+        //прибавки в ширину и в высоту для перемещения точки
+        public static int AddingM = 30;
+        public static int AddingN = 30;
+
+
  /*       public static List<Model> BaseModels= new List<Model>
         {
            

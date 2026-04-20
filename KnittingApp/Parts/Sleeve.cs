@@ -41,12 +41,14 @@ namespace KnittingApp.Parts
                 {
                     p.X += loopWidth * loops;
                 }
-                p.AddConnection(currentPoint);
+             //   p.AddConnection(currentPoint);
                 sleeveDraft.AddPoint(p);
                 currentPoint=p;
             }
             sleeveDraft.EndPoint = currentPoint;
 
+            sleeveDraft.EndPoint.Visible = true;
+            sleeveDraft.StartPoint.Visible = true;
             return sleeveDraft;
         }
     }

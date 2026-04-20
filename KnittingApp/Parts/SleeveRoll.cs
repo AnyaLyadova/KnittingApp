@@ -43,11 +43,11 @@ namespace KnittingApp.Parts
             for(int i = 1; i <= (partFirstPart + add) / 3; ++i)  //по 3 убавки через ряд
             {
                 Point p=new Point(currentPoint.X+loopWidth*3, currentPoint.Y+loopHeight, name);
-                p.AddConnection(currentPoint);
+           //     p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper=new Point(currentPoint.X, currentPoint.Y+loopHeight, name);
-                upper.AddConnection(currentPoint);
+               // upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
@@ -55,11 +55,11 @@ namespace KnittingApp.Parts
             for (int i = 1; i <= partFirstPart / 2; ++i)  //по 2 убавки через ряд
             {
                 Point p = new Point(currentPoint.X + loopWidth * 2, currentPoint.Y + loopHeight, name);
-                p.AddConnection(currentPoint);
+               // p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);
-                upper.AddConnection(currentPoint);
+                //upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
@@ -70,11 +70,11 @@ namespace KnittingApp.Parts
             for(int i = 1; i <= (part + add) / 3; ++i)  //убавка в каждом 2 ряду
             {
                 Point p = new Point(currentPoint.X + loopWidth, currentPoint.Y + loopHeight, name);
-                p.AddConnection(currentPoint);
+             //   p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);
-                upper.AddConnection(currentPoint);
+              //  upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
@@ -82,11 +82,11 @@ namespace KnittingApp.Parts
             for (int i = 1; i <= part / 3; ++i)  //убавка в каждом 4 ряду
             {
                 Point p = new Point(currentPoint.X + loopWidth, currentPoint.Y + loopHeight, name);
-                p.AddConnection(currentPoint);
+               // p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight*3, name);
-                upper.AddConnection(currentPoint);
+               // upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
@@ -94,11 +94,11 @@ namespace KnittingApp.Parts
             for (int i = 1; i <= part / 3; ++i)  //убавка в каждом 2 ряду
             {
                 Point p = new Point(currentPoint.X + loopWidth, currentPoint.Y + loopHeight, name);
-                p.AddConnection(currentPoint);
+               // p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);
-                upper.AddConnection(currentPoint);
+               // upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
@@ -106,15 +106,17 @@ namespace KnittingApp.Parts
             for (int i = 1; i <= part / 3; ++i)  //по 3 убавки в каждом 2 ряду
             {
                 Point p = new Point(currentPoint.X + loopWidth*3, currentPoint.Y + loopHeight, name);
-                p.AddConnection(currentPoint);
+              //  p.AddConnection(currentPoint);
                 rollDraft.AddPoint(p);
                 currentPoint = p;
                 Point upper = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);
-                upper.AddConnection(currentPoint);
+               // upper.AddConnection(currentPoint);
                 rollDraft.AddPoint(upper);
                 currentPoint = upper;
             }
             rollDraft.EndPoint = currentPoint;
+            rollDraft.EndPoint.Visible = true;
+            rollDraft.StartPoint.Visible = true;
             return rollDraft;
         }
     }

@@ -7,6 +7,8 @@ namespace KnittingApp
         double x;
         double y;
 
+        public bool Visible { get; set; }
+
         [JsonPropertyName("x")]
         public double X { get { return x; } set { x = value; } }
 
@@ -19,7 +21,7 @@ namespace KnittingApp
         public string Part { get { return part; } }
 
         // List<Point> connections=new List<Point>();
-        Point connection;  //точка, с которой есть соединение
+      //  Point connection;  //точка, с которой есть соединение
         
 
         public Point(double x, double y, string part)
@@ -27,8 +29,9 @@ namespace KnittingApp
             this.x = x;
             this.y = y;
             this.part = part;
+            this.Visible = false;
         }
-        public void AddConnection(Point p)
+       /* public void AddConnection(Point p)
         {
             //connections.Add(p);
             connection = p;
@@ -43,12 +46,7 @@ namespace KnittingApp
         {
             //return connections; 
             return connection;
-        }
-
-        public Draft CreateDraft(List<Draft> parts)
-        {
-            throw new Exception();
-        }
+        }*/
 
         
     }

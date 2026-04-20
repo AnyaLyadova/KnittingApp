@@ -4,15 +4,15 @@ namespace KnittingApp
 {
     public class Draft
     {
-        public List<Point> draft { get; }
+        public LinkedList<Point> draft { get; private set; }
         Point startPoint;
         Point endPoint;
 
         public Draft(Point startPoint)
         {
             this.startPoint = startPoint;
-            draft = new List<Point>();
-            draft.Add(startPoint);
+            draft = new LinkedList<Point>();
+            draft.AddLast(startPoint);
         }
 
         public Draft(Draft draft)
@@ -33,9 +33,15 @@ namespace KnittingApp
             {
                 if (this.endPoint == drafts[i].startPoint)
                 {
-                    for (int j = 1; j < drafts[i].draft.Count; ++j)
+                    /* for (int j = 1; j < drafts[i].draft.Count; ++j)
+                     {
+                         this.AddPoint(drafts[i].draft[j]);
+                     }
+                     this.endPoint = drafts[i].endPoint;*/
+
+                    for (var loop = drafts[i].draft.First.Next; loop!=null; loop=loop.Next)
                     {
-                        this.AddPoint(drafts[i].draft[j]);
+                        this.AddPoint(loop.Value);
                     }
                     this.endPoint = drafts[i].endPoint;
                 }
@@ -64,7 +70,7 @@ namespace KnittingApp
                 point.AddConnection(p);          
             }*/
 
-            draft.Add(p);
+            draft.AddLast(p);
            
         }
 
@@ -128,27 +134,40 @@ namespace KnittingApp
             var connectionPoint = endPoint;  //для добавления связи в точку
 
             // Проходим по всем точкам оригинала (кроме startPoint)
-            for (int i = draft.Count-1; i >=1; i--)
+            /*for (int i = draft.Count-1; i >=1; i--)
             {
                 var originalPoint = draft[i];
 
                 var mirroredPoint = MirrorPoint(originalPoint);  //отражаем точку
                 mirroredPoint.AddConnection(connectionPoint); //добавляем связь в точку
                 connectionPoint = mirroredPoint;
-                mirroredDraft.draft.Add(mirroredPoint);
+                mirroredDraft.draft.AddLast(mirroredPoint);
+            }*/
+
+            for (var loop=draft.Last; loop!=null; loop=loop.Previous)
+            {
+                var originalPoint = loop;
+
+                var mirroredPoint = MirrorPoint(originalPoint.Value);  //отражаем точку
+              //  mirroredPoint.AddConnection(connectionPoint); //добавляем связь в точку
+                connectionPoint = mirroredPoint;
+                mirroredDraft.draft.AddLast(mirroredPoint);
             }
 
             if (startPoint != null)
             {
-               var mirroredEndPoint = MirrorPoint(startPoint); //отражаем конечную точку
-                mirroredDraft.draft.Add(mirroredEndPoint);
-                mirroredDraft.EndPoint = mirroredEndPoint;
+                /* var mirroredEndPoint = MirrorPoint(startPoint); //отражаем конечную точку
+                  mirroredDraft.draft.AddLast(mirroredEndPoint);
+                  mirroredDraft.EndPoint = mirroredEndPoint;*/
+                mirroredDraft.draft.AddLast(startPoint);
+                mirroredDraft.EndPoint=startPoint;
             }
 
             foreach (Point point in mirroredDraft.draft) 
             {
-                draft.Add(point);
+                draft.AddLast(point);
             }
+
             return mirroredDraft;
         }
 

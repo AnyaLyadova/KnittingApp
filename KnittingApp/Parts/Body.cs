@@ -39,20 +39,21 @@ namespace KnittingApp.Parts
 
            
             Point currentPoint = new Point(startPoint.X - (bodyBottopLoopWidht*loopWidth / 2), startPoint.Y, name);
-            currentPoint.AddConnection(startPoint);
+          //  currentPoint.AddConnection(startPoint);
             bodyDraft.AddPoint(currentPoint);
             if (bottomWidth > topWidth)  //если нижняя часть шире верхней
             {
                 int loops=bodyBottopLoopWidht/2 - bodyTopLoopWidht/2;
-                int line = bodyLoopHeight / loops;
-                for(int i=1; i <= bodyLoopHeight; ++i)
+                int line = (int)(bodyLoopHeight / loops);
+                line = (line == 0) ? 1 : line;
+                for (int i=1; i <= bodyLoopHeight; ++i)
                 {
                     Point p=new Point(currentPoint.X, currentPoint.Y+loopHeight, name);
-                    if(i%loops == 0)
+                    if(i%line == 0)
                     {
                         p.X += loopWidth;  //делаем убавку
                     }
-                    p.AddConnection(currentPoint);
+                 //   p.AddConnection(currentPoint);
                     bodyDraft.AddPoint(p);
                     currentPoint = p;
                 }
@@ -60,16 +61,17 @@ namespace KnittingApp.Parts
             }
             else if(bottomWidth<topWidth)  //если верхняя часть шире нижней
             {
-                int loops = bodyTopLoopWidht-bodyBottopLoopWidht;
-                int line = bodyLoopHeight / loops;
+                int loops = bodyTopLoopWidht / 2 - bodyBottopLoopWidht / 2;
+                int line = (int)(bodyLoopHeight / loops);
+                line=(line == 0 )? 1: line;
                 for (int i = 1; i <= bodyLoopHeight; ++i)
                 {
                     Point p = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);
-                    if (i % loops == 0)
+                    if (i % line == 0)
                     {
-                        p.X -= loopWidth;  //делаем прибавку
+                        p.X -= loopWidth;  //делаем убавку
                     }
-                    p.AddConnection(currentPoint);
+                    //   p.AddConnection(currentPoint);
                     bodyDraft.AddPoint(p);
                     currentPoint = p;
                 }
@@ -77,14 +79,22 @@ namespace KnittingApp.Parts
             }
             else  //если верхняя и нижняя часть равны
             {
-                Point p=new Point(currentPoint.X,currentPoint.Y+bodyLoopHeight, name);  //добавляем высоту
-                p.AddConnection(currentPoint);
-                bodyDraft.AddPoint(p);
-                bodyDraft.EndPoint = p;
+                for(int i=1; i<=bodyLoopHeight; ++i)
+                {
+                    Point p = new Point(currentPoint.X, currentPoint.Y + loopHeight, name);  //добавляем высоту
+                    bodyDraft.AddPoint(p);
+                    currentPoint = p;
+                }
+               // Point p=new Point(currentPoint.X,currentPoint.Y+bodyLoopHeight, name);  //добавляем высоту
+               // p.AddConnection(currentPoint);
+
+              //  bodyDraft.AddPoint(p);
+                bodyDraft.EndPoint = currentPoint;
 
             }
 
-
+            bodyDraft.StartPoint.Visible = true;
+            bodyDraft.EndPoint.Visible = true;
                 return bodyDraft;
         }
     }

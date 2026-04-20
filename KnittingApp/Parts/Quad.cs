@@ -37,7 +37,7 @@ namespace KnittingApp.Parts
             int bodyBottopLoopWidht=(int)(bottomWidth*loopInWidth);
             int bodyLoopHeight=(int)(height*loopInHeight);
             Point currentPoint = new Point(startPoint.X-(bodyBottopLoopWidht/2), startPoint.Y, name);
-            currentPoint.AddConnection(currentPoint);
+          //  currentPoint.AddConnection(currentPoint);
             bodyDraft.AddPoint(currentPoint);
             if (bottomWidth > topWidth)
             {

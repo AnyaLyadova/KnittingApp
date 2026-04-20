@@ -35,12 +35,14 @@ namespace KnittingApp.Parts
                 {
                     p.X += loopWidth*loops;  //делаем убавку
                 }
-                p.AddConnection(currentPoint);
+           //     p.AddConnection(currentPoint);
                 shoulderDraft.AddPoint(p);
                 currentPoint = p;
             }
             shoulderDraft.EndPoint=currentPoint;
 
+            shoulderDraft.StartPoint.Visible = true;
+            shoulderDraft.EndPoint.Visible = true;
             return shoulderDraft;
         }
        }

@@ -72,6 +72,7 @@ namespace KnittingApp
             }
             //draft.CreateDraft(partDrafts);
             frontDraft = new Draft(partDrafts);
+            frontDraft.EndPoint.X = 0;
             frontDraft.Mirror();
 
             loopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
@@ -146,13 +147,14 @@ namespace KnittingApp
         
         void CheckWidth()
         {
-            double upperWidth = (parts[0] as Body).BottomWidth - (parts[0] as Body).TopWidth;
-            for(int i=1; i<parts.Count;++i)
+            double upperWidth = (parts[0] as Body).BottomWidth/2 - (parts[0] as Body).TopWidth/2;
+            for(int i=1; i<parts.Count-1;++i)
             {
                 upperWidth += parts[i].Width;
             }
+            upperWidth += parts[Parts.Count - 1].Width / 2;
             if (upperWidth < (parts[0] as Body).BottomWidth)
-                (parts[parts.Count-1] as Neck).ChangeWidth((parts[0] as Body).BottomWidth - upperWidth);
+                (parts[parts.Count-1] as Neck).ChangeWidth((parts[0] as Body).BottomWidth/2 - upperWidth);
         }
 
     }
