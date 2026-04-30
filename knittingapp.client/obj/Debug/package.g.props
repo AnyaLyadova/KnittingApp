@@ -9,11 +9,12 @@
     <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">tsc -b &amp;&amp; vite build</PackageJsonScriptsBuild>
     <PackageJsonScriptsLint Condition="$(PackageJsonScriptsLint) == ''">eslint .</PackageJsonScriptsLint>
     <PackageJsonScriptsPreview Condition="$(PackageJsonScriptsPreview) == ''">vite preview</PackageJsonScriptsPreview>
+    <PackageJsonDependenciesDndKitCore Condition="$(PackageJsonDependenciesDndKitCore) == ''">^6.3.1</PackageJsonDependenciesDndKitCore>
+    <PackageJsonDependenciesDndKitModifiers Condition="$(PackageJsonDependenciesDndKitModifiers) == ''">^9.0.0</PackageJsonDependenciesDndKitModifiers>
     <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^19.2.4</PackageJsonDependenciesReact>
     <PackageJsonDependenciesReactColorful Condition="$(PackageJsonDependenciesReactColorful) == ''">^5.6.1</PackageJsonDependenciesReactColorful>
     <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^19.2.4</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactRouterDom Condition="$(PackageJsonDependenciesReactRouterDom) == ''">^7.14.1</PackageJsonDependenciesReactRouterDom>
-    <PackageJsonDependenciesReactStayCanvas Condition="$(PackageJsonDependenciesReactStayCanvas) == ''">^1.1.9</PackageJsonDependenciesReactStayCanvas>
     <PackageJsonDevdependenciesEslintJs Condition="$(PackageJsonDevdependenciesEslintJs) == ''">^9.39.4</PackageJsonDevdependenciesEslintJs>
     <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^24.12.2</PackageJsonDevdependenciesTypesNode>
     <PackageJsonDevdependenciesTypesReact Condition="$(PackageJsonDevdependenciesTypesReact) == ''">^19.2.14</PackageJsonDevdependenciesTypesReact>

@@ -21,6 +21,32 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "ColorLoopMap",
+    "RelativePath": "api/constructor/color",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "KnittingApp.Controllers.ConstructorController\u002BColorLoopMapRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.LoopMap",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "CreateModel",
     "RelativePath": "api/constructor/create",
     "HttpMethod": "POST",
@@ -61,6 +87,26 @@
     "ReturnTypes": [
       {
         "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetLoopMap",
+    "RelativePath": "api/constructor/loopMap",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.LoopMap",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -221,6 +267,42 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "MovePoint",
+    "RelativePath": "api/constructor/move",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "KnittingApp.Controllers.ConstructorController\u002BMovePointRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "newX",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "newY",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "GetNeckParts",
     "RelativePath": "api/constructor/neckparts",
     "HttpMethod": "GET",
@@ -284,6 +366,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
+    "Method": "UploadImage",
+    "RelativePath": "api/schema/{schemaId}/image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schemaId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "schemaImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",

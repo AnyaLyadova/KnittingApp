@@ -115,8 +115,8 @@ namespace KnittingApp.Parts
                 currentPoint = upper;
             }
             rollDraft.EndPoint = currentPoint;
-            rollDraft.EndPoint.Visible = true;
-            rollDraft.StartPoint.Visible = true;
+            rollDraft.EndPoint.visible = true;
+            rollDraft.StartPoint.visible = true;
             return rollDraft;
         }
     }

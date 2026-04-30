@@ -1,5 +1,6 @@
 ﻿import apiClient from './apiClient'
 import type { NeckParts, SleeveRollParts, ArmholeParts,Model } from '../types/Model';
+import type { LoopMap } from '../types/Schema';
 
 
 export const ModelService = {
@@ -38,5 +39,10 @@ export const ModelService = {
         return response.data;
     },
 
+    // Получить матрицу петель
+    async getLoopMap(): Promise<LoopMap> {
+        const response = await apiClient.get('/constructor/loopMap');
+        return response.data;
+    },
    
     };

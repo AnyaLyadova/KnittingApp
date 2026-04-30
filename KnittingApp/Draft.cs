@@ -1,5 +1,7 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using static KnittingApp.SharedConstants;
+using static System.Net.Mime.MediaTypeNames;
 namespace KnittingApp
 {
     public class Draft
@@ -178,10 +180,150 @@ namespace KnittingApp
             double distanceFromCenter = source.X - centerX;
             double mirroredX = centerX - distanceFromCenter;
             var mirroredPoint = new Point(mirroredX, source.Y, source.Part);
+            mirroredPoint.visible=source.visible;
             return mirroredPoint;
         }
 
-        
+
+        public void MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, double loopWidth, 
+            double loopHeight, double loopInWidth, double loopInHeight, out List<Point> newPoints)
+        {
+            var leftNode = draft.Find(leftPoint);
+            var moveNode = draft.Find(movingPoint);
+            LinkedListNode<Point> currentNode;
+            LinkedListNode<Point> searchNode;
+            newPoints=new List<Point> ();
+            if (IsNodeBefore(leftNode, moveNode))
+            {
+                currentNode = draft.Find(leftPoint).Next;      //удаляем точки между движимой и опорными
+                searchNode= draft.Find(movingPoint);
+            }
+            else
+            {
+                currentNode = draft.Find(movingPoint).Next; 
+                searchNode= draft.Find(leftPoint);
+            }
+                //   var currentNode=draft.Find(leftPoint).Next;
+                while (currentNode != searchNode)
+                {
+                    var next = currentNode.Next;
+                    draft.Remove(currentNode);
+                    currentNode = next;
+                }
+            var rightNode= draft.Find(rightPoint);
+            if (IsNodeBefore(moveNode, rightNode))
+            {
+                currentNode = draft.Find(movingPoint).Next;
+                searchNode = draft.Find(rightPoint);
+            }
+            else
+            {
+                currentNode = draft.Find(rightPoint).Next;
+                searchNode = draft.Find(movingPoint);
+            }
+            while (currentNode != searchNode)
+                {
+                    var next = currentNode.Next;
+                    draft.Remove(currentNode);
+                    currentNode = next;
+                }
+            /*draft.Find(movingPoint).Value.X = newX;
+            movingPoint.X = newX;
+            draft.Find(movingPoint).Value.Y = newY;
+            movingPoint.Y = newY;*/
+            moveNode.Value.X = newX;
+            moveNode.Value.Y = newY;
+
+            movingPoint.X = newX;
+            movingPoint.Y = newY;
+
+            double leftWidth= Math.Abs(leftPoint.X-movingPoint.X);
+            double leftHeight= Math.Abs(leftPoint.Y-movingPoint.Y);
+            bool heightFlag = true;  
+            bool widhtFlag = true;
+            if(leftWidth==0)
+                widhtFlag = false;  //если движемся ровно горизонтально
+            if(leftHeight==0)
+                heightFlag = false;  //если движемся ровно вертикально
+            int leftLoopWidht = (int)(leftWidth * loopInWidth);
+            int leftLoopHeight=(int)(leftHeight * loopInHeight);
+            //var currentPoint = leftPoint;
+            var currentPoint= draft.Find(leftPoint);
+            /* if (leftPoint.X > movingPoint.X)
+                 currentPoint = movingPoint;*/
+            leftLoopWidht=leftLoopWidht == 0 ? 1:leftLoopWidht;
+            int line = (int)(leftLoopHeight / leftLoopWidht);
+            if (line == 0)
+                line = 1;
+            for (int i = 1; i <= leftLoopHeight; ++i)   //добавляем новые точки от левой точки
+            {
+                Point p = new Point(currentPoint.Value.X, currentPoint.Value.Y,"user");
+                if (leftPoint.Y > movingPoint.Y&&heightFlag)
+                    p.Y -= loopHeight;
+                else if(heightFlag)
+                    p.Y += loopHeight;
+                if (i % line == 0&&widhtFlag)
+                {
+                    if(leftPoint.X>movingPoint.X)
+                        p.X -= loopWidth;  //делаем убавку
+                    else
+                        p.X += loopWidth;
+                }
+                draft.AddAfter(currentPoint, p);
+                newPoints.Add(p);
+                currentPoint = currentPoint.Next;
+            }
+
+            //currentPoint = movingPoint;
+            currentPoint = draft.Find(movingPoint);
+            /*if(movingPoint.X>rightPoint.X)
+                currentPoint=rightPoint;*/
+            heightFlag = true;
+            widhtFlag = true;
+            double rightWidth = Math.Abs(rightPoint.X - movingPoint.X);
+            double rightHeight = Math.Abs(rightPoint.Y - movingPoint.Y);
+            if (rightWidth == 0)
+                widhtFlag = false;
+            if(rightHeight == 0)
+                heightFlag = false;
+            int rightLoopWidht = (int)(rightWidth * loopInWidth);
+            int rightLoopHeight = (int)(rightHeight * loopInHeight);
+            rightLoopWidht = rightLoopWidht == 0 ? 1 : rightLoopWidht;
+            line = (int)(rightLoopHeight / rightLoopWidht);
+            if (line == 0)
+                line = 1;
+            for (int i = 1; i <= rightLoopHeight; ++i)      //добавляем точки до правой точки
+            {
+                Point p = new Point(currentPoint.Value.X, currentPoint.Value.Y, "user");
+                if (rightPoint.Y > movingPoint.Y &&heightFlag)
+                    p.Y += loopHeight;
+                else if(heightFlag)
+                    p.Y-=loopHeight;
+                if (i % line == 0&&widhtFlag)
+                {
+                    if(rightPoint.X>movingPoint.X)
+                        p.X += loopWidth;  //делаем убавку
+                    else
+                        p.X -= loopWidth;
+                }
+                //   p.AddConnection(currentPoint);
+                draft.AddAfter(currentPoint, p);
+                newPoints.Add(p);
+                currentPoint = currentPoint.Next;
+            }
+    }
+
+        bool IsNodeBefore(LinkedListNode<Point> a, LinkedListNode<Point> b)
+        {
+            var current = a;
+            while (current != null)
+            {
+                if (current == b) return true;
+                current = current.Next;
+            }
+            return false;
+        }
+
 
     }
 }

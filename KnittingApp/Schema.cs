@@ -9,6 +9,7 @@ namespace KnittingApp
         public string schemaName { get; set; }
 
         public LoopMap loopMap { get; }
+        public string schemaImage { get; set; }
 
         public Schema(int m, int n, string schemaName)
         {

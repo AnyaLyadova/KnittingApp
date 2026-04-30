@@ -41,8 +41,8 @@ namespace KnittingApp.Parts
             }
             shoulderDraft.EndPoint=currentPoint;
 
-            shoulderDraft.StartPoint.Visible = true;
-            shoulderDraft.EndPoint.Visible = true;
+            shoulderDraft.StartPoint.visible = true;
+            shoulderDraft.EndPoint.visible = true;
             return shoulderDraft;
         }
        }

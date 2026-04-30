@@ -39,7 +39,7 @@ export const SchemaService={
         return response.data;
     },
 
-    // Перекрасить всю схему (PUT /api/schema/color/{colorCode})
+    // Перекрасить схему (PUT /api/schema/color/{colorCode})
     async colorSchema(colorCode: string): Promise<void> {
         const response = await apiClient.put(`/schema/color/${colorCode}`);
         return response.data;
@@ -51,4 +51,17 @@ export const SchemaService={
         });
         return response.data;
     },
+
+    //Отправить картинку схемы
+    async setSchemaImage(schemaId: string, schemaImage: Blob): Promise<void> {
+        const formData = new FormData();
+        formData.append('schemaImage', schemaImage, `${schemaId}.png`);
+
+        await apiClient.post(`/schema/${schemaId}/image`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+    },
+
 }

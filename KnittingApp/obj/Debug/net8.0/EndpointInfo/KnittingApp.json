@@ -451,6 +451,149 @@
         }
       }
     },
+    "/api/constructor/loopMap": {
+      "get": {
+        "tags": [
+          "Constructor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/move": {
+      "post": {
+        "tags": [
+          "Constructor"
+        ],
+        "parameters": [
+          {
+            "name": "newX",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "newY",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovePointRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovePointRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovePointRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/color": {
+      "put": {
+        "tags": [
+          "Constructor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorLoopMapRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorLoopMapRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorLoopMapRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/schema/{schemaId}": {
       "get": {
         "tags": [
@@ -679,6 +822,49 @@
         }
       }
     },
+    "/api/schema/{schemaId}/image": {
+      "post": {
+        "tags": [
+          "SchemaConstructor"
+        ],
+        "parameters": [
+          {
+            "name": "schemaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "schemaImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "schemaImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -721,6 +907,35 @@
   },
   "components": {
     "schemas": {
+      "ColorLoopMapRequest": {
+        "type": "object",
+        "properties": {
+          "mIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "nIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Draft": {
         "type": "object",
         "properties": {
@@ -770,6 +985,30 @@
             },
             "nullable": true,
             "readOnly": true
+          },
+          "m": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "n": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nullM": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nullN": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loopWidth": {
+            "type": "number",
+            "format": "double"
+          },
+          "loopHeight": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -799,6 +1038,9 @@
             "type": "string",
             "format": "uuid"
           },
+          "loopMap": {
+            "$ref": "#/components/schemas/LoopMap"
+          },
           "parts": {
             "type": "array",
             "items": {
@@ -810,6 +1052,21 @@
           "name": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MovePointRequest": {
+        "type": "object",
+        "properties": {
+          "movingPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "leftPoint": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "rightPoint": {
+            "$ref": "#/components/schemas/Point"
           }
         },
         "additionalProperties": false
@@ -868,6 +1125,10 @@
           },
           "loopMap": {
             "$ref": "#/components/schemas/LoopMap"
+          },
+          "schemaImage": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

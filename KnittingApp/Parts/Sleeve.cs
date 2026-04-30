@@ -47,8 +47,8 @@ namespace KnittingApp.Parts
             }
             sleeveDraft.EndPoint = currentPoint;
 
-            sleeveDraft.EndPoint.Visible = true;
-            sleeveDraft.StartPoint.Visible = true;
+            sleeveDraft.EndPoint.visible = true;
+            sleeveDraft.StartPoint.visible = true;
             return sleeveDraft;
         }
     }

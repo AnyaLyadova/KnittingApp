@@ -24,9 +24,12 @@ namespace KnittingApp
         Dictionary<string, double> measures = new Dictionary<string, double>();
         bool hasShoulderBevel;   //есть ли скос плеча
         bool hasArmhole;  //есть ли вырез под втачной рукав
-        LoopMap loopMap;
-        double loopWidth;
-        double loopHeight;
+        public LoopMap loopMap { get; set; }
+        double loopWidth;  //ширина петли
+        double loopHeight;  //высота петли
+        double loopInHeight;  //петель в см высоты
+        double loopInWidth;  //петель в см ширины
+        
 
         public List<Part> Parts { get { return parts; } }
 
@@ -112,6 +115,8 @@ namespace KnittingApp
                 throw new ArgumentNullException("Переданная плотность вязания равна 0");
             this.loopWidth = loopWidth;
             this.loopHeight = loopHeight;
+            this.loopInWidth = loopInWidth;
+            this.loopInHeight = loopInHeight;
             if (addMeasures == null)
                 throw new ArgumentNullException("Переданные мерки равны null");
             if (measures.Count == 0)
@@ -156,6 +161,46 @@ namespace KnittingApp
             if (upperWidth < (parts[0] as Body).BottomWidth)
                 (parts[parts.Count-1] as Neck).ChangeWidth((parts[0] as Body).BottomWidth/2 - upperWidth);
         }
+
+
+        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint)
+        {
+            List<Point> newPoints;
+            frontDraft.MovePoint(movingPoint, newX, newY,leftPoint,rightPoint, loopWidth,
+             loopHeight, loopInWidth,  loopInHeight, out newPoints);
+            var leftX=leftPoint.X<newX?leftPoint.X:newX;
+            var rightX=rightPoint.X<newX?newX:rightPoint.X;
+            var topY = leftPoint.Y;
+
+            if(leftPoint.Y < newY) 
+                topY = newY;
+            if (rightPoint.Y > newY)
+                topY = rightPoint.Y;
+            var lowY=leftPoint.Y;
+            if(leftPoint.Y >newY)
+                lowY = newY;
+            if (rightPoint.Y < newY)
+                lowY = rightPoint.Y;
+            
+            if(leftX>newX)
+                leftX = newX;
+            if (rightX<newX)
+                rightX = newX;
+
+            loopMap.RebuildLoopMap(leftX, rightX, topY, lowY, newPoints);
+            return frontDraft;
+        }
+
+        public LoopMap ColorLoopMap(List<int> mIndexes, List<int>nIndexes, List<string> colors)
+        {
+            for(int i=0; i<mIndexes.Count; ++i)
+            {
+                loopMap.ChangeColor(mIndexes[i],nIndexes[i], colors[i]);
+            }
+            return loopMap;
+        }
+
+       
 
     }
 }

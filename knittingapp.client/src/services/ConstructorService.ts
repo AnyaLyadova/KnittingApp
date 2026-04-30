@@ -1,6 +1,7 @@
 ﻿
 import apiClient from './apiClient'
 import type { Model, Measures } from '../types/Model';
+import type { LoopMap } from '../types/Schema';
 
 
 export const ConstructorService = {
@@ -39,6 +40,17 @@ export const ConstructorService = {
             }
         });
         return response.data;
-    }
+    },
+
+
+    //раскрашивание схемы
+    async colorLoopMap(mIndexes: number[], nIndexes: number[], colors: string[]): Promise<LoopMap> {
+        const response = await apiClient.put(`/constructor/color`, {
+            mIndexes: mIndexes,
+            nIndexes: nIndexes,
+            colors: colors
+        });
+        return response.data;
+    },
 
 }

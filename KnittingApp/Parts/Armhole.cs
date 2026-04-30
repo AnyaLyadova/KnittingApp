@@ -102,6 +102,8 @@ namespace KnittingApp.Parts
             //Point endPoint = new Point(currentPoint.X, currentPoint.Y + loopHeight * armholeLoopHeight, name);
             
             armholeDraft.EndPoint = endPoint;
+            armholeDraft.EndPoint.visible= true;
+            armholeDraft.StartPoint.visible= true;
             return armholeDraft;
         }
     }

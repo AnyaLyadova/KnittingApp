@@ -124,5 +124,44 @@ namespace KnittingApp.Controllers
             return constructor.GetAllMeasures();
         }
 
+        [HttpGet("loopMap")]
+        public LoopMap GetLoopMap()
+        {
+            return constructor.GetLoopMap();
+        }
+
+
+        [HttpPost ("move")]
+
+        public ActionResult<Draft> MovePoint([FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY)
+        {
+            
+            return Ok(constructor.MovePoint(request.movingPoint, newX, newY, request.leftPoint, request.rightPoint));
+        }
+
+        public class MovePointRequest
+        {
+            public Point movingPoint { get; set; }
+            public Point leftPoint { get; set; }
+            public Point rightPoint { get; set; }
+        }
+
+
+        [HttpPut("color")]
+
+        public ActionResult<LoopMap> ColorLoopMap([FromBody] ColorLoopMapRequest request)
+        {
+            if (request.mIndexes == null || request.mIndexes == null || request.colors == null)
+                return BadRequest("Переданые списки равны null");
+            constructor.ColorLoopMap(request.mIndexes, request.nIndexes, request.colors);
+            return Ok(constructor.GetLoopMap());
+        }
+
+        public class ColorLoopMapRequest
+        {
+            public List<int> mIndexes { get; set; } = new();
+            public List<int> nIndexes { get; set; } = new();
+            public List<string> colors { get; set; } = new();
+        }
     }
 }

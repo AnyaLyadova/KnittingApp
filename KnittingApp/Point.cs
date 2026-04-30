@@ -7,7 +7,10 @@ namespace KnittingApp
         double x;
         double y;
 
-        public bool Visible { get; set; }
+        public Point() { }
+
+        [JsonPropertyName("visible")]
+        public bool visible { get; set; }
 
         [JsonPropertyName("x")]
         public double X { get { return x; } set { x = value; } }
@@ -18,7 +21,7 @@ namespace KnittingApp
         string part;  //какой части принадлежит точка
 
         [JsonPropertyName("part")]
-        public string Part { get { return part; } }
+        public string Part { get { return part; } set { part = value; } }
 
         // List<Point> connections=new List<Point>();
       //  Point connection;  //точка, с которой есть соединение
@@ -29,26 +32,41 @@ namespace KnittingApp
             this.x = x;
             this.y = y;
             this.part = part;
-            this.Visible = false;
-        }
-       /* public void AddConnection(Point p)
-        {
-            //connections.Add(p);
-            connection = p;
-        }
-        public void RemoveConnection(Point p)
-        {
-            //return connections.Remove(p);
-            connection = null;
+            this.visible = false ;
         }
 
-        public Point GetConnection() 
-        {
-            //return connections; 
-            return connection;
-        }*/
 
-        
+        public override bool Equals(object obj)  //переопределяем метод для сравнения и получения точек из списка
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Point other = (Point)obj;
+            return X == other.X && Y == other.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+        /* public void AddConnection(Point p)
+         {
+             //connections.Add(p);
+             connection = p;
+         }
+         public void RemoveConnection(Point p)
+         {
+             //return connections.Remove(p);
+             connection = null;
+         }
+
+         public Point GetConnection() 
+         {
+             //return connections; 
+             return connection;
+         }*/
+
+
     }
 
 

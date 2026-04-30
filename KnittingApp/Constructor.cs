@@ -118,6 +118,25 @@ namespace KnittingApp
             return SleeveRollParts;
         }
         
+        public LoopMap GetLoopMap()
+        {
+            if (model.loopMap == null)
+                throw new NullReferenceException("Матрица петель не инициалзирована");
+            return model.loopMap;
+        }
+
+
+        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint)
+        {
+            return model.MovePoint(movingPoint, newX, newY,leftPoint, rightPoint);
+        }
+
+        public LoopMap ColorLoopMap(List<int> mIndexes, List<int> nIndexes, List<string> colors)
+        {
+           return model.ColorLoopMap(mIndexes, nIndexes, colors);
+
+        }
+
     }
 
 }

@@ -5,7 +5,7 @@ import SchemaField from '../components/Schema/SchemaFiled';
 import type { Schema } from '../types/Schema';
 import { SchemaService } from '../services/SchemaService';
 import { useState, useEffect } from 'react';
-//import '../styles/SchemaView.css'
+import '../styles/SchemaView.css'
 
 interface ColorCircleValue {
     color: string;
@@ -52,7 +52,26 @@ function SchemaConstructorView() {
         const handlePixelChange = () => {
             // Можно обновить что-то если нужно
             console.log('Пиксель изменен');
-        };
+    };
+
+    // Функция для получения правильного src
+    const getImageSrc = (imageData: string | undefined) => {
+        if (!imageData) return '';
+
+        // Если уже есть data:image префикс
+        if (imageData.startsWith('data:image')) {
+            return imageData;
+        }
+
+        // Если начинается с iVBOR (PNG signature)
+        if (imageData.startsWith('iVBOR')) {
+            return `data:image/png;base64,${imageData}`;
+        }
+
+        // Если просто base64 без префикса
+        return `data:image/png;base64,${imageData}`;
+    };
+
 
         return (
             <div className="schema-constructor-view">
@@ -73,7 +92,7 @@ function SchemaConstructorView() {
                             <div className="no-schemas">Схем не найдено</div>
                         ) : (
                                 schemas.map((schema) => {
-                                    console.log(schema);
+                                   // console.log(schema);
                                     return (<button
                                         key={schema.schemaId}
                                         className={`schema-btn ${selectedSchemaId === schema.schemaId ? 'active' : ''}`}
@@ -83,6 +102,19 @@ function SchemaConstructorView() {
                                         {/*<div className="schema-size">
                                         {schema.loopMap.m} × {schema.loopMap.n}
                                     </div>*/}
+                                        {schema.schemaImage && (
+                                            <div className="schema-preview">
+                                                <img
+                                                    src={getImageSrc(schema.schemaImage)}
+                                                    alt={schema.schemaName}
+                                                    className="schema-preview-img"
+                                                    onError={(e) => {
+                                                        console.error('Ошибка загрузки картинки:', schema.schemaImage?.substring(0, 50));
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
                                     </button>)
                                 })
                         )}

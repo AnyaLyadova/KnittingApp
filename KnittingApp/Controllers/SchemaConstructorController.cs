@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using static KnittingApp.SharedConstants;
 
 namespace KnittingApp.Controllers
@@ -89,6 +90,27 @@ namespace KnittingApp.Controllers
         public ActionResult<Schema> CreateSchema([FromQuery] int m, [FromQuery] int n, [FromQuery] string name)
         {
             return Ok(schemaConstructor.CreaterSchema(m, n, name));
+        }
+
+
+        [HttpPost("{schemaId}/image")]
+        public async Task<IActionResult> UploadImage(Guid schemaId, IFormFile schemaImage)
+        {
+            if (schemaImage == null || schemaImage.Length == 0)
+                return BadRequest("No image file");
+            // Конвертируем IFormFile в Base64 строку
+            var base64Image = await ConvertToBase64(schemaImage);
+            schemaConstructor.SetSchemaImage(schemaId, base64Image);
+            return Ok();
+        }
+
+        // Вспомогательный метод для конвертации в Base64
+        private async Task<string> ConvertToBase64(IFormFile file)
+        {
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            var bytes = memoryStream.ToArray();
+            return Convert.ToBase64String(bytes);
         }
     }
 }

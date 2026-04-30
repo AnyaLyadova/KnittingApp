@@ -93,8 +93,8 @@ namespace KnittingApp.Parts
 
             }
 
-            bodyDraft.StartPoint.Visible = true;
-            bodyDraft.EndPoint.Visible = true;
+            bodyDraft.StartPoint.visible = true;
+            bodyDraft.EndPoint.visible = true;
                 return bodyDraft;
         }
     }

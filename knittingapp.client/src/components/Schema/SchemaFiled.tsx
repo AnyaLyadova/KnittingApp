@@ -29,6 +29,76 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
     const [isDrawing, setIsDrawing] = useState(false);
     const lastSentRef = useRef<{ x: number; y: number; color: string } | null>(null);
 
+
+    /**
+    * Генерирует PNG картинку из текущего состояния loopMap
+    * @returns Promise<Blob | null> - Blob с PNG картинкой или null при ошибке
+    */
+    const generateImageBlob = async (): Promise<Blob | null> => {
+        // Проверяем, что сетка существует
+        if (!loopMap) return null;
+
+        // Размер одной клетки в пикселях (должен совпадать с CSS)
+        const cellSize = 30;
+        // Вычисляем общую ширину и высоту картинки
+        const width = loopMap.n * cellSize;
+        const height = loopMap.m * cellSize;
+
+        // Создаём canvas элемент (он не добавляется в DOM, только в памяти)
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        // Получаем контекст для рисования 2D
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+
+        // Рисуем каждую клетку сетки
+        for (let i = 0; i < loopMap.m; i++) {
+            for (let j = 0; j < loopMap.n; j++) {
+                const loop = loopMap.getLoop(i, j);
+                // Берём цвет клетки (Color с большой буквы - это поле в нашем LoopMap)
+                const color = loop?.color || '#FFFFFF';
+
+                // Закрашиваем клетку
+                ctx.fillStyle = color;
+                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+
+                // Рисуем границу клетки (опционально, для сетки)
+                ctx.strokeStyle = '#ccc';
+                ctx.lineWidth = 0.5;
+                ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            }
+        }
+
+        // Преобразуем canvas в Blob (бинарные данные PNG)
+        return new Promise((resolve) => {
+            canvas.toBlob((blob) => resolve(blob), 'image/png');
+        });
+    };
+
+    /**
+     * Отправляет сгенерированную картинку на бекенд
+     * @param schemaId - ID схемы, к которой привязана картинка
+     */
+    const uploadImageToBackend = async (schemaId: string) => {
+        try {
+            // Генерируем картинку из текущего состояния
+            const imageBlob = await generateImageBlob();
+            if (!imageBlob) {
+                console.warn('Не удалось сгенерировать картинку');
+                return;
+            }
+
+            // Отправляем на бекенд
+            await SchemaService.setSchemaImage(schemaId, imageBlob);
+            console.log('Картинка сохранена на бекенде');
+        } catch (error) {
+            console.error('Ошибка при сохранении картинки:', error);
+        }
+    };
+
+
     // Загрузка схемы при изменении schemaId
     useEffect(() => {
         const loadSchema = async () => {
@@ -105,7 +175,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
             for (let j = 0; j < loopMap.n; j++) {
                 const loop = loopMap.getLoop(i, j);
                 if (loop) {
-                    updatedMap.changeLoopColor(i, j, loop.сolor);
+                    updatedMap.changeLoopColor(i, j, loop.color);
                     updatedMap.changeLoopType(i, j, loop.type);
                 }
             }
@@ -117,6 +187,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
 
         try {
             await SchemaService.changeLoopColor(x, y, newColor);
+            await uploadImageToBackend(schemaId);
             onPixelChange?.();
         } catch (error) {
             console.error('Ошибка сохранения цвета:', error);
@@ -150,7 +221,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
     if (!schemaId) {
         return (
             <div className="schema-field-placeholder">
-                <p>📋 Выберите схему</p>
+                <p>Выберите схему</p>
             </div>
         );
     }
@@ -158,7 +229,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
     if (!loopMap) {
         return (
             <div className="schema-field-placeholder">
-                <p>⏳ Загрузка схемы...</p>
+                <p>Загрузка схемы...</p>
             </div>
         );
     }
@@ -185,7 +256,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
                 {Array.from({ length: loopMap.m }).map((_, x) =>
                     Array.from({ length: loopMap.n }).map((_, y) => {
                         const loop = loopMap.getLoop(x, y);
-                        const color = loop?.сolor || '#FFFFFF';
+                        const color = loop?.color || '#FFFFFF';
                         return (
                             <div
                                 key={`${x}-${y}`}

@@ -44,5 +44,10 @@ namespace KnittingApp
         {
             schema.ColorSchema(color);
         }
+
+        public void SetSchemaImage(Guid schemaId, string schemaImage)
+        {
+            GetSchema(schemaId).schemaImage = schemaImage;
+        }
     }
 }
