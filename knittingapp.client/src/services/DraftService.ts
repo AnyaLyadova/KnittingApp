@@ -4,9 +4,24 @@ import type { Point } from '../types/Draft';
 
 
 export const DraftService = {
-    async getDraft(): Promise<Draft> {
-        const response = await apiClient.get<Draft>('/constructor/draft');
-        return response.data;
+    async createDrafts(): Promise<Draft> {
+        const response = await apiClient.get<Draft>('/constructor/createDrats');
+        return response.data;  //возвращается frontDraft
+    },
+
+    async getFrontDraft(): Promise<Draft> {
+        const response = await apiClient.get<Draft>('/constructor/frontDraft');
+        return response.data;  //возвращается frontDraft
+    },
+
+    async getBackDraft(): Promise<Draft> {
+        const response = await apiClient.get<Draft>('/constructor/backDraft');
+        return response.data;  //возвращается frontDraft
+    },
+
+    async getSleeveDraft(): Promise<Draft> {
+        const response = await apiClient.get<Draft>('/constructor/sleeveDraft');
+        return response.data;  //возвращается frontDraft
     },
 
     async movePoint(
@@ -14,7 +29,8 @@ export const DraftService = {
         newX: number,        // новая X координата
         newY: number,        // новая Y координата
         leftPoint: Point,    // левая опорная точка
-        rightPoint: Point    // правая опорная точка
+        rightPoint: Point,    // правая опорная точка
+        draftType:string
     ): Promise<Draft> {
         const response = await apiClient.post<Draft>('/constructor/move', {
             movingPoint: movingPoint,
@@ -23,7 +39,8 @@ export const DraftService = {
         }, {
             params: {
                 newX: newX,
-                newY: newY
+                newY: newY,
+                draftType: draftType
             }
         });
         return response.data;

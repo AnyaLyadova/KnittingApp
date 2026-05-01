@@ -20,11 +20,14 @@ namespace KnittingApp
         List <Draft> partDrafts=new List<Draft>(); //список выкроек частей
         Draft frontDraft; //общая выкройка переда
         Draft backDraft; //общая выкройка спинки
-        Draft sleevwDraft; //общая выкройка рукава
+        Draft sleeveDraft; //общая выкройка рукава
         Dictionary<string, double> measures = new Dictionary<string, double>();
         bool hasShoulderBevel;   //есть ли скос плеча
         bool hasArmhole;  //есть ли вырез под втачной рукав
-        public LoopMap loopMap { get; set; }
+        public LoopMap frontLoopMap { get; set; }
+        public LoopMap backLoopMap { get; set; }
+        public LoopMap sleeveLoopMap { get; set; }
+
         double loopWidth;  //ширина петли
         double loopHeight;  //высота петли
         double loopInHeight;  //петель в см высоты
@@ -58,7 +61,29 @@ namespace KnittingApp
             }
         }
 
-        public Draft CreateDraft()
+        public Draft GetFrontDraft()
+        {
+            return frontDraft;
+        }
+
+        public Draft GetBackDraft()
+        {
+            return backDraft;
+        }
+
+        public Draft GetSleeveDraft()
+        {
+            return sleeveDraft;
+        }
+
+        public Draft CreateDrafts()
+        {
+            CreateFrontDraft();
+            CreateBackDraft();
+            CreateSleeveDraft();
+            return frontDraft;
+        }
+        public Draft CreateFrontDraft()
         {
             partDrafts.Clear(); //сбрасываем  состояние
             Point startPoint = new Point(0, 0, BodyName);
@@ -68,7 +93,9 @@ namespace KnittingApp
                 {
                     throw new ArgumentNullException("Переданная часть равна null" + part.GetType());
                 }
-               // part.InitializePart(measures, loopWidth, loopHeight);
+                if (part.GetPriority() == PartPriority.Sleeve || part.GetPriority() == PartPriority.SleeveRoll)  //пропускаем рукав
+                    continue;
+                // part.InitializePart(measures, loopWidth, loopHeight);
                 Draft draft = part.GetDraft(startPoint);
                 partDrafts.Add(draft);
                 startPoint = draft.EndPoint;
@@ -78,34 +105,62 @@ namespace KnittingApp
             frontDraft.EndPoint.X = 0;
             frontDraft.Mirror();
 
-            loopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
+            frontLoopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
             return frontDraft;
 
         }
+
 
         public Draft CreateBackDraft()
         {
             Point startPoint = new Point(0, 0, BodyName);
             foreach (var part in parts)
             {
-                part.DoBackPart();
+                if (part == null)
+                {
+                    throw new ArgumentNullException("Переданная часть равна null" + part.GetType());
+                }
+                if (part.GetPriority() == PartPriority.Sleeve || part.GetPriority() == PartPriority.SleeveRoll)  //пропускаем рукав
+                    continue;
+                part.DoBackPart();  //делаем выкройку для спинки
                 // part.InitializePart(measures, loopWidth, loopHeight);
                 Draft draft = part.GetDraft(startPoint);
                 partDrafts.Add(draft);
                 startPoint = draft.EndPoint;
             }
             //draft.CreateDraft(partDrafts);
-            frontDraft = new Draft(partDrafts);
-            frontDraft.Mirror();
+            backDraft = new Draft(partDrafts);
+            backDraft.Mirror();
 
-            loopMap = new LoopMap(frontDraft, loopWidth, loopHeight);
-            return frontDraft;
+            backLoopMap = new LoopMap(backDraft, loopWidth, loopHeight);
+            return backDraft;
         }
 
-        public Draft RebuildDraft(Point oldPoint, Point newPoint)
-        {
-            return frontDraft;
+
+        public Draft CreateSleeveDraft(){
+            Point startPoint = new Point(0, 0, BodyName);
+            foreach (var part in parts)
+            {
+                if (part == null)
+                {
+                    throw new ArgumentNullException("Переданная часть равна null" + part.GetType());
+                }
+                if (part.GetPriority() == PartPriority.Sleeve || part.GetPriority() == PartPriority.SleeveRoll)  //берем только части рукава
+  
+               { 
+                    Draft draft = part.GetDraft(startPoint);
+                    partDrafts.Add(draft);
+                    startPoint = draft.EndPoint;
+                }
+            }
+            //draft.CreateDraft(partDrafts);
+            sleeveDraft = new Draft(partDrafts);
+            sleeveDraft.Mirror();
+
+            sleeveLoopMap = new LoopMap(sleeveDraft, loopWidth, loopHeight);
+            return sleeveDraft;
         }
+
 
         public void InitializeParts(Dictionary<string, double> addMeasures,
             double loopWidth, double loopHeight,
@@ -163,10 +218,30 @@ namespace KnittingApp
         }
 
 
-        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint)
+        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, string draftType)
         {
+            Draft currentDraft;
+            LoopMap currentLoopMap;
+            switch (draftType)
+            {
+                case "front":
+                    currentDraft = frontDraft;
+                    currentLoopMap = frontLoopMap;
+                    break;
+                case "back":
+                    currentDraft = backDraft;
+                    currentLoopMap = backLoopMap;
+                    break;
+                case "sleeve":
+                    currentDraft = sleeveDraft;
+                    currentLoopMap = sleeveLoopMap;
+                    break;
+                default:
+                    throw new ArgumentException("Передана некорректная часть чертежа");
+
+            }
             List<Point> newPoints;
-            frontDraft.MovePoint(movingPoint, newX, newY,leftPoint,rightPoint, loopWidth,
+            currentDraft.MovePoint(movingPoint, newX, newY,leftPoint,rightPoint, loopWidth,
              loopHeight, loopInWidth,  loopInHeight, out newPoints);
             var leftX=leftPoint.X<newX?leftPoint.X:newX;
             var rightX=rightPoint.X<newX?newX:rightPoint.X;
@@ -187,17 +262,56 @@ namespace KnittingApp
             if (rightX<newX)
                 rightX = newX;
 
-            loopMap.RebuildLoopMap(leftX, rightX, topY, lowY, newPoints);
-            return frontDraft;
+            currentLoopMap.RebuildLoopMap(leftX, rightX, topY, lowY, newPoints);
+            return currentDraft;
         }
 
-        public LoopMap ColorLoopMap(List<int> mIndexes, List<int>nIndexes, List<string> colors)
+        public LoopMap ColorLoopMap(List<int> mIndexes, List<int>nIndexes, List<string> colors, string draftType)
         {
-            for(int i=0; i<mIndexes.Count; ++i)
+            LoopMap currentLoopMap;
+            switch (draftType)
             {
-                loopMap.ChangeColor(mIndexes[i],nIndexes[i], colors[i]);
+                case "front":
+                    currentLoopMap = frontLoopMap;
+                    break;
+                case "back":
+                    currentLoopMap = backLoopMap;
+                    break;
+                case "sleeve":
+                    currentLoopMap = sleeveLoopMap;
+                    break;
+                default:
+                    throw new ArgumentException("Передана некорректная часть чертежа");
+
             }
-            return loopMap;
+            for (int i=0; i<mIndexes.Count; ++i)
+            {
+                currentLoopMap.ChangeColor(mIndexes[i],nIndexes[i], colors[i]);
+            }
+            return currentLoopMap;
+        }
+
+
+        public LoopMap ColorAllLoopMap(string color, string draftType)
+        {
+            LoopMap currentLoopMap;
+            switch (draftType)
+            {
+                case "front":
+                    currentLoopMap = frontLoopMap;
+                    break;
+                case "back":
+                    currentLoopMap = backLoopMap;
+                    break;
+                case "sleeve":
+                    currentLoopMap = sleeveLoopMap;
+                    break;
+                default:
+                    throw new ArgumentException("Передана некорректная часть чертежа");
+
+            }
+            currentLoopMap.ColorLoopMap(color);
+            return currentLoopMap;
         }
 
        

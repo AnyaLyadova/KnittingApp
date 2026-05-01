@@ -74,10 +74,7 @@ namespace KnittingApp
             return model.CreateDraft();
         }
 */
-        public Draft RecalculateDraft(Point oldPoint, Point newPoint)
-        {
-            return model.RebuildDraft(oldPoint, newPoint);
-        }
+
 
         public Model CopyModel(int modelIndex)
         {
@@ -85,11 +82,32 @@ namespace KnittingApp
         }
 
 
-        public Draft GetDraft()
+        public Draft CreateDrafts()
         {
             if (model == null)
                 throw new ArgumentNullException("Модель не создана");
-            return model.CreateDraft();
+            return model.CreateDrafts();
+        }
+
+        public Draft GetFrontDraft()
+        {
+            if (model == null)
+                throw new ArgumentNullException("Модель не создана");
+            return model.GetFrontDraft();
+        }
+
+        public Draft GetBackDraft()
+        {
+            if (model == null)
+                throw new ArgumentNullException("Модель не создана");
+            return model.GetBackDraft();
+        }
+
+        public Draft GetSleeveDraft()
+        {
+            if (model == null)
+                throw new ArgumentNullException("Модель не создана");
+            return model.GetSleeveDraft();
         }
 
         double[] CalculateLoopSize(double height, double width, int loopInHeight, int loopInWidth)
@@ -118,24 +136,47 @@ namespace KnittingApp
             return SleeveRollParts;
         }
         
-        public LoopMap GetLoopMap()
+        public LoopMap GetLoopMap(string draftType)
         {
-            if (model.loopMap == null)
+            LoopMap currentLoopMap;
+            switch (draftType)
+            {
+                case "front":
+                    currentLoopMap = model.frontLoopMap;
+                    break;
+                case "back":;
+                    currentLoopMap = model.backLoopMap;
+                    break;
+                case "sleeve":
+                    currentLoopMap = model.sleeveLoopMap;
+                    break;
+                default:
+                    throw new ArgumentException("Передана некорректная часть чертежа");
+
+            }
+            if (currentLoopMap == null)
                 throw new NullReferenceException("Матрица петель не инициалзирована");
-            return model.loopMap;
+            return currentLoopMap;
         }
 
 
-        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint)
+        public Draft MovePoint(Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, string draftType)
         {
-            return model.MovePoint(movingPoint, newX, newY,leftPoint, rightPoint);
+            return model.MovePoint(movingPoint, newX, newY,leftPoint, rightPoint, draftType);
         }
 
-        public LoopMap ColorLoopMap(List<int> mIndexes, List<int> nIndexes, List<string> colors)
+        public LoopMap ColorLoopMap(List<int> mIndexes, List<int> nIndexes, List<string> colors, string draftType)
         {
-           return model.ColorLoopMap(mIndexes, nIndexes, colors);
+           return model.ColorLoopMap(mIndexes, nIndexes, colors, draftType);
 
         }
+
+        public LoopMap ColorAllLoopMap(string color, string draftType)
+        {
+            return model.ColorAllLoopMap(color, draftType);
+        }
+
+
 
     }
 

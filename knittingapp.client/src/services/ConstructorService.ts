@@ -44,12 +44,29 @@ export const ConstructorService = {
 
 
     //раскрашивание схемы
-    async colorLoopMap(mIndexes: number[], nIndexes: number[], colors: string[]): Promise<LoopMap> {
+    async colorLoopMap(mIndexes: number[], nIndexes: number[], colors: string[], draftType:string): Promise<LoopMap> {
         const response = await apiClient.put(`/constructor/color`, {
             mIndexes: mIndexes,
             nIndexes: nIndexes,
             colors: colors
-        });
+        },
+            {params: {
+            draftType: draftType
+            }}
+        );
+        return response.data;
+    },
+
+    //раскрашивание всей схемы
+    async colorAllLoopMap(color: string, draftType: string): Promise<LoopMap> {
+        const response = await apiClient.put(`/constructor/color/all`,null,
+            {
+                params: {
+                    color:color,
+                    draftType: draftType
+                }
+            }
+        );
         return response.data;
     },
 

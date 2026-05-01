@@ -45,10 +45,28 @@ namespace KnittingApp.Controllers
             }
         }
 
-        [HttpGet ("draft")]
-        public Draft GetDraft()
+        [HttpGet ("frontDraft")]
+        public Draft GetFrontDraft()
         {
-            return constructor.GetDraft();
+            return constructor.GetFrontDraft();
+        }
+
+        [HttpGet("backDraft")]
+        public Draft GetBackDraft()
+        {
+            return constructor.GetBackDraft();
+        }
+
+        [HttpGet("sleeveDraft")]
+        public Draft GetSleeveDraft()
+        {
+            return constructor.GetSleeveDraft();
+        }
+
+        [HttpGet("createDrats")]
+        public Draft CreateDrafts()
+        {
+            return constructor.CreateDrafts();
         }
 
         [HttpPost ("create")]
@@ -125,18 +143,18 @@ namespace KnittingApp.Controllers
         }
 
         [HttpGet("loopMap")]
-        public LoopMap GetLoopMap()
+        public LoopMap GetLoopMap([FromQuery] string draftType)
         {
-            return constructor.GetLoopMap();
+            return constructor.GetLoopMap(draftType);
         }
 
 
         [HttpPost ("move")]
 
-        public ActionResult<Draft> MovePoint([FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY)
+        public ActionResult<Draft> MovePoint([FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY, [FromQuery] string draftType)
         {
             
-            return Ok(constructor.MovePoint(request.movingPoint, newX, newY, request.leftPoint, request.rightPoint));
+            return Ok(constructor.MovePoint(request.movingPoint, newX, newY, request.leftPoint, request.rightPoint, draftType));
         }
 
         public class MovePointRequest
@@ -149,12 +167,18 @@ namespace KnittingApp.Controllers
 
         [HttpPut("color")]
 
-        public ActionResult<LoopMap> ColorLoopMap([FromBody] ColorLoopMapRequest request)
+        public ActionResult<LoopMap> ColorLoopMap([FromBody] ColorLoopMapRequest request, [FromQuery] string draftType)
         {
             if (request.mIndexes == null || request.mIndexes == null || request.colors == null)
                 return BadRequest("Переданые списки равны null");
-            constructor.ColorLoopMap(request.mIndexes, request.nIndexes, request.colors);
-            return Ok(constructor.GetLoopMap());
+            return  Ok(constructor.ColorLoopMap(request.mIndexes, request.nIndexes, request.colors, draftType));
+        }
+
+        [HttpPut("color/all")]
+
+        public ActionResult<LoopMap> ColorAllLoopMap([FromQuery] string color,  [FromQuery] string draftType)
+        {
+            return Ok(constructor.ColorAllLoopMap(color,draftType));
         }
 
         public class ColorLoopMapRequest

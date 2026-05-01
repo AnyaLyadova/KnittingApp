@@ -51,11 +51,17 @@ function ConstructorView() {
     const [gridCellWidth, setGridCellWidth] = useState(20);
     const [gridCellHeight, setGridCellHeight] = useState(25);
 
-    const draftEditorRef = useRef<DraftEditorRef>(null)
+    const draftEditorRef = useRef<DraftEditorRef>(null);
+
+    const [draftType, setDraftType] = useState("front");  //для текущего типа чертежа
 
     const [skipNextCellClick, setSkipNextCellClick] = useState(false);
 
     const [selectedSchemaId, setSelectedSchemaId] = useState<string | null>(null);
+
+
+
+
     // Обработчик выбора схемы из списка
   /*  const handleSelectSchema = (schemaId: string) => {
         setSelectedSchemaId(schemaId);
@@ -122,9 +128,9 @@ function ConstructorView() {
             return;
         }
         try {
-            const data = await DraftService.getDraft();
+            const data = await DraftService.createDrafts();
             setDraft(data);
-            const map = await ModelService.getLoopMap();
+            const map = await ModelService.getLoopMap(draftType);
             setLoopMap(map);
         } catch (err) {
             setDraft(null);
@@ -519,6 +525,7 @@ function ConstructorView() {
                 isDraggingSchema={isDraggingSchema}
                 ref={draftEditorRef}
                 onLoopMapUpdate={handleLoopMapUpdate}
+                draftType={draftType}
             />
 
             {/* Призрак перетаскиваемой схемы */}

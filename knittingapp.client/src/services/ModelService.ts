@@ -40,8 +40,13 @@ export const ModelService = {
     },
 
     // Получить матрицу петель
-    async getLoopMap(): Promise<LoopMap> {
-        const response = await apiClient.get('/constructor/loopMap');
+    async getLoopMap(draftType:string): Promise<LoopMap> {
+        const response = await apiClient.get('/constructor/loopMap', null,
+            {
+                params: {
+                    draftType: draftType
+                }
+            });
         return response.data;
     },
    

@@ -105,6 +105,7 @@ interface DraftEditorProps {
     isDraggingSchema?: boolean;
     skipNextCellClick?: boolean;
     onLoopMapUpdate?: (loopMap: LoopMap) => void;
+    draftType: string;
 }
 
 //export const DraftEditor: React.FC<DraftEditorProps> = ({
@@ -124,6 +125,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
     isDraggingSchema,
     skipNextCellClick,
     onLoopMapUpdate,
+    draftType,
 },ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [points, setPoints] = useState<Point[]>([]);
@@ -313,7 +315,8 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             const newLoopMap = await ConstructorService.colorLoopMap(
                 pendingColorChanges.mIndexes,
                 pendingColorChanges.nIndexes,
-                pendingColorChanges.colors
+                pendingColorChanges.colors,
+                draftType
             );
 
             if (newLoopMap) {
@@ -755,13 +758,14 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
                 newX,
                 newY,
                 leftAnchor,
-                rightAnchor
+                rightAnchor,
+                draftType
             );
 
             if (newDraft && newDraft.draft) {
                 setPoints(newDraft.draft);
 
-                const newLoopMap = await ModelService.getLoopMap();
+                const newLoopMap = await ModelService.getLoopMap(draftType);
                 if (newLoopMap) {
                     setLoopMap(newLoopMap);
                     onLoopMapUpdate?.(newLoopMap);
