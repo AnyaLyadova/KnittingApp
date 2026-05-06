@@ -121,7 +121,7 @@ function ConstructorView() {
     //переменная для матрицы петель
     const [loopMap, setLoopMap] = useState<LoopMap | null>(null);
 
-    const loadDraft = async () => {
+  /*  const loadDraft = async () => {
         if (selectedModel === null) {
             setDraft(null);
             setLoopMap(null);
@@ -137,14 +137,66 @@ function ConstructorView() {
             setLoopMap(null);
         }
     }
+*/
+
+    //смена типа чертежа
+    const switchDraft = useCallback(async (type: string) => {
+
+        setSkipNextCellClick(true);
+
+        try {
+            let draftData: Draft | null = null;
+
+            switch (type) {
+                case "front":
+                    draftData = await DraftService.getFrontDraft();
+                    break;
+                case "back":
+                    draftData = await DraftService.getBackDraft();
+                    break;
+                case "sleeve":
+                    draftData = await DraftService.getSleeveDraft();
+                    break;
+            }
+
+            if (draftData) {
+                setDraft(draftData);
+                setDraftType(type);  // обновляем тип после успешной загрузки
+
+                const map = await ModelService.getLoopMap(type);
+                setLoopMap(map);
+            }
+
+        } catch (error) {
+            console.error(`Ошибка загрузки чертежа ${type}:`, error);
+        } finally {
+            setTimeout(() => setSkipNextCellClick(false), 100);
+        }
+    }, []);
+
+    const loadDraft = useCallback(async () => {
+        if (selectedModel === null) {
+            setDraft(null);
+            setLoopMap(null);
+            return;
+        }
+        try {
+            await DraftService.createDrafts();
+            await switchDraft("front");
+        } catch (err) {
+            console.error('Ошибка при создании чертежей:', err);
+            setDraft(null);
+            setLoopMap(null);
+        }
+    }, [selectedModel, switchDraft]);
+
 
     // Обработчики (могут быть пустыми, но должны быть переданы)
     const handlePointMove = (index: number, oldX: number, oldY: number, newX: number, newY: number) => {
-        console.log(`Точка ${index} перемещена: (${oldX},${oldY}) → (${newX},${newY})`);
+
     };
 
     const handlePointClick = (index: number, x: number, y: number, part: string) => {
-        console.log(`Клик по точке ${index}: (${x},${y}), часть: ${part}`);
     };
 
     const handlePointToggleVisibility = (index: number, x: number, y: number, isNowVisible: boolean) => {
@@ -255,6 +307,8 @@ function ConstructorView() {
             console.error('Ошибка загрузки изображения схемы:', error);
         }
     }, [gridCellWidth, gridCellHeight, scaleImageToGrid]);  
+
+
 
 
 
@@ -394,11 +448,47 @@ function ConstructorView() {
         }
     }, [isDraggingSchema]);
 
-    // Просто напиши
     const handleLoopMapUpdate = (newLoopMap: LoopMap) => {
         setLoopMap(newLoopMap);
     };
 
+
+   
+
+    // Загрузка чертежа при смене типа
+   /* useEffect(() => {
+        const loadDraftByType = async () => {
+            if (selectedModel === null) return;
+
+            try {
+                let draftData: Draft | null = null;
+
+                switch (draftType) {
+                    case "front":
+                        draftData = await DraftService.getFrontDraft();
+                        break;
+                    case "back":
+                        draftData = await DraftService.getBackDraft();
+                        break;
+                    case "sleeve":
+                        draftData = await DraftService.getSleeveDraft();
+                        break;
+                    default:
+                        draftData = await DraftService.getFrontDraft();
+                }
+
+                setDraft(draftData);
+
+                const map = await ModelService.getLoopMap(draftType);
+                setLoopMap(map);
+
+            } catch (error) {
+                console.error(`Ошибка загрузки чертежа ${draftType}:`, error);
+            }
+        };
+
+        loadDraftByType();
+    }, [draftType, selectedModel]); // зависит от draftType и selectedModel*/
 
 
     return (
@@ -467,28 +557,6 @@ function ConstructorView() {
             )}
 
 
-           {/* */}{/* Область с чертежом */}{/*
-            <div style={{ marginTop: '20px' }}>
-
-                <DraftField draft={draft} width={800} height={600} />
-
-            </div>*/}
-
-            {/*<PatternEditor
-                draft={draft}
-                loopMap={loopMap}
-                width={900}
-                height={700}
-               // cellWidth={loopMap?.loopWidth}
-              //  cellHeight={loopMap?.loopHeight}
-                onPointMove={handlePointMove}
-                onPointClick={handlePointClick}
-                onPointToggleVisibility={handlePointToggleVisibility}
-            />*/}
-
-
-            {/*Список схем*/}
-
             <div>
                 <SchemasList
                     onSelectSchema={handleSelectSchema}
@@ -503,6 +571,51 @@ function ConstructorView() {
                         onChange={setColorCircleValue}
                     />
                 </div>
+            </div>
+
+
+
+
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '10px', position: 'relative', zIndex: 10 }}>
+                <button
+                    onClick={() => switchDraft("front")}
+                    style={{
+                        padding: '8px 16px',
+                        backgroundColor: draftType === "front" ? '#007aff' : '#e0e0e0',
+                        color: draftType === "front" ? 'white' : '#333',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Перед
+                </button>
+                <button
+                    onClick={() => switchDraft("back")}
+                    style={{
+                        padding: '8px 16px',
+                        backgroundColor: draftType === "back" ? '#007aff' : '#e0e0e0',
+                        color: draftType === "back" ? 'white' : '#333',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Спинка
+                </button>
+                <button
+                    onClick={() => switchDraft("sleeve")}
+                    style={{
+                        padding: '8px 16px',
+                        backgroundColor: draftType === "sleeve" ? '#007aff' : '#e0e0e0',
+                        color: draftType === "sleeve" ? 'white' : '#333',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Рукав
+                </button>
             </div>
 
             <DraftEditor

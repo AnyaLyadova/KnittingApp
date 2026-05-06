@@ -11,6 +11,8 @@ namespace KnittingApp
             Model model=new(name/*, loopWidth, loopHeight*//*, measures*/);
             model.AddPart(new Body());
             model.AddPart(new Shoulder());
+            model.AddPart(new Sleeve());
+            model.AddPart(new SleeveRoll());
             foreach(var str in stringParts)
             {
                 Part part = parts.FirstOrDefault(p => p.name == str);

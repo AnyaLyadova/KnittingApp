@@ -74,7 +74,94 @@
         }
       }
     },
-    "/api/constructor/draft": {
+    "/api/constructor/frontDraft": {
+      "get": {
+        "tags": [
+          "Constructor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/backDraft": {
+      "get": {
+        "tags": [
+          "Constructor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/sleeveDraft": {
+      "get": {
+        "tags": [
+          "Constructor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Draft"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/createDrats": {
       "get": {
         "tags": [
           "Constructor"
@@ -456,6 +543,15 @@
         "tags": [
           "Constructor"
         ],
+        "parameters": [
+          {
+            "name": "draftType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -500,6 +596,13 @@
             "schema": {
               "type": "number",
               "format": "double"
+            }
+          },
+          {
+            "name": "draftType",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -551,6 +654,15 @@
         "tags": [
           "Constructor"
         ],
+        "parameters": [
+          {
+            "name": "draftType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -570,6 +682,51 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoopMap"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/constructor/color/all": {
+      "put": {
+        "tags": [
+          "Constructor"
+        ],
+        "parameters": [
+          {
+            "name": "color",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "draftType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1038,7 +1195,13 @@
             "type": "string",
             "format": "uuid"
           },
-          "loopMap": {
+          "frontLoopMap": {
+            "$ref": "#/components/schemas/LoopMap"
+          },
+          "backLoopMap": {
+            "$ref": "#/components/schemas/LoopMap"
+          },
+          "sleeveLoopMap": {
             "$ref": "#/components/schemas/LoopMap"
           },
           "parts": {

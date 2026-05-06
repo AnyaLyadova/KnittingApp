@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Primitives;
+﻿using KnittingApp.Models;
+using Microsoft.Extensions.Primitives;
 using System.Drawing;
 using static KnittingApp.SharedConstants;
 namespace KnittingApp
 {
     public class LoopMap
     {
+        public Guid LoopMapId { get; }
         public Loop[][] loopMap {  get; }
         public int m { get; set; }
         public int n { get; set; }
@@ -13,7 +15,8 @@ namespace KnittingApp
         public int nullN { get; set; }
         public double loopWidth { get; set; }
         public double loopHeight { get; set; }
-        public LoopMap(Draft draft, double loopWidth, double loopHeight) {
+       /* public LoopMap(Draft draft, double loopWidth, double loopHeight) {
+            LoopMapId = new Guid();
             Point upper = draft.GetUpperPoint();
             Point bottom = draft.GetBottomPoint();
             int m = (int)(Math.Abs(upper.Y - bottom.Y)/loopHeight) + AddingM + 1;
@@ -29,10 +32,25 @@ namespace KnittingApp
             }
             
             DraftToLoopMap(draft);
+        }*/
+
+        public LoopMap(int m, int n, string draft)
+        {
+
+            this.m = m;
+            this.n = n;
+            this.loopWidth = loopWidth;
+            this.loopHeight = loopHeight;
+            loopMap = new Loop[m + 1][];
+            for (int i = 0; i < m + 1; i++)
+            {
+                loopMap[i] = new Loop[n + 1];  // все ячейки будут null
+            }
         }
 
         public LoopMap(int m, int n)
         {
+            LoopMapId = new Guid();
             this.m = m;
             this.n = n;
             loopMap = new Loop[m][];
@@ -46,17 +64,18 @@ namespace KnittingApp
             }
         }
 
-        public bool IsFit(int x, int y, LoopMap pattern)
+        public LoopMap(Guid id,Loop[][] loopMap)
         {
-            return x + pattern.loopMap.GetLength(0) <= loopMap.GetLength(0) //влезает по строкам
-                 && y + pattern.loopMap.GetLength(1) <= loopMap.GetLength(1); // влезает по столбцам
+            LoopMapId = id;
+            m = loopMap.Length;
+            n = loopMap[0].Length;
+            this.loopMap=loopMap;
         }
 
-        public void AddPattern(int x, int y, LoopMap pattern)
+
+       /* public void AddPattern(int x, int y, LoopMap pattern)
         {
             if (pattern == null) throw new ArgumentNullException();
-            if (!IsFit(x, y, pattern))
-                throw new ArgumentException("Узор не помещается на полотно");
             for(int i = x; i<=pattern.loopMap.Length; ++i)
             {
                 for(int j=y; j <= pattern.loopMap[i].Length; ++j)
@@ -64,8 +83,7 @@ namespace KnittingApp
                     loopMap[i][j]=pattern.loopMap[i][j];
                 }
             }
-        }
-
+        }*/
 
         public void ColorLoopMap(string color)
         {

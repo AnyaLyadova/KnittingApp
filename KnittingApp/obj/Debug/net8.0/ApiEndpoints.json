@@ -21,6 +21,26 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetBackDraft",
+    "RelativePath": "api/constructor/backDraft",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "ColorLoopMap",
     "RelativePath": "api/constructor/color",
     "HttpMethod": "PUT",
@@ -31,6 +51,42 @@
         "Name": "request",
         "Type": "KnittingApp.Controllers.ConstructorController\u002BColorLoopMapRequest",
         "IsRequired": true
+      },
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.LoopMap",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "ColorAllLoopMap",
+    "RelativePath": "api/constructor/color/all",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "color",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -78,8 +134,28 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetDraft",
-    "RelativePath": "api/constructor/draft",
+    "Method": "CreateDrafts",
+    "RelativePath": "api/constructor/createDrats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetFrontDraft",
+    "RelativePath": "api/constructor/frontDraft",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -103,7 +179,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "KnittingApp.LoopMap",
@@ -287,6 +369,11 @@
         "Name": "newY",
         "Type": "System.Double",
         "IsRequired": false
+      },
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -312,6 +399,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetSleeveDraft",
+    "RelativePath": "api/constructor/sleeveDraft",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
         "MediaTypes": [
           "text/plain",
           "application/json",

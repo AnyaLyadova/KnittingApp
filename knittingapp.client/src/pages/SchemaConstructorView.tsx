@@ -50,8 +50,6 @@ function SchemaConstructorView() {
 
         // Обновление после изменения пикселя
         const handlePixelChange = () => {
-            // Можно обновить что-то если нужно
-            console.log('Пиксель изменен');
     };
 
     // Функция для получения правильного src

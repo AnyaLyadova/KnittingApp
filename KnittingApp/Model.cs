@@ -6,7 +6,8 @@ namespace KnittingApp
 {
     public class Model
     {
-        public Guid modelId { get; set; }
+        string userId;
+        public Guid modelId { get;  }
         string name;
         /*Draft FrontNeckDraft;
         Draft BackNeckDraft;
@@ -17,7 +18,7 @@ namespace KnittingApp
         Draft sleeveDraft;*/
 
         List<Part> parts=new List<Part>();  //список частей изделия
-        List <Draft> partDrafts=new List<Draft>(); //список выкроек частей
+       // List <Draft> partDrafts=new List<Draft>(); //список выкроек частей
         Draft frontDraft; //общая выкройка переда
         Draft backDraft; //общая выкройка спинки
         Draft sleeveDraft; //общая выкройка рукава
@@ -85,7 +86,8 @@ namespace KnittingApp
         }
         public Draft CreateFrontDraft()
         {
-            partDrafts.Clear(); //сбрасываем  состояние
+            // partDrafts.Clear(); //сбрасываем  состояние
+            List<Draft> partDrafts = new List<Draft>();
             Point startPoint = new Point(0, 0, BodyName);
             foreach (var part in parts)
             {
@@ -114,6 +116,8 @@ namespace KnittingApp
         public Draft CreateBackDraft()
         {
             Point startPoint = new Point(0, 0, BodyName);
+            //  partDrafts.Clear();
+            List<Draft> partDrafts = new List<Draft>();
             foreach (var part in parts)
             {
                 if (part == null)
@@ -130,6 +134,8 @@ namespace KnittingApp
             }
             //draft.CreateDraft(partDrafts);
             backDraft = new Draft(partDrafts);
+
+            backDraft.EndPoint.X = 0;
             backDraft.Mirror();
 
             backLoopMap = new LoopMap(backDraft, loopWidth, loopHeight);
@@ -139,6 +145,8 @@ namespace KnittingApp
 
         public Draft CreateSleeveDraft(){
             Point startPoint = new Point(0, 0, BodyName);
+            //partDrafts.Clear();
+            List<Draft> partDrafts = new List<Draft>();
             foreach (var part in parts)
             {
                 if (part == null)

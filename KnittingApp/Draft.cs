@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.Xml.Linq;
 using static KnittingApp.SharedConstants;
 using static System.Net.Mime.MediaTypeNames;
@@ -6,15 +7,27 @@ namespace KnittingApp
 {
     public class Draft
     {
+        public Guid DraftId { get; }
         public LinkedList<Point> draft { get; private set; }
         Point startPoint;
         Point endPoint;
 
+        public Point StartPoint { get { return startPoint; } }
+        public Point EndPoint { get { return endPoint; } set { endPoint = value; } }
+
         public Draft(Point startPoint)
         {
+           
             this.startPoint = startPoint;
             draft = new LinkedList<Point>();
             draft.AddLast(startPoint);
+        }
+
+        public Draft(Guid id, LinkedList<Point> points)
+        {
+            DraftId = id;
+            draft = points;
+            startPoint = points.First();
         }
 
         public Draft(Draft draft)
@@ -27,6 +40,7 @@ namespace KnittingApp
 
         public Draft(List<Draft> drafts)  //склеиваем чертеж из раных частей
         {
+            DraftId=Guid.NewGuid();
             this.draft = drafts[0].draft;
             startPoint = drafts[0].startPoint;
             endPoint = drafts[0].endPoint;
@@ -56,8 +70,7 @@ namespace KnittingApp
             //return fullDraft;
         }
 
-        public Point StartPoint { get { return startPoint; } }
-        public Point EndPoint { get { return endPoint; } set { endPoint = value; } }
+       
 
 
 
