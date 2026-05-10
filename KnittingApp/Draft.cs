@@ -74,10 +74,6 @@ namespace KnittingApp
 
 
 
-        public void  MovePoint(Point p, int new_x, int new_y)
-        {
-           
-        }
 
         public void AddPoint(Point p)  //добавляет точку чертежа
         {

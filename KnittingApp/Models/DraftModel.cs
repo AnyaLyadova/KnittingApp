@@ -6,7 +6,7 @@ namespace KnittingApp.Models
         [Key]
         public Guid DraftId { get; set; }
         [Required]
-        public LinkedList<Point> Draft { get; set; }
+        public string DraftJson { get; set; }
         [Required]
         public double EndPointY { get; set; }
     }

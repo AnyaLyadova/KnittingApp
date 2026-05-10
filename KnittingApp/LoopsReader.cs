@@ -4,13 +4,14 @@ namespace KnittingApp
 {
     public class LoopsReader
     {
+        public Guid UserId { get; set; }
         public Guid LoopReaderId { get; } 
         int currentIndex;
 
         Dictionary<string, string> colors;
         public Guid LoopMapId { get; }
 
-        LoopMap loopMap;
+        public LoopMap loopMap { get; set; }
 
         TimeSpan spentTime;
 

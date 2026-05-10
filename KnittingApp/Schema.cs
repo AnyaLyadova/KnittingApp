@@ -8,13 +8,14 @@ namespace KnittingApp
         public int m;  //ширина
         public int n;  //высота
         public string schemaName { get; set; }
+        public Guid LoopMapId { get; }
 
-        public LoopMap loopMap { get; }
+        public LoopMap loopMap { get; set; }
         public string schemaImage { get; set; }
 
         public Schema(Guid loopMapId, Guid userId)
         {
-            //вызов из бд
+            LoopMapId = loopMapId;
             this.userId = userId;
         }
         public Schema(int m, int n, string schemaName)

@@ -21,7 +21,9 @@ namespace KnittingApp.Extensions
             schema.schemaName = model.SchemaName;
             schema.schemaId = model.SchemaId;
             schema.schemaImage = model.SchemaImage;
+            schema.loopMap = model.LoopMap;
             return schema;
         }
+
     }
 }

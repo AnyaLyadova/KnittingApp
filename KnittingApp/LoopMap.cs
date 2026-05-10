@@ -15,24 +15,27 @@ namespace KnittingApp
         public int nullN { get; set; }
         public double loopWidth { get; set; }
         public double loopHeight { get; set; }
-       /* public LoopMap(Draft draft, double loopWidth, double loopHeight) {
+
+        LoopsReader reader;
+        public LoopMap(Draft draft, double loopWidth, double loopHeight)
+        {
             LoopMapId = new Guid();
             Point upper = draft.GetUpperPoint();
             Point bottom = draft.GetBottomPoint();
-            int m = (int)(Math.Abs(upper.Y - bottom.Y)/loopHeight) + AddingM + 1;
-            int n = (int)(Math.Abs(upper.X - bottom.X)/loopWidth) + AddingN + 1;
+            int m = (int)(Math.Abs(upper.Y - bottom.Y) / loopHeight) + AddingM + 1;
+            int n = (int)(Math.Abs(upper.X - bottom.X) / loopWidth) + AddingN + 1;
             this.m = m;
             this.n = n;
             this.loopWidth = loopWidth;
             this.loopHeight = loopHeight;
-            loopMap = new Loop[m+1][];
-            for (int i = 0; i < m+1; i++)
+            loopMap = new Loop[m + 1][];
+            for (int i = 0; i < m + 1; i++)
             {
-                loopMap[i] = new Loop[n+1];  // все ячейки будут null
+                loopMap[i] = new Loop[n + 1];  // все ячейки будут null
             }
-            
+
             DraftToLoopMap(draft);
-        }*/
+        }
 
         public LoopMap(int m, int n, string draft)
         {

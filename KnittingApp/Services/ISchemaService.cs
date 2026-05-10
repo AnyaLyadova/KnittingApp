@@ -1,6 +1,6 @@
 ﻿namespace KnittingApp.Services
 {
-    public interface ILoopService
+    public interface ISchemaService
     {
     }
 }

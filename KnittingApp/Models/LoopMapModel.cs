@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KnittingApp.Models
 {
@@ -7,7 +8,8 @@ namespace KnittingApp.Models
         [Key]
         public Guid LoopMapId {  get; set; }
         [Required]
-        public Loop[][] loopMap { get; set; }
+        [Column(TypeName = "jsonb")]
+        public string loopMapJson { get; set; } //хранение матрицы в виде Json
 
     }
 }
