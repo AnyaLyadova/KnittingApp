@@ -24,12 +24,12 @@ namespace KnittingApp.Models
         [Required]
         public Guid SleeveDraftId { get; set; }
 
-        public User User;
-        public Draft FrontDraft;
-        public Draft BackDraft;
-        public Draft SleeveDraft;
-        public LoopMap FrontLoopMap;
-        public LoopMap BackLoopLoopMap;
-        public LoopMap SleeveLoopMap;
+        public User User { get; set; }
+        public Draft FrontDraft { get; set; }
+        public Draft BackDraft { get; set; }
+        public Draft SleeveDraft { get; set; }
+        public LoopMap FrontLoopMap { get; set; }
+        public LoopMap BackLoopMap { get; set; }
+        public LoopMap SleeveLoopMap { get; set; }
     }
 }

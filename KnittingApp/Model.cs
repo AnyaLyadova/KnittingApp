@@ -6,8 +6,8 @@ namespace KnittingApp
 {
     public class Model
     {
-        string userId;
-        public Guid modelId { get;  }
+        public Guid userId {  get; set; }
+        public Guid modelId { get; set; }
         string name;
         /*Draft FrontNeckDraft;
         Draft BackNeckDraft;
@@ -19,13 +19,14 @@ namespace KnittingApp
 
         List<Part> parts=new List<Part>();  //список частей изделия
        // List <Draft> partDrafts=new List<Draft>(); //список выкроек частей
-        Draft frontDraft; //общая выкройка переда
-        Draft backDraft; //общая выкройка спинки
-        Draft sleeveDraft; //общая выкройка рукава
+        public Draft frontDraft { get; set; } //общая выкройка переда
+        public Draft backDraft { get; set; } //общая выкройка спинки
+        public Draft sleeveDraft { get; set; } //общая выкройка рукава
         Dictionary<string, double> measures = new Dictionary<string, double>();
         bool hasShoulderBevel;   //есть ли скос плеча
         bool hasArmhole;  //есть ли вырез под втачной рукав
         public LoopMap frontLoopMap { get; set; }
+
         public LoopMap backLoopMap { get; set; }
         public LoopMap sleeveLoopMap { get; set; }
 

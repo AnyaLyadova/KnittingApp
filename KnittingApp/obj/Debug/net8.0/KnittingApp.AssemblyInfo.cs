@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KnittingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3280b2863334c9ed253aae2f92c0c5f19bebd925")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4660b188bdb224fccdfea214073c67715ddbe666")]
 [assembly: System.Reflection.AssemblyProductAttribute("KnittingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KnittingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
