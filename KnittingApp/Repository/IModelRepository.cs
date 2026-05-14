@@ -9,4 +9,5 @@ namespace KnittingApp.Repository
         public Task<List<ModelModel>> GetAllModels();
         public Task<List<ModelModel>> GetModelByUser(Guid userId);
         public Task<ModelModel> GetModel(Guid id);
+    }
 }

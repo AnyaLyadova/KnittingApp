@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.Threading.Tasks;
 namespace KnittingApp.Controllers
 {
     [ApiController]
@@ -20,18 +22,18 @@ namespace KnittingApp.Controllers
             this.constructor = constructor;
         }
 
-        [HttpGet( "model")]
-        public ActionResult<Model> GetModel()
+        [HttpGet( "model/{modelId}")]
+        public async Task<ActionResult<Model>> GetModel(Guid modelId)
         {
             try
-            { return Ok(constructor.GetModel()); }
+            { return Ok(await constructor.GetModel(modelId)); }
             catch (NullReferenceException ex){ 
             return BadRequest(ex.Message);
             }
         }
 
 
-        [HttpGet("model/{modelIndex}")]
+        /*[HttpGet("model/{modelIndex}")]
 
         public ActionResult<Model> ChooseModel(Guid modelIndex)
         {
@@ -43,59 +45,88 @@ namespace KnittingApp.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }*/
+
+
+        [HttpGet("form/{formId}")]
+
+        public async Task<ActionResult<Model>> ChooseForm(Guid formId)
+        {
+            try
+            {
+                return Ok(await constructor.ChooseForm(formId));
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpGet ("frontDraft")]
-        public Draft GetFrontDraft()
+        [HttpGet ("{modelId}/frontDraft")]
+        public async Task<Draft> GetFrontDraft(Guid modelId)
         {
-            return constructor.GetFrontDraft();
+            return await constructor.GetFrontDraft(modelId);
         }
 
-        [HttpGet("backDraft")]
-        public Draft GetBackDraft()
+        [HttpGet("{modelId}/backDraft")]
+        public async Task<Draft> GetBackDraft(Guid modelId)
         {
-            return constructor.GetBackDraft();
+            return await constructor.GetBackDraft(modelId);
         }
 
-        [HttpGet("sleeveDraft")]
-        public Draft GetSleeveDraft()
+        [HttpGet("{modelId}/sleeveDraft")]
+        public async Task<Draft> GetSleeveDraft(Guid modelId)
         {
-            return constructor.GetSleeveDraft();
+            return await constructor.GetSleeveDraft(modelId);
         }
 
-        [HttpGet("createDrats")]
-        public Draft CreateDrafts()
+        [HttpGet("{modelId}/createDrats")]
+        public async Task<Draft> CreateDrafts(Guid modelId)
         {
-            return constructor.CreateDrafts();
+            return await constructor.CreateDrafts(modelId);
         }
 
         [HttpPost ("create")]
-        public ActionResult<Model> CreateModel([FromQuery] string name,[FromQuery] List<string> stringParts/*, [FromBody] Dictionary<string, double> measures,
-           [FromQuery] double height, [FromQuery] double width, [FromQuery] int loopInHeight, [FromQuery] int loopInWidth*/)
+        /*public ActionResult<Model> CreateModel([FromQuery] string name,[FromQuery] List<string> stringParts*//*, [FromBody] Dictionary<string, double> measures,
+           [FromQuery] double height, [FromQuery] double width, [FromQuery] int loopInHeight, [FromQuery] int loopInWidth*//*)
         {
             try
             { 
-                return Ok(constructor.CreateNewModel(name, stringParts /*measures,*/ /*height, width, loopInHeight, loopInWidth*/)); 
+                return Ok(constructor.CreateNewModel(name, stringParts *//*measures,*/ /*height, width, loopInHeight, loopInWidth*//*)); 
             }
             catch (InvalidDataException ex) { 
+                return BadRequest(ex.Message);
+            }
+        }*/
+
+        public async Task<ActionResult<Model>> CreateForm([FromQuery] string name, [FromQuery] List<string> stringParts)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                return Ok(await constructor.CreateNewForm(Guid.Parse(userId),name, stringParts ));
+            }
+            catch (InvalidDataException ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
 
         [HttpGet ("models")]
-        public ActionResult<List<Model>> GetModels()
+        public async Task<ActionResult<List<Model>>> GetModels()
         {
-            return Ok(constructor.GetModels());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await constructor.GetModels(Guid.Parse(userId)));
         }
 
-        [HttpPut("measures/initialize")]
-        public IActionResult InizializeModel([FromBody] Dictionary<string, double> measures,
+        [HttpPut("{modelId}/measures/initialize")]
+        public async Task<IActionResult> InizializeModel(Guid modelId,[FromBody] Dictionary<string, double> measures,
             [FromQuery] double height, [FromQuery] double width,
             [FromQuery]  int loopInHeight, [FromQuery] int loopInWidth)
         {
             try
             {
-                constructor.InitializeModel(measures, height, width, loopInHeight, loopInWidth);
+                await constructor.InitializeModel(modelId,measures, height, width, loopInHeight, loopInWidth);
                 return Ok();
             }
             catch(NullReferenceException ex)
@@ -112,10 +143,10 @@ namespace KnittingApp.Controllers
             }
         }
 
-        [HttpPut("measures/{mKey}")]
-        public void ChangeMeasure(string mKey, [FromQuery]double mValue)
+        [HttpPut("{modelId}/measures/{mKey}")]
+        public async Task ChangeMeasure(Guid modelId,string mKey, [FromQuery]double mValue)
         {
-            constructor.ChangeMeasure(mKey, mValue);
+            await constructor.ChangeMeasure(modelId, mKey, mValue);
         }
 
         [HttpGet ("neckparts")]
@@ -136,25 +167,28 @@ namespace KnittingApp.Controllers
             return constructor.GetSleeveRollParts();
         }
 
-        [HttpGet ("measures")]
-        public Dictionary<string, double> GetAllMeasures()
+        [HttpGet ("{modelId}/measures")]
+        public async Task<Dictionary<string, double>> GetAllMeasures(Guid modelId)
         {
-            return constructor.GetAllMeasures();
+            return await constructor.GetAllMeasures(modelId);
         }
 
-        [HttpGet("loopMap")]
-        public LoopMap GetLoopMap([FromQuery] string draftType)
+        [HttpGet("{modelId}/loopMap")]
+        public async Task<LoopMap> GetLoopMap(Guid modelId,[FromQuery] string draftType)
         {
-            return constructor.GetLoopMap(draftType);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return await constructor.GetLoopMap(modelId, draftType);
         }
 
 
-        [HttpPost ("move")]
+        [HttpPost ("{draftId}/move")]
 
-        public ActionResult<Draft> MovePoint([FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY, [FromQuery] string draftType)
+        public ActionResult<Draft> MovePoint(Guid draftId,[FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY, 
+           [FromQuery] double loopWidth, [FromQuery]double loopHeight, [FromQuery]double loopInWidth, [FromQuery]double loopInHeight)
         {
             
-            return Ok(constructor.MovePoint(request.movingPoint, newX, newY, request.leftPoint, request.rightPoint, draftType));
+            return Ok(constructor.MovePoint(draftId,request.movingPoint, newX, newY, request.leftPoint, request.rightPoint,
+                 loopWidth, loopHeight, loopInWidth, loopInHeight));
         }
 
         public class MovePointRequest
@@ -165,20 +199,20 @@ namespace KnittingApp.Controllers
         }
 
 
-        [HttpPut("color")]
+        [HttpPut("{modelId}/color")]
 
-        public ActionResult<LoopMap> ColorLoopMap([FromBody] ColorLoopMapRequest request, [FromQuery] string draftType)
+        public ActionResult<LoopMap> ColorLoopMap(Guid modelId, [FromBody] ColorLoopMapRequest request, [FromQuery] string draftType)
         {
             if (request.mIndexes == null || request.mIndexes == null || request.colors == null)
                 return BadRequest("Переданые списки равны null");
-            return  Ok(constructor.ColorLoopMap(request.mIndexes, request.nIndexes, request.colors, draftType));
+            return  Ok(constructor.ColorLoopMap(modelId,request.mIndexes, request.nIndexes, request.colors, draftType));
         }
 
-        [HttpPut("color/all")]
+        [HttpPut("{modelId}/color/all")]
 
-        public ActionResult<LoopMap> ColorAllLoopMap([FromQuery] string color,  [FromQuery] string draftType)
+        public ActionResult<LoopMap> ColorAllLoopMap(Guid modelId,[FromQuery] string color,  [FromQuery] string draftType)
         {
-            return Ok(constructor.ColorAllLoopMap(color,draftType));
+            return Ok(constructor.ColorAllLoopMap(modelId,color,draftType));
         }
 
         public class ColorLoopMapRequest

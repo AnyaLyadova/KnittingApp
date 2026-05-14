@@ -7,6 +7,7 @@ namespace KnittingApp.Services
     public interface IModelService
     {
         public Task<Model> CreateMode(string name);
+        public Task<Model> GetModel(Guid id);
         public Task<List<Model>> GetModelsByUser(Guid userId);
         public Task AddPart(Part part);
         public Task AddMeasure(Dictionary<string, double> addMeasure);
@@ -16,6 +17,10 @@ namespace KnittingApp.Services
         public Task<Draft> GetBackDraft(Guid id);
 
         public Task<Draft> GetSleeveDraft(Guid id);
+
+        public Task<LoopMap>GetFrontLoopMap(Guid id);
+        public Task<LoopMap> GetBackLoopMap(Guid id);
+        public Task<LoopMap> GetSleeveLoopMap(Guid id);
 
         public Task<Draft> CreateDrafts(Guid id);
 

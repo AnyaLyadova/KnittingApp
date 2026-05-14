@@ -16,6 +16,7 @@ namespace KnittingApp.Extensions
             modelModel.FrontDraftId=model.GetFrontDraft().DraftId;
             modelModel.BackDraftId=model.GetBackDraft().DraftId;
             modelModel.SleeveDraftId=model.GetSleeveDraft().DraftId;
+            modelModel.Measures = model.GetMeasures();
             return modelModel;
         }
         
@@ -31,6 +32,7 @@ namespace KnittingApp.Extensions
             model.frontDraft=modelModel.FrontDraft;
             model.backDraft=modelModel.BackDraft;
             model.sleeveDraft=modelModel.SleeveDraft;
+            model.AddMeasure(modelModel.Measures);
 
             return model;
         }

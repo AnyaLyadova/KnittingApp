@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
 namespace KnittingApp.Models
 {
     [Index(nameof(ModelName), nameof(UserId), IsUnique = true)]
@@ -23,6 +25,16 @@ namespace KnittingApp.Models
         public Guid BackDraftId { get; set; }
         [Required]
         public Guid SleeveDraftId { get; set; }
+        [Required]
+        public string MeasuresJson { get; set; } = "{}";  //мерки в json
+
+        [NotMapped]
+        public Dictionary<string, double> Measures
+        {
+            get => JsonSerializer.Deserialize<Dictionary<string, double>>(MeasuresJson)
+                   ?? new Dictionary<string, double>();
+            set => MeasuresJson = JsonSerializer.Serialize(value ?? new Dictionary<string, double>());
+        }
 
         public User User { get; set; }
         public Draft FrontDraft { get; set; }

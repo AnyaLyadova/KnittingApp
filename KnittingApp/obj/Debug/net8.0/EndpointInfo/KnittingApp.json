@@ -751,6 +751,119 @@
         }
       }
     },
+    "/api/loopReader": {
+      "get": {
+        "tags": [
+          "LoopReader"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringListStringListValueTuple"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringListStringListValueTuple"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringListStringListValueTuple"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/progress": {
+      "get": {
+        "tags": [
+          "LoopReader"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/time": {
+      "get": {
+        "tags": [
+          "LoopReader"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-span"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-span"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-span"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "LoopReader"
+        ],
+        "parameters": [
+          {
+            "name": "time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-span"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/schema/{schemaId}": {
       "get": {
         "tags": [
@@ -1021,45 +1134,6 @@
           }
         }
       }
-    },
-    "/WeatherForecast": {
-      "get": {
-        "tags": [
-          "WeatherForecast"
-        ],
-        "operationId": "GetWeatherForecast",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -1096,6 +1170,11 @@
       "Draft": {
         "type": "object",
         "properties": {
+          "draftId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
           "draft": {
             "type": "array",
             "items": {
@@ -1132,6 +1211,11 @@
       "LoopMap": {
         "type": "object",
         "properties": {
+          "loopMapId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
           "loopMap": {
             "type": "array",
             "items": {
@@ -1191,9 +1275,22 @@
       "Model": {
         "type": "object",
         "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "modelId": {
             "type": "string",
             "format": "uuid"
+          },
+          "frontDraft": {
+            "$ref": "#/components/schemas/Draft"
+          },
+          "backDraft": {
+            "$ref": "#/components/schemas/Draft"
+          },
+          "sleeveDraft": {
+            "$ref": "#/components/schemas/Draft"
           },
           "frontLoopMap": {
             "$ref": "#/components/schemas/LoopMap"
@@ -1278,6 +1375,10 @@
       "Schema": {
         "type": "object",
         "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "schemaId": {
             "type": "string",
             "format": "uuid"
@@ -1285,6 +1386,10 @@
           "schemaName": {
             "type": "string",
             "nullable": true
+          },
+          "loopMapId": {
+            "type": "string",
+            "format": "uuid"
           },
           "loopMap": {
             "$ref": "#/components/schemas/LoopMap"
@@ -1296,27 +1401,8 @@
         },
         "additionalProperties": false
       },
-      "WeatherForecast": {
+      "StringListStringListValueTuple": {
         "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
-          }
-        },
         "additionalProperties": false
       }
     }

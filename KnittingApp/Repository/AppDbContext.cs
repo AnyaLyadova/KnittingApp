@@ -14,5 +14,6 @@ namespace KnittingApp.Repository
         public DbSet<DraftModel> Drafts { get; set; }
         public DbSet<LoopsReaderModel> LoopReaders { get; set; }
         public DbSet<ModelModel> Models { get; set; }
+        public DbSet<Form> Forms { get; set; }
     }
 }

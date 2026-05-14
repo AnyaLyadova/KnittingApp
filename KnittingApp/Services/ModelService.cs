@@ -11,6 +11,13 @@ namespace KnittingApp.Services
             this.modelRepository = modelRepository;
         }
 
+        public async Task<Model>GetModel(Guid id)
+        {
+            var modelModel = await modelRepository.GetModel(id);
+            var model = modelModel.ToObject();
+            return model;
+        }
+
         public async Task<List<Model>> GetModelsByUser(Guid userId)
         {
             var modelModels=await modelRepository.GetModelByUser(userId);
@@ -52,6 +59,29 @@ namespace KnittingApp.Services
             var modelModel = await modelRepository.GetModel(id);
             var model = modelModel.ToObject();
             return model.GetSleeveDraft();
+        }
+
+
+        public async Task<LoopMap> GetFrontLoopMap(Guid id)
+        {
+            var modelModel = await modelRepository.GetModel(id);
+            var model = modelModel.ToObject();
+            return model.frontLoopMap;
+        }
+
+        public async Task<LoopMap> GetBackLoopMap(Guid id)
+        {
+            var modelModel = await modelRepository.GetModel(id);
+            var model = modelModel.ToObject();
+            return model.backLoopMap;
+        }
+
+
+        public async Task<LoopMap> GetSleeveLoopMap(Guid id)
+        {
+            var modelModel = await modelRepository.GetModel(id);
+            var model = modelModel.ToObject();
+            return model.sleeveLoopMap;
         }
 
         public async Task<Draft> CreateDrafts(Guid id)
