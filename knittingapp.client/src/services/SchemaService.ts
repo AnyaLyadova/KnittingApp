@@ -16,8 +16,8 @@ export const SchemaService={
     },
 
     // Изменить цвет конкретной петли (PUT /api/schema/color)
-    async changeLoopColor(m: number, n: number, colorCode: string): Promise<void> {
-        const response = await apiClient.put('/schema/color', null, {
+    async changeLoopColor(id: string,m: number, n: number, colorCode: string): Promise<void> {
+        const response = await apiClient.put(`/schema/${ id } /color`, null, {
             params: {
                 m: m,
                 n: n,

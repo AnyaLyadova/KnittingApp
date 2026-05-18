@@ -68,6 +68,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //регистрация сервисов
 builder.Services.AddScoped<Constructor>();
+builder.Services.AddScoped<Account>();
 //builder.Services.AddSingleton<SchemaConstructor>();
 
 builder.Services.AddScoped<IDraftService, DraftService>();

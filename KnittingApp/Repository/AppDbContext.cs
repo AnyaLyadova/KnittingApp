@@ -8,6 +8,8 @@ namespace KnittingApp.Repository
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
+        public AppDbContext() { }
+
         public DbSet<UserModel> Users { get; set; }
         public DbSet<LoopMapModel> LoopMaps { get; set; }
         public DbSet<SchemaModel> Schemas { get; set; }

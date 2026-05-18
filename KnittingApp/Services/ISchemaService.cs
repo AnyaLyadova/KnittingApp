@@ -4,7 +4,7 @@ namespace KnittingApp.Services
 {
     public interface ISchemaService
     {
-        public Task<Schema> CreateSchema(int m, int n, string name);
+        public Task<Schema> CreateSchema(int m, int n, string name, Guid userId);
         public Task<Schema> GetSchema(Guid schemaId);
 
         public Task<List<Schema>> GetAllSchemas(Guid userId);

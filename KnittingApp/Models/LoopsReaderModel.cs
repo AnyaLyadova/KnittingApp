@@ -16,6 +16,6 @@ namespace KnittingApp.Models
         public TimeSpan SpentTime { get; set; }
 
         [NotMapped]
-        public LoopMap LoopMap { get; set; }
+        public LoopMapModel LoopMap { get; set; }
     }
 }

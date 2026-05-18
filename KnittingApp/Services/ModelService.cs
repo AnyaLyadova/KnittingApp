@@ -7,8 +7,19 @@ namespace KnittingApp.Services
     public class ModelService:IModelService
     {
         private readonly IModelRepository modelRepository;
-        public ModelService(ModelRepository modelRepository) {
+        private readonly ILoopMapService loopMapService;
+        private readonly ILoopsReaderRepository loopsReaderRepository;
+        public ModelService(IModelRepository modelRepository, ILoopsReaderRepository loopsReaderRepository = null)
+        {
             this.modelRepository = modelRepository;
+            this.loopsReaderRepository = loopsReaderRepository;
+        }
+
+        public async Task<Model> CreateModel(Model model)
+        {
+            var modelModel=model.ToModel();
+            await modelRepository.CreateModel(modelModel);
+            return model;
         }
 
         public async Task<Model>GetModel(Guid id)
@@ -32,7 +43,7 @@ namespace KnittingApp.Services
         }
         public async Task AddPart(Part part)
         {
-
+            
         }
         public async Task AddMeasure(Dictionary<string, double> addMeasure)
         {
@@ -89,6 +100,7 @@ namespace KnittingApp.Services
             var modelModel = await modelRepository.GetModel(id);
             var model = modelModel.ToObject();
             var draft=model.CreateDrafts();
+            
             await modelRepository.UpdateModel(model.ToModel());
             return draft;
         }

@@ -174,7 +174,8 @@ namespace KnittingApp.Controllers
 
         public async Task<ActionResult<Schema>> CreateSchema([FromQuery] int m, [FromQuery] int n, [FromQuery] string name)
         {
-            return Ok(await schemaService.CreateSchema(m,n, name));
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await schemaService.CreateSchema(m,n, name, Guid.Parse(userId)));
         }
 
         /*[HttpPost("{schemaId}/image")]

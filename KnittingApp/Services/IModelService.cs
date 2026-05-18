@@ -7,6 +7,7 @@ namespace KnittingApp.Services
     public interface IModelService
     {
         public Task<Model> CreateMode(string name);
+        public Task<Model> CreateModel(Model model);
         public Task<Model> GetModel(Guid id);
         public Task<List<Model>> GetModelsByUser(Guid userId);
         public Task AddPart(Part part);

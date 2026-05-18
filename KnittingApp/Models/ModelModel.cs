@@ -36,12 +36,12 @@ namespace KnittingApp.Models
             set => MeasuresJson = JsonSerializer.Serialize(value ?? new Dictionary<string, double>());
         }
 
-        public User User { get; set; }
-        public Draft FrontDraft { get; set; }
-        public Draft BackDraft { get; set; }
-        public Draft SleeveDraft { get; set; }
-        public LoopMap FrontLoopMap { get; set; }
-        public LoopMap BackLoopMap { get; set; }
-        public LoopMap SleeveLoopMap { get; set; }
+        public UserModel User { get; set; }
+        public DraftModel FrontDraft { get; set; }
+        public DraftModel BackDraft { get; set; }
+        public DraftModel SleeveDraft { get; set; }
+        public LoopMapModel FrontLoopMap { get; set; }
+        public LoopMapModel BackLoopMap { get; set; }
+        public LoopMapModel SleeveLoopMap { get; set; }
     }
 }

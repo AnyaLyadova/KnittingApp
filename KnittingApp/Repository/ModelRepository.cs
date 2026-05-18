@@ -29,12 +29,12 @@ namespace KnittingApp.Repository
         }
         public async Task<List<ModelModel>> GetAllModels()
         {
-            var models = await _context.Models.ToListAsync();
+            var models = await _context.Models.AsNoTracking().ToListAsync();
             return models;
         }
         public async Task<List<ModelModel>> GetModelByUser(Guid userId)
         {
-            var models = await _context.Models.Where(m=>m.UserId==userId).ToListAsync();
+            var models = await _context.Models.Where(m=>m.UserId==userId).AsNoTracking().ToListAsync();
             return models;
         }
         public async Task<ModelModel> GetModel(Guid id)
@@ -46,6 +46,7 @@ namespace KnittingApp.Repository
                 .Include(m=>m.FrontLoopMap)
                 .Include(m=>m.BackLoopMap)
                 .Include(m=>m.SleeveLoopMap)
+                .AsNoTracking()
                 .FirstOrDefaultAsync();
             if (model == null)
                 throw new ArgumentException($"Модели с id {id} не существует");

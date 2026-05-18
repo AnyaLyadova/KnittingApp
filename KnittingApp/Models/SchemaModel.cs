@@ -18,8 +18,8 @@ namespace KnittingApp.Models
         [Required]
         public Guid UserId { get; set; }
 
-        [NotMapped]
-        public LoopMap LoopMap { get; set; }
-        User User;
+
+        public LoopMapModel LoopMap { get; set; }
+        UserModel User;
     }
 }

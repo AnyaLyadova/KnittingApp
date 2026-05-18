@@ -15,7 +15,7 @@ namespace KnittingApp.Repository
 
         public async Task<LoopMapModel> GetLoopMap(Guid id)
         {
-            var loopMap = await _context.LoopMaps.Where(l => l.LoopMapId == id).FirstOrDefaultAsync();
+            var loopMap = await _context.LoopMaps.Where(l => l.LoopMapId == id).Include(l=>l.LoopsReader).AsNoTracking().FirstOrDefaultAsync();
             if (loopMap == null)
                 throw new ArgumentException("LoopMap с таким Id не существует");
             return loopMap;

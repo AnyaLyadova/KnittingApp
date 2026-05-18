@@ -18,7 +18,7 @@ function App() {
     const [currentView, setCurrentView] = useState<ViewType>('constructor');
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
         // Проверяем, есть ли пользователь в localStorage при загрузке
-        return !!localStorage.getItem('user');
+        return !!localStorage.getItem('access_token');
     });
 
     const handleLoginSuccess = () => {

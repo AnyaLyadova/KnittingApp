@@ -10,12 +10,23 @@ namespace KnittingApp.Extensions
             modelModel.ModelId=model.modelId;
             modelModel.ModelName=model.Name;
             modelModel.UserId=model.userId;
+
             modelModel.FrontLoopMapId = model.frontLoopMap.LoopMapId;
             modelModel.BackLoopMapId=model.backLoopMap.LoopMapId;
             modelModel.SleeveLoopMapId=model.sleeveLoopMap.LoopMapId;
+
+            modelModel.FrontLoopMap=model.frontLoopMap.ToModel();
+            modelModel.BackLoopMap=model.backLoopMap.ToModel();
+            modelModel.SleeveLoopMap=model.sleeveLoopMap.ToModel();
+
             modelModel.FrontDraftId=model.GetFrontDraft().DraftId;
             modelModel.BackDraftId=model.GetBackDraft().DraftId;
             modelModel.SleeveDraftId=model.GetSleeveDraft().DraftId;
+
+            modelModel.FrontDraft=model.GetFrontDraft().ToModel();
+            modelModel.BackDraft=model.GetBackDraft().ToModel();
+            modelModel.SleeveDraft=model.GetSleeveDraft().ToModel();
+
             modelModel.Measures = model.GetMeasures();
             return modelModel;
         }
@@ -26,12 +37,12 @@ namespace KnittingApp.Extensions
             model.modelId=modelModel.ModelId;
             model.Name=modelModel.ModelName;
             model.userId=modelModel.UserId;
-            model.frontLoopMap=modelModel.FrontLoopMap;
-            model.backLoopMap=modelModel.BackLoopMap ;
-            model.sleeveLoopMap=modelModel.SleeveLoopMap;
-            model.frontDraft=modelModel.FrontDraft;
-            model.backDraft=modelModel.BackDraft;
-            model.sleeveDraft=modelModel.SleeveDraft;
+            model.frontLoopMap=modelModel.FrontLoopMap.ToObject();
+            model.backLoopMap=modelModel.BackLoopMap.ToObject() ;
+            model.sleeveLoopMap=modelModel.SleeveLoopMap.ToObject();
+            model.frontDraft=modelModel.FrontDraft.ToObject();
+            model.backDraft=modelModel.BackDraft.ToObject();
+            model.sleeveDraft=modelModel.SleeveDraft.ToObject();
             model.AddMeasure(modelModel.Measures);
 
             return model;

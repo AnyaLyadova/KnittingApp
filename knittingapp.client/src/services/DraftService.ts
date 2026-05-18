@@ -9,22 +9,23 @@ export const DraftService = {
         return response.data;  //возвращается frontDraft
     },
 
-    async getFrontDraft(): Promise<Draft> {
-        const response = await apiClient.get<Draft>('/constructor/frontDraft');
+    async getFrontDraft(modelId:string): Promise<Draft> {
+        const response = await apiClient.get<Draft>(`/constructor/${modelId}/frontDraft`);
         return response.data;  //возвращается frontDraft
     },
 
-    async getBackDraft(): Promise<Draft> {
-        const response = await apiClient.get<Draft>('/constructor/backDraft');
+    async getBackDraft(modelId: string): Promise<Draft> {
+        const response = await apiClient.get<Draft>(`/constructor/${modelId}/backDraft`);
         return response.data;  //возвращается frontDraft
     },
 
-    async getSleeveDraft(): Promise<Draft> {
-        const response = await apiClient.get<Draft>('/constructor/sleeveDraft');
+    async getSleeveDraft(modelId: string): Promise<Draft> {
+        const response = await apiClient.get<Draft>(`/constructor/${modelId}/sleeveDraft`);
         return response.data;  //возвращается frontDraft
     },
 
     async movePoint(
+        draftId:string,
         movingPoint: Point,  // старая точка (с исходными координатами)
         newX: number,        // новая X координата
         newY: number,        // новая Y координата
@@ -32,7 +33,7 @@ export const DraftService = {
         rightPoint: Point,    // правая опорная точка
         draftType:string
     ): Promise<Draft> {
-        const response = await apiClient.post<Draft>('/constructor/move', {
+        const response = await apiClient.post<Draft>(`/constructor/${draftId}/move`, {
             movingPoint: movingPoint,
             leftPoint: leftPoint,
             rightPoint: rightPoint

@@ -16,7 +16,7 @@ namespace KnittingApp
         public double loopWidth { get; set; }
         public double loopHeight { get; set; }
 
-        LoopsReader reader;
+        public LoopsReader reader { get; set; }
         public LoopMap(Draft draft, double loopWidth, double loopHeight)
         {
             LoopMapId = new Guid();
@@ -53,7 +53,7 @@ namespace KnittingApp
 
         public LoopMap(int m, int n)
         {
-            LoopMapId = new Guid();
+            LoopMapId = Guid.NewGuid();
             this.m = m;
             this.n = n;
             loopMap = new Loop[m][];

@@ -5,9 +5,9 @@ namespace KnittingApp
     {
         public Schema schema { get; private set; }
         List <Schema> schemas = new List <Schema> ();
-        public Schema CreaterSchema(int m, int n, string name)
+        public Schema CreaterSchema(int m, int n, string name, Guid userId)
         {
-            schema=new Schema(m, n, name);
+            schema=new Schema(m, n, name, userId);
             schemas.Add(schema);
             return schema;
         }

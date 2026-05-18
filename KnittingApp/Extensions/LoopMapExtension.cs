@@ -10,12 +10,20 @@ namespace KnittingApp.Extensions
             LoopMapModel model = new LoopMapModel();
             model.LoopMapId = loopMap.LoopMapId;
             model.loopMapJson=ToJson(loopMap.loopMap);
+            if (loopMap.reader != null)
+            {
+                model.LoopsReader = loopMap.reader.ToModel();
+                model.LoopsReaderId = loopMap.reader.LoopReaderId;
+            }
+            
             return model;
         }
 
         public static LoopMap ToObject(this LoopMapModel model)
         {
             LoopMap loopMap = new LoopMap(model.LoopMapId,ToLoopMap(model.loopMapJson));
+            if(model.LoopsReader!=null) 
+             loopMap.reader= model.LoopsReader.ToObject();
             return loopMap;
         }
 

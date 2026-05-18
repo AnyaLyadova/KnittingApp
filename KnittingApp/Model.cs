@@ -9,16 +9,7 @@ namespace KnittingApp
         public Guid userId {  get; set; }
         public Guid modelId { get; set; }
         string name;
-        /*Draft FrontNeckDraft;
-        Draft BackNeckDraft;
-        Draft armholeDraft;
-        Draft shoulderDraft;
-        Draft frontBodyDraft;
-        Draft backBodyDraft;
-        Draft sleeveDraft;*/
-
         List<Part> parts=new List<Part>();  //список частей изделия
-       // List <Draft> partDrafts=new List<Draft>(); //список выкроек частей
         public Draft frontDraft { get; set; } //общая выкройка переда
         public Draft backDraft { get; set; } //общая выкройка спинки
         public Draft sleeveDraft { get; set; } //общая выкройка рукава
@@ -109,6 +100,10 @@ namespace KnittingApp
             frontDraft.Mirror();
 
             frontLoopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
+
+            var reader = new LoopsReader(frontLoopMap.n-1, frontLoopMap);
+            frontLoopMap.reader = reader;
+
             return frontDraft;
 
         }
@@ -140,6 +135,9 @@ namespace KnittingApp
             backDraft.Mirror();
 
             backLoopMap = new LoopMap(backDraft, loopWidth, loopHeight);
+            var reader = new LoopsReader(backLoopMap.n - 1, backLoopMap);
+            backLoopMap.reader = reader;
+
             return backDraft;
         }
 
@@ -167,6 +165,8 @@ namespace KnittingApp
             sleeveDraft.Mirror();
 
             sleeveLoopMap = new LoopMap(sleeveDraft, loopWidth, loopHeight);
+            var reader = new LoopsReader(sleeveLoopMap.n - 1, sleeveLoopMap);
+            sleeveLoopMap.reader = reader;
             return sleeveDraft;
         }
 

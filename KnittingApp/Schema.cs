@@ -18,13 +18,16 @@ namespace KnittingApp
             LoopMapId = loopMapId;
             this.userId = userId;
         }
-        public Schema(int m, int n, string schemaName)
+        public Schema(int m, int n, string schemaName, Guid userId)
         {
             this.m = m;
             this.n = n;
             this.schemaName = schemaName;
             loopMap = new LoopMap(m, n);
+            LoopMapId=loopMap.LoopMapId;
             schemaId = Guid.NewGuid();
+            schemaImage = "null";
+            this.userId=userId;
         }
 
         public void ChangeLoopColor(int m, int n, string color)

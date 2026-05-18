@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
@@ -7,7 +8,7 @@ namespace KnittingApp.Controllers
 {
     [ApiController]
     [Route("api/constructor")]
-    
+    [Authorize]
     public class ConstructorController:ControllerBase
     {
         // [HttpGet ("/base")]
@@ -50,7 +51,7 @@ namespace KnittingApp.Controllers
 
         [HttpGet("form/{formId}")]
 
-        public async Task<ActionResult<Model>> ChooseForm(Guid formId)
+        public async Task<ActionResult<Dictionary<string, double>>> ChooseForm(Guid formId)
         {
             try
             {
@@ -119,7 +120,14 @@ namespace KnittingApp.Controllers
             return Ok(await constructor.GetModels(Guid.Parse(userId)));
         }
 
-        [HttpPut("{modelId}/measures/initialize")]
+        [HttpGet("forms")]
+        public async Task<ActionResult<List<Form>>> GetForms()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await constructor.GetForms(Guid.Parse(userId)));
+        }
+
+        /*[HttpPut("{modelId}/measures/initialize")]
         public async Task<IActionResult> InizializeModel(Guid modelId,[FromBody] Dictionary<string, double> measures,
             [FromQuery] double height, [FromQuery] double width,
             [FromQuery]  int loopInHeight, [FromQuery] int loopInWidth)
@@ -130,6 +138,32 @@ namespace KnittingApp.Controllers
                 return Ok();
             }
             catch(NullReferenceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (InvalidDataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }*/
+
+
+        [HttpPut("model/{formId}/initialize")]
+        public async Task<ActionResult<Model>> InizializeModel(Guid formId, [FromQuery]string modelName, [FromBody] Dictionary<string, double> measures,
+            [FromQuery] double height, [FromQuery] double width,
+            [FromQuery] int loopInHeight, [FromQuery] int loopInWidth)
+        {
+            try
+            {
+                var model=await constructor.CreateModelWithDrafts(formId, modelName, measures, height, width,
+                    loopInHeight, loopInWidth);
+                return Ok(model);
+            }
+            catch (NullReferenceException ex)
             {
                 return BadRequest(ex.Message);
             }

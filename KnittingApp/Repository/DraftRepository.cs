@@ -23,7 +23,7 @@ namespace KnittingApp.Repository
         }
         public async Task<DraftModel> GetDraft(Guid id)
         {
-            var draft=await _context.Drafts.Where(d=>d.DraftId==id).FirstOrDefaultAsync();
+            var draft=await _context.Drafts.Where(d=>d.DraftId==id).AsNoTracking().FirstOrDefaultAsync();
             if (draft == null)
                 throw new ArgumentException($"Чертеж с id {id} не существует");
             return draft;

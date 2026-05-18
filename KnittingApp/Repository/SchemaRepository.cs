@@ -14,16 +14,16 @@ namespace KnittingApp.Repository
         }
         public async Task<SchemaModel> GetSchema(Guid id)
         {
-            var schema =await _context.Schemas.Where(s=>s.SchemaId == id).FirstOrDefaultAsync();
+            var schema =await _context.Schemas.Where(s=>s.SchemaId == id).AsNoTracking().FirstOrDefaultAsync();
             if (schema == null)
                 throw new ArgumentException($"Схемы с {id} не существует");
-            var loopMap=await _context.LoopMaps.Where(l=>l.LoopMapId==schema.LoopMapId).FirstOrDefaultAsync();
-            schema.LoopMap = loopMap.ToObject();
+            var loopMap=await _context.LoopMaps.Where(l=>l.LoopMapId==schema.LoopMapId).AsNoTracking().FirstOrDefaultAsync();
+            schema.LoopMap = loopMap;
             return schema;
         }
         public async Task<List<SchemaModel>> GetSchemasByUser(Guid userId)
         {
-            var schemas= await _context.Schemas.Where(s=>s.UserId == userId).ToListAsync();
+            var schemas= await _context.Schemas.Where(s=>s.UserId == userId).Include(s=>s.LoopMap).AsNoTracking().ToListAsync();
             return schemas;
         }
         public async Task<SchemaModel> CreateSchema(SchemaModel schema)
@@ -31,6 +31,7 @@ namespace KnittingApp.Repository
             if (schema == null)
                 throw new ArgumentNullException("Переданная схема была равна null");
             _context.Schemas.Add(schema);
+            _context.LoopMaps.Add(schema.LoopMap);
             await _context.SaveChangesAsync();
             return schema;
         }
@@ -48,7 +49,7 @@ namespace KnittingApp.Repository
             var schema= await GetSchema(schemaId);
             if (schema == null)
                 throw new ArgumentException($"Схема с id {schemaId} не существует");
-            var loopMapModel = await _context.LoopMaps.Where(l => l.LoopMapId == schema.LoopMapId).FirstOrDefaultAsync();
+            var loopMapModel = await _context.LoopMaps.Where(l => l.LoopMapId == schema.LoopMapId).AsNoTracking().FirstOrDefaultAsync();
             if (loopMapModel == null)
                 throw new ArgumentException($"Схема с id {schemaId} не содержит матрицы");
             return loopMapModel;

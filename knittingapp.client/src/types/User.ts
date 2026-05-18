@@ -10,3 +10,7 @@ export interface ApiResponse {
     data?: User | { message: string };
     error?: string;
 }
+
+export interface ErrorResponse {
+    message?: string;
+}

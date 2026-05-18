@@ -1,6 +1,6 @@
 ﻿import axios from 'axios';
 
-// Создаём и настраиваем клиент ОДИН РАЗ
+// создаём и настраиваем клиент
 export const apiClient = axios.create({
     baseURL: '/api',
     timeout: 10000,
@@ -9,21 +9,19 @@ export const apiClient = axios.create({
     },
 });
 
-// Перехватчики запросов (можно добавить токен авторизации)
+//  для добавления токена в каждый запрос
 apiClient.interceptors.request.use(
     (config) => {
-        // Например, добавить токен из localStorage
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('access_token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
-        }
-        console.log(` ${config.method?.toUpperCase()} ${config.url}`);
+        };
         return config;
     },
     (error) => Promise.reject(error)
 );
 
-// Перехватчики ответов
+// перехватчики ответов
 apiClient.interceptors.response.use(
     (response) => {
         console.log(` ${response.status} ${response.config.url}`);
@@ -31,8 +29,21 @@ apiClient.interceptors.response.use(
     },
     (error) => {
         if (error.response?.status === 401) {
-            // Не авторизован - перенаправить на логин
+            window.location.href = '/login';
             console.log('Сессия истекла');
+        }
+        return Promise.reject(error);
+    }
+
+);
+
+//для обработки 401
+apiClient.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            localStorage.removeItem('access_token');
+            window.location.href = '/login';
         }
         return Promise.reject(error);
     }

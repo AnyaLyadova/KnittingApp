@@ -19,7 +19,7 @@ namespace KnittingApp.Extensions
         {
             LoopsReader reader = new LoopsReader(model.LoopReaderId,model.CurrentIndex, model.LoopMapId, model.SpentTime);
             reader.UserId=model.UserId;
-            reader.loopMap = model.LoopMap;
+            reader.loopMap = model.LoopMap.ToObject();
             return reader;  
         }
     }

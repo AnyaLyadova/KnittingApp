@@ -57,12 +57,20 @@ namespace KnittingApp
             return model;
         }*/
 
-        public async Task<Model> ChooseForm(Guid formId)
+        /*public async Task<Model> ChooseForm(Guid formId)
         {
             var form = await formService.GetForm(formId);
             var model = CreateNewModel(form.Name, form.Parts);
             return model;
+        }*/
+
+        public async Task<Dictionary<string, double>> ChooseForm(Guid formId)
+        {
+            var form = await formService.GetForm(formId);
+            var model = CreateNewModel(form.Name, form.Parts);
+            return model.GetMeasures();
         }
+
 
         /*public Model GetModel()
         {
@@ -93,13 +101,13 @@ namespace KnittingApp
             return model;
         }*/
 
-        public Model CreateNewModel(string name, List<string> stringParts/*, Dictionary<string, double> measures,*/
+        Model CreateNewModel(string name, List<string> stringParts/*, Dictionary<string, double> measures,*/
            /* double height, double width, int loopInHeight, int loopInWidth*/)
         {
             /*double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
             double loopHeight=loopSize[0];
             double loopWidth=loopSize[1];*/
-            ModelBuilder modelBuilder = new ModelBuilder();
+            KnittingModelBuilder modelBuilder = new KnittingModelBuilder();
             var model= modelBuilder.CreateModel(name, stringParts/*, loopHeight, loopInWidth*//*, measures*/);
            // models.Add(model);
             return model;
@@ -125,10 +133,10 @@ namespace KnittingApp
         }*/
 
 
-        /*public void InitializeModel(Guid modelId,Dictionary<string, double> measures,
+        void InitializeModel(Model model,Dictionary<string, double> measures,
           double height, double width, int loopInHeight, int loopInWidth)
         {
-            var model= models.Where(m => m.modelId == modelId).FirstOrDefault();
+          //  var model= models.Where(m => m.modelId == modelId).FirstOrDefault();
             if (model == null)
                 throw new NullReferenceException("Модель не выбрана");
             double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
@@ -137,9 +145,9 @@ namespace KnittingApp
             double loopInOneHeight = loopSize[2];
             double loopInOneWidth = loopSize[3];
             model.InitializeParts(measures, loopWidth, loopHeight, loopInOneWidth, loopInOneHeight);
-        }*/
+        }
 
-        public async Task InitializeModel(Guid modelId, Dictionary<string, double> measures,
+        /*public async Task InitializeModel(Guid modelId, Dictionary<string, double> measures,
           double height, double width, int loopInHeight, int loopInWidth)
         {
             var model = await modelService.GetModel(modelId);
@@ -152,7 +160,7 @@ namespace KnittingApp
             double loopInOneWidth = loopSize[3];
             model.InitializeParts(measures, loopWidth, loopHeight, loopInOneWidth, loopInOneHeight);
             //////////////////////////////////////////
-        }
+        }*/
 
         /*public Dictionary<string, double> GetAllMeasures()
         {
@@ -211,6 +219,25 @@ namespace KnittingApp
             return await modelService.CreateDrafts(modelId);
         }
 
+
+        public async Task<Model> CreateModelWithDrafts(Guid formId, string modelName,
+            Dictionary<string, double> measures,
+          double height, double width, int loopInHeight, int loopInWidth
+            )  //возвращает frontDraft
+        {
+            var form=await formService.GetForm(formId);
+            var model = CreateNewModel(modelName, form.Parts);
+            InitializeModel(model, measures, height, width, loopInHeight, loopInWidth);
+            model.CreateDrafts();
+            await modelService.CreateModel(model);
+            return model;
+        }
+
+        Draft CreateDrafts(Model model)
+        {
+            model.CreateDrafts();
+            return model.frontDraft;
+        }
 
         /* public Draft GetFrontDraft()
          {

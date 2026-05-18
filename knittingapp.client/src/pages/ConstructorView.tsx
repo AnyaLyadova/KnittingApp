@@ -4,7 +4,7 @@ import ModelCreationForm from '../components/Constructor/ModelCreationForm';
 import '../styles/ConstructorView.css'
 import type { Model, Measures } from '../types/Model'
 import type { Draft } from '../types/Draft'
-import ModelList from '../components/Constructor/ModelList'
+import FormList from '../components/Constructor/FormList'
 import { ConstructorService } from '../services/ConstructorService';
 import { DraftService } from '../services/DraftService'
 import InitializeMeasuresForm from '../components/Constructor/InitializeMeasuresForm'
@@ -16,6 +16,7 @@ import { DraftEditor, type DraftEditorRef } from '../components/Constructor/Draf
 import ColorCircle from '../components/Schema/ColorCircle';
 import SchemasList from '../components/Constructor/SchemasList';
 import { flushSync } from 'react-dom';
+import type { Form } from '../types/Form';
 
 interface ColorCircleValue {
     color: string;
@@ -24,13 +25,15 @@ interface ColorCircleValue {
 function ConstructorView() {
     // Состояние: открыто ли модальное окно
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedModel, setSelectedModel] = useState<Model | null>(null);
+    const [selectedForm, setSelectedForm] = useState<Form | null>(null);
     const [refresher, setRefresher] = React.useState(0);
 
     // Состояния для модального окна редактирования мерок
     const [isMeasuresModalOpen, setIsMeasuresModalOpen] = useState(false);
     const [currentMeasures, setCurrentMeasures] = useState<Measures>({});
 
+    //выбранная модель
+    const [currentModel, setCurrentModel] = useState<Model | null>(null); 
 
     // Состояние для цветового круга
     const [colorCircleValue, setColorCircleValue] = useState<ColorCircleValue>({
@@ -71,15 +74,15 @@ function ConstructorView() {
     };*/
 
     //выбор модели
-    const handleModelClick = async(model: Model) => {
-        const id = model.modelId;
-        console.log(`Клик по модели: ${model.name}, индекс: ${id}`);
+    const handleModelClick = async (form: Form) => {
+        const id = form.formId;
+        console.log(`Клик по модели: ${form.name}, индекс: ${id}`);
 
         try {
             // Запрашиваем модель с сервера по индексу
             const fullModel = await ConstructorService.chooseModel(id);
             const measures = await ConstructorService.getMeasures();
-            setSelectedModel(model);
+            setSelectedForm(form);
             setCurrentMeasures(measures);
             setIsMeasuresModalOpen(true);
         }
@@ -90,18 +93,17 @@ function ConstructorView() {
 
 
     // Обработчик успешного сохранения мерок
-    const handleMeasuresSaved = () => {
+    const handleMeasuresSaved = (createdModel: Model) => {
         setIsMeasuresModalOpen(false);
-        setSelectedModel(null);
+        setSelectedForm(null);
         setCurrentMeasures({});
-        // Можно также обновить refresher, если нужно обновить что-то в списке
-        // setRefresher(prev => prev + 1);
+        setCurrentModel(createdModel);
     };
 
     // Закрытие окна мерок
     const handleCloseMeasuresModal = () => {
         setIsMeasuresModalOpen(false);
-        setSelectedModel(null);
+        setSelectedForm(null);
         setCurrentMeasures({});
         loadDraft();
     };
@@ -149,13 +151,13 @@ function ConstructorView() {
 
             switch (type) {
                 case "front":
-                    draftData = await DraftService.getFrontDraft();
+                    draftData = await DraftService.getFrontDraft(currentModel.modelId);
                     break;
                 case "back":
-                    draftData = await DraftService.getBackDraft();
+                    draftData = await DraftService.getBackDraft(currentModel.modelId);
                     break;
                 case "sleeve":
-                    draftData = await DraftService.getSleeveDraft();
+                    draftData = await DraftService.getSleeveDraft(currentModel.modelId);
                     break;
             }
 
@@ -163,7 +165,7 @@ function ConstructorView() {
                 setDraft(draftData);
                 setDraftType(type);  // обновляем тип после успешной загрузки
 
-                const map = await ModelService.getLoopMap(type);
+                const map = await ModelService.getLoopMap(currentModel.modelId,type);
                 setLoopMap(map);
             }
 
@@ -175,20 +177,21 @@ function ConstructorView() {
     }, []);
 
     const loadDraft = useCallback(async () => {
-        if (selectedModel === null) {
+        if (selectedForm === null) {
             setDraft(null);
             setLoopMap(null);
             return;
         }
         try {
-            await DraftService.createDrafts();
+            await DraftService.getFrontDraft(currentModel.modelId);
+            //await DraftService.createDrafts();
             await switchDraft("front");
         } catch (err) {
             console.error('Ошибка при создании чертежей:', err);
             setDraft(null);
             setLoopMap(null);
         }
-    }, [selectedModel, switchDraft]);
+    }, [selectedForm, switchDraft, currentModel]);
 
 
     // Обработчики (могут быть пустыми, но должны быть переданы)
@@ -507,7 +510,7 @@ function ConstructorView() {
                 </button>
 
                 {/*Список моделей*/ }
-                <ModelList onModelClick={handleModelClick} />
+                <FormList onModelClick={handleModelClick} />
             </main>
 
             {/* Модальное окно создания моделей*/}
@@ -534,7 +537,7 @@ function ConstructorView() {
             )}
 
             {/* Модальное окно задания мерок */}
-            {isMeasuresModalOpen && selectedModel && (
+            {isMeasuresModalOpen && selectedForm && (
                 <div className="modal-overlay" onClick={handleCloseMeasuresModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <button
@@ -544,8 +547,8 @@ function ConstructorView() {
                             ✕
                         </button>
                         <InitializeMeasuresForm
-                            modelIndex={selectedModel.modelId}
-                            modelName={selectedModel.name}
+                            modelIndex={selectedForm.formId}
+                            modelName={selectedForm.name}
                             initialMeasures={currentMeasures}
                             onSuccess={handleMeasuresSaved}
                             onClose={handleCloseMeasuresModal}

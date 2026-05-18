@@ -13,9 +13,9 @@ namespace KnittingApp.Services
             this.schemaRepository = schemaRepository;
         }
 
-        public async Task<Schema>CreateSchema(int m, int n,string name)
+        public async Task<Schema>CreateSchema(int m, int n,string name, Guid userId)
         {
-            var schema=new Schema(m, n, name);
+            var schema=new Schema(m, n, name, userId);
             await schemaRepository.CreateSchema(schema.ToModel());
             return schema;
         }
@@ -41,7 +41,8 @@ namespace KnittingApp.Services
             }
             var loopMap = loopMapModel.ToObject();
             loopMap.ChangeColor(m, n, color);
-            await schemaRepository.UpdateSchemaLoopMap(loopMap.ToModel());
+            loopMapModel = loopMap.ToModel();
+            await schemaRepository.UpdateSchemaLoopMap(loopMapModel);
         }
 
         public async Task ChangeLoopType(Guid id, int m, int n, LoopType type)

@@ -1,15 +1,155 @@
 [
   {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetArmholeParts",
-    "RelativePath": "api/constructor/armholeparts",
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetCurrentString",
+    "RelativePath": "api/account/{readerId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "readerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.ValueTuple\u00602[[System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetProgress",
+    "RelativePath": "api/account/{readerId}/progress",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "readerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetSpentTime",
+    "RelativePath": "api/account/{readerId}/time",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "readerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.TimeSpan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "SetSpentTime",
+    "RelativePath": "api/account/{readerId}/time",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "readerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "time",
+        "Type": "System.TimeSpan",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "MovePoint",
+    "RelativePath": "api/constructor/{draftId}/move",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "draftId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "KnittingApp.Controllers.ConstructorController\u002BMovePointRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "newX",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "newY",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "loopWidth",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "loopHeight",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "loopInWidth",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "loopInHeight",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -22,11 +162,17 @@
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "GetBackDraft",
-    "RelativePath": "api/constructor/backDraft",
+    "RelativePath": "api/constructor/{modelId}/backDraft",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "KnittingApp.Draft",
@@ -42,11 +188,16 @@
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "ColorLoopMap",
-    "RelativePath": "api/constructor/color",
+    "RelativePath": "api/constructor/{modelId}/color",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
       {
         "Name": "request",
         "Type": "KnittingApp.Controllers.ConstructorController\u002BColorLoopMapRequest",
@@ -73,11 +224,16 @@
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "ColorAllLoopMap",
-    "RelativePath": "api/constructor/color/all",
+    "RelativePath": "api/constructor/{modelId}/color/all",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
       {
         "Name": "color",
         "Type": "System.String",
@@ -103,7 +259,194 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "CreateModel",
+    "Method": "CreateDrafts",
+    "RelativePath": "api/constructor/{modelId}/createDrats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetFrontDraft",
+    "RelativePath": "api/constructor/{modelId}/frontDraft",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetLoopMap",
+    "RelativePath": "api/constructor/{modelId}/loopMap",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.LoopMap",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetAllMeasures",
+    "RelativePath": "api/constructor/{modelId}/measures",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "ChangeMeasure",
+    "RelativePath": "api/constructor/{modelId}/measures/{mKey}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "mKey",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "mValue",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetSleeveDraft",
+    "RelativePath": "api/constructor/{modelId}/sleeveDraft",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "GetArmholeParts",
+    "RelativePath": "api/constructor/armholeparts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "CreateForm",
     "RelativePath": "api/constructor/create",
     "HttpMethod": "POST",
     "IsController": true,
@@ -134,78 +477,18 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "CreateDrafts",
-    "RelativePath": "api/constructor/createDrats",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.Draft",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetFrontDraft",
-    "RelativePath": "api/constructor/frontDraft",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.Draft",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetLoopMap",
-    "RelativePath": "api/constructor/loopMap",
+    "Method": "ChooseForm",
+    "RelativePath": "api/constructor/form/{formId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "draftType",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "formId",
+        "Type": "System.Guid",
+        "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.LoopMap",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetAllMeasures",
-    "RelativePath": "api/constructor/measures",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
@@ -220,27 +503,20 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "ChangeMeasure",
-    "RelativePath": "api/constructor/measures/{mKey}",
-    "HttpMethod": "PUT",
+    "Method": "GetForms",
+    "RelativePath": "api/constructor/forms",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "mKey",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "mValue",
-        "Type": "System.Double",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "System.Collections.Generic.List\u00601[[KnittingApp.Form, KnittingApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -248,11 +524,21 @@
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "InizializeModel",
-    "RelativePath": "api/constructor/measures/initialize",
+    "RelativePath": "api/constructor/model/{formId}/initialize",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "formId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "modelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "measures",
         "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
@@ -279,16 +565,6 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetModel",
-    "RelativePath": "api/constructor/model",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "KnittingApp.Model",
@@ -303,14 +579,14 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "ChooseModel",
-    "RelativePath": "api/constructor/model/{modelIndex}",
+    "Method": "GetModel",
+    "RelativePath": "api/constructor/model/{modelId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "modelIndex",
+        "Name": "modelId",
         "Type": "System.Guid",
         "IsRequired": true
       }
@@ -349,47 +625,6 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "MovePoint",
-    "RelativePath": "api/constructor/move",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "KnittingApp.Controllers.ConstructorController\u002BMovePointRequest",
-        "IsRequired": true
-      },
-      {
-        "Name": "newX",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "newY",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "draftType",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.Draft",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
     "Method": "GetNeckParts",
     "RelativePath": "api/constructor/neckparts",
     "HttpMethod": "GET",
@@ -399,26 +634,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "GetSleeveDraft",
-    "RelativePath": "api/constructor/sleeveDraft",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.Draft",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -451,11 +666,17 @@
   {
     "ContainingType": "KnittingApp.Controllers.LoopReaderController",
     "Method": "GetCurrentString",
-    "RelativePath": "api/loopReader",
+    "RelativePath": "api/loopReader/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.ValueTuple\u00602[[System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
@@ -467,6 +688,162 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
+    "Method": "GetProgress",
+    "RelativePath": "api/loopReader/{id}/progress",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
+    "Method": "GetSpentTime",
+    "RelativePath": "api/loopReader/{id}/time",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.TimeSpan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
+    "Method": "SetSpentTime",
+    "RelativePath": "api/loopReader/{id}/time",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "time",
+        "Type": "System.TimeSpan",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
+    "Method": "ChangeLoopColor",
+    "RelativePath": "api/schema/{id}/color",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "m",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "n",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "colorCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
+    "Method": "ColorSchema",
+    "RelativePath": "api/schema/{id}/color/{colorCode}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "colorCode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
+    "Method": "ChangeLoopType",
+    "RelativePath": "api/schema/{id}/type",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "m",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "n",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
@@ -537,48 +914,6 @@
   },
   {
     "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
-    "Method": "ChangeLoopColor",
-    "RelativePath": "api/schema/color",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "m",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "n",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "colorCode",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
-    "Method": "ColorSchema",
-    "RelativePath": "api/schema/color/{colorCode}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "colorCode",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
     "Method": "CreateSchema",
     "RelativePath": "api/schema/create",
     "HttpMethod": "POST",
@@ -614,25 +949,20 @@
     ]
   },
   {
-    "ContainingType": "KnittingApp.Controllers.SchemaConstructorController",
-    "Method": "ChangeLoopType",
-    "RelativePath": "api/schema/type",
-    "HttpMethod": "PUT",
+    "ContainingType": "KnittingApp.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/user/login",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "m",
-        "Type": "System.Int32",
+        "Name": "username",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "n",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "type",
+        "Name": "password",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -640,59 +970,70 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
-    "Method": "GetProgress",
-    "RelativePath": "progress",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
-    "Method": "GetSpentTime",
-    "RelativePath": "time",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.TimeSpan",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.LoopReaderController",
-    "Method": "SetSpentTime",
-    "RelativePath": "time",
+    "ContainingType": "KnittingApp.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/user/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "time",
-        "Type": "System.TimeSpan",
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetModels",
+    "RelativePath": "models",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[KnittingApp.Model, KnittingApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetModel",
+    "RelativePath": "models/{modelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Model",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

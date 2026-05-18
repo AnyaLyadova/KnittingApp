@@ -22,14 +22,14 @@ namespace KnittingApp.Repository
         }
         public async Task<Form> GetForm(Guid id)
         {
-            var form=await _context.Forms.Where(f=>f.formId==id).FirstOrDefaultAsync();
+            var form=await _context.Forms.Where(f=>f.formId==id).AsNoTracking().FirstOrDefaultAsync();
             if (form==null)
                 throw new ArgumentException($"Формы с id {id} не найдено");
             return form;
         }
         public async Task<List<Form>> GetFormsByUser(Guid userId)
         {
-            var forms=await _context.Forms.Where(f=>f.UserId==userId).ToListAsync();
+            var forms=await _context.Forms.Where(f=>f.UserId==userId).AsNoTracking().ToListAsync();
             return forms;
         }
     }

@@ -19,7 +19,7 @@ function ModelCreationForm({ onSuccess }: ModelCreationFormProps) {
     // Состояния для загрузки и ошибок
     const [error, setError] = useState<string | null>(null);
 
-    // Состояния для имени модели (пока просто храним)
+    // Состояния для имени модели 
     const [modelName, setModelName] = useState('');
 
     // Состояния для выбранных значений

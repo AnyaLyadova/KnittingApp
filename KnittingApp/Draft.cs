@@ -7,7 +7,7 @@ namespace KnittingApp
 {
     public class Draft
     {
-        public Guid DraftId { get; }
+        public Guid DraftId { get; set; }
         public LinkedList<Point> draft { get; private set; }
         Point startPoint;
         Point endPoint;

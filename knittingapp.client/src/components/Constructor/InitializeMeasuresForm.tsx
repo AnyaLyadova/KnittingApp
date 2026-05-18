@@ -1,16 +1,16 @@
 ﻿import { useState } from 'react';
-import type { Measures } from '../../types/Model';
+import type { Measures, Model } from '../../types/Model';
 import {ConstructorService} from '../../services/ConstructorService';
 
 interface InitializeMeasuresFormProps {
-    modelIndex: string;
+    formId: string;
     modelName: string;
     initialMeasures: Measures;
-    onSuccess?: () => void;
+    onSuccess?: (model: Model) => void;
     onClose?: () => void;
 }
 
-export function InitializeMeasuresForm({ modelIndex, modelName, initialMeasures, onSuccess, onClose }: InitializeMeasuresFormProps) {
+export function InitializeMeasuresForm({ formId, modelName, initialMeasures, onSuccess, onClose }: InitializeMeasuresFormProps) {
 
     //мерки для изделия
     const [measures, setMeasures] = useState<Measures>(initialMeasures);
@@ -23,6 +23,8 @@ export function InitializeMeasuresForm({ modelIndex, modelName, initialMeasures,
     const [width, setWidth] = useState<number>(0);
     const [loopInHeight, setLoopInHeight] = useState<number>(0);
     const [loopInWidth, setLoopInWidth] = useState<number>(0);
+
+    const [modelNameInput, setModelNameInput] = useState<string>(modelName);
 
     // Валидация одного поля
     const validateField = (name: string, value: number): string => {
@@ -160,13 +162,12 @@ export function InitializeMeasuresForm({ modelIndex, modelName, initialMeasures,
 
         try {
 
-            console.log('Отправка мерок для модели', modelIndex);
-            ConstructorService.sendMeasures(measures, height, width, loopInHeight, loopInWidth);
-            console.log('Мерки:', measures);
+
+            const result=await ConstructorService.sendMeasures(formId, modelName,  measures, height, width, loopInHeight, loopInWidth);
 
 
             if (onSuccess) {
-                onSuccess();
+                onSuccess(result);
             }
             if (onClose) {
                 onClose();
@@ -180,7 +181,15 @@ export function InitializeMeasuresForm({ modelIndex, modelName, initialMeasures,
     return (
         <form className="model-creation-form" onSubmit={handleSubmit}>
             <h2>Редактирование мерок</h2>
-            <p>Модель: {modelName}</p>
+            <div className="form-group">
+                <label>Название модели:</label>
+                <input
+                    type="text"
+                    value={modelNameInput}
+                    onChange={(e) => setModelNameInput(e.target.value)}
+                    required
+                />
+            </div>
 
             {/* Блок с параметрами образца */}
             <div className="sample-parameters">

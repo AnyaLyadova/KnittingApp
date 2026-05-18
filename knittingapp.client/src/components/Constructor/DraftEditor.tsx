@@ -106,6 +106,7 @@ interface DraftEditorProps {
     skipNextCellClick?: boolean;
     onLoopMapUpdate?: (loopMap: LoopMap) => void;
     draftType: string;
+    modelId?: string;
 }
 
 //export const DraftEditor: React.FC<DraftEditorProps> = ({
@@ -126,6 +127,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
     skipNextCellClick,
     onLoopMapUpdate,
     draftType,
+    modelId,
 },ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [points, setPoints] = useState<Point[]>([]);
@@ -313,6 +315,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             setStatusMessage('Сохранение цветовой схемы...');
 
             const newLoopMap = await ConstructorService.colorLoopMap(
+                modelId,
                 pendingColorChanges.mIndexes,
                 pendingColorChanges.nIndexes,
                 pendingColorChanges.colors,
@@ -754,6 +757,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             setStatusMessage('Отправка изменений на сервер...');
 
             const newDraft = await DraftService.movePoint(
+                draft.DraftId,
                 originalPoint,
                 newX,
                 newY,
@@ -765,7 +769,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             if (newDraft && newDraft.draft) {
                 setPoints(newDraft.draft);
 
-                const newLoopMap = await ModelService.getLoopMap(draftType);
+                const newLoopMap = await ModelService.getLoopMap(modelId, draftType);
                 if (newLoopMap) {
                     setLoopMap(newLoopMap);
                     onLoopMapUpdate?.(newLoopMap);

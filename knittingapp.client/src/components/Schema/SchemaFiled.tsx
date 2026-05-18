@@ -186,7 +186,7 @@ const SchemaField: React.FC<SchemaFieldProps> = ({
         lastSentRef.current = { x, y, color: newColor };
 
         try {
-            await SchemaService.changeLoopColor(x, y, newColor);
+            await SchemaService.changeLoopColor(schemaId, x, y, newColor);
             await uploadImageToBackend(schemaId);
             onPixelChange?.();
         } catch (error) {
