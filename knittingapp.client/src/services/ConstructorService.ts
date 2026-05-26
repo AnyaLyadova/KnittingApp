@@ -13,7 +13,7 @@ export const ConstructorService = {
     },
 
     //выбор модели
-    async chooseModel(formId: string): Promise<Form> {
+    async chooseModel(formId: string): Promise<Measures> {
         const response = await apiClient.get(`/constructor/form/${formId}`);
         return response.data;
     },

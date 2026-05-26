@@ -1,6 +1,7 @@
 ﻿import apiClient from './apiClient'
 import type { NeckParts, SleeveRollParts, ArmholeParts,Model } from '../types/Model';
 import type { LoopMap } from '../types/Schema';
+import type { Form } from '../types/Form';
 
 
 export const ModelService = {
@@ -33,11 +34,37 @@ export const ModelService = {
             params.append('stringParts', part);
         });
 
+
+
+
         const response = await apiClient.post('/constructor/create', null, {
             params: params
         });
         return response.data;
     },
+
+
+
+    // Создать модель (отправка на сервер)
+    async createForm(data: Form): Promise<Form> {
+        // Формируем query параметры
+        const params = new URLSearchParams();
+        params.append('name', data.name);
+
+        // Каждую часть добавляем отдельным параметром с одним именем 'stringParts'
+        data.parts.forEach(part => {
+            params.append('stringParts', part);
+        });
+
+
+
+
+        const response = await apiClient.post('/constructor/create', null, {
+            params: params
+        });
+        return response.data;
+    },
+
 
     // Получить матрицу петель
     async getLoopMap(modelId:string,draftType:string): Promise<LoopMap> {

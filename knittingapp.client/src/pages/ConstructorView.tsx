@@ -80,8 +80,8 @@ function ConstructorView() {
 
         try {
             // Запрашиваем модель с сервера по индексу
-            const fullModel = await ConstructorService.chooseModel(id);
-            const measures = await ConstructorService.getMeasures();
+            const measures = await ConstructorService.chooseModel(id);
+           // const measures = await ConstructorService.getMeasures();
             setSelectedForm(form);
             setCurrentMeasures(measures);
             setIsMeasuresModalOpen(true);
@@ -547,7 +547,7 @@ function ConstructorView() {
                             ✕
                         </button>
                         <InitializeMeasuresForm
-                            modelIndex={selectedForm.formId}
+                            formId={selectedForm.formId}
                             modelName={selectedForm.name}
                             initialMeasures={currentMeasures}
                             onSuccess={handleMeasuresSaved}

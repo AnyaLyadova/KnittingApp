@@ -21,6 +21,7 @@ namespace KnittingApp
             this.currentIndex = currentIndex;
             LoopMapId = loopMapId;
             this.spentTime = spentTime;
+            colors = new Dictionary<string, string>();
         }
 
         public LoopsReader(int startIndex, LoopMap loopMap)
@@ -29,6 +30,7 @@ namespace KnittingApp
             LoopMapId = loopMap.LoopMapId;
             currentIndex = startIndex;
             this.loopMap = loopMap;
+            colors = new Dictionary<string, string>();
             GetLoopMapColors();
         }
 

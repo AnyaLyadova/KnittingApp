@@ -10,7 +10,7 @@ namespace KnittingApp
         public List<string> Parts {  get; set; }
         public Form(string name, Guid userId, List<string> Parts) {
             formId = Guid.NewGuid();
-            Parts = new List<string>();
+            this.Parts = new List<string>();
             Name = name;
             UserId = userId;
             this.Parts = Parts;

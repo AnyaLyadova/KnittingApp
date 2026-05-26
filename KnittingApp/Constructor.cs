@@ -1,5 +1,6 @@
 ﻿using KnittingApp.Parts;
 using KnittingApp.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using static KnittingApp.SharedConstants;
 
@@ -64,10 +65,11 @@ namespace KnittingApp
             return model;
         }*/
 
-        public async Task<Dictionary<string, double>> ChooseForm(Guid formId)
+        public async Task<Dictionary<string, double>> ChooseForm(Guid formId, Guid userId)
         {
             var form = await formService.GetForm(formId);
-            var model = CreateNewModel(form.Name, form.Parts);
+            KnittingModelBuilder modelBuilder = new KnittingModelBuilder();
+            var model = modelBuilder.CreateModel(form.Name, form.Parts, userId);
             return model.GetMeasures();
         }
 
@@ -101,14 +103,14 @@ namespace KnittingApp
             return model;
         }*/
 
-        Model CreateNewModel(string name, List<string> stringParts/*, Dictionary<string, double> measures,*/
+        Model CreateNewModel(string name, List<string> stringParts, Guid userId/*, Dictionary<string, double> measures,*/
            /* double height, double width, int loopInHeight, int loopInWidth*/)
         {
             /*double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
             double loopHeight=loopSize[0];
             double loopWidth=loopSize[1];*/
             KnittingModelBuilder modelBuilder = new KnittingModelBuilder();
-            var model= modelBuilder.CreateModel(name, stringParts/*, loopHeight, loopInWidth*//*, measures*/);
+            var model= modelBuilder.CreateModel(name, stringParts, userId/*, loopHeight, loopInWidth*//*, measures*/);
            // models.Add(model);
             return model;
         }
@@ -203,7 +205,7 @@ namespace KnittingApp
 
         public Model CopyModel(int modelIndex)
         {
-            return new Model("copy");
+            return new Model("copy", Guid.Empty);
         }
 
 
@@ -220,13 +222,13 @@ namespace KnittingApp
         }
 
 
-        public async Task<Model> CreateModelWithDrafts(Guid formId, string modelName,
+        public async Task<Model> CreateModelWithDrafts(Guid formId,Guid userId, string modelName,
             Dictionary<string, double> measures,
           double height, double width, int loopInHeight, int loopInWidth
             )  //возвращает frontDraft
         {
             var form=await formService.GetForm(formId);
-            var model = CreateNewModel(modelName, form.Parts);
+            var model = CreateNewModel(modelName, form.Parts, userId);
             InitializeModel(model, measures, height, width, loopInHeight, loopInWidth);
             model.CreateDrafts();
             await modelService.CreateModel(model);

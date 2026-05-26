@@ -29,7 +29,7 @@ namespace KnittingApp
 
         public List<Part> Parts { get { return parts; } }
 
-        public Model(string name/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)  // задание мерок, инициализация частей
+        public Model(string name, Guid userId/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)  // задание мерок, инициализация частей
         {
             this.modelId = Guid.NewGuid();
             this.name = name;

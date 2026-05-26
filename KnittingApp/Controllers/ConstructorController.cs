@@ -53,9 +53,10 @@ namespace KnittingApp.Controllers
 
         public async Task<ActionResult<Dictionary<string, double>>> ChooseForm(Guid formId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             try
             {
-                return Ok(await constructor.ChooseForm(formId));
+                return Ok(await constructor.ChooseForm(formId, Guid.Parse(userId)));
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -157,9 +158,10 @@ namespace KnittingApp.Controllers
             [FromQuery] double height, [FromQuery] double width,
             [FromQuery] int loopInHeight, [FromQuery] int loopInWidth)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             try
             {
-                var model=await constructor.CreateModelWithDrafts(formId, modelName, measures, height, width,
+                var model=await constructor.CreateModelWithDrafts(formId,Guid.Parse(userId), modelName, measures, height, width,
                     loopInHeight, loopInWidth);
                 return Ok(model);
             }

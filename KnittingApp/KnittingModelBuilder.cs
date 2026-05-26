@@ -6,9 +6,9 @@ namespace KnittingApp
     {
         List<Part> parts = new List<Part>{new Armhole(), new Body(), new Neck(), new Quad(),
         new Sleeve(), new SleeveRoll(), new Shoulder()}; 
-        public Model CreateModel(string name,List<string> stringParts/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)
+        public Model CreateModel(string name,List<string> stringParts, Guid userId/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)
         {
-            Model model=new(name/*, loopWidth, loopHeight*//*, measures*/);
+            Model model=new(name, userId/*, loopWidth, loopHeight*//*, measures*/);
             model.AddPart(new Body());
             model.AddPart(new Shoulder());
             model.AddPart(new Sleeve());

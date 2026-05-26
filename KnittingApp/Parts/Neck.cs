@@ -58,14 +58,12 @@ namespace KnittingApp.Parts
                     p.X += loopWidth*(increase/2);  //прибавки через ряд
                     increase -= increase / 2;  //уменьшаем общее количество убавок
                 }
-              //  p.AddConnection(currentPoint);
                 neckDraft.AddPoint(p);
                 currentPoint = p;
             }
             Point endPoint= new Point(currentPoint.X + lowWidth*loopWidth / 2, currentPoint.Y, name);
             neckDraft.AddPoint(endPoint);  //добавляем половину центральной части
             neckDraft.EndPoint = endPoint;
-
             neckDraft.EndPoint.visible = true;
             neckDraft.StartPoint.visible = true;
             return neckDraft;

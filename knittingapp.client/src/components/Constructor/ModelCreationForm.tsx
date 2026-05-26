@@ -2,6 +2,7 @@
 import { ModelService } from '../../services/ModelService';
 import type { NeckParts, SleeveRollParts, ArmholeParts, Model } from '../../types/Model';
 import '../../styles/Modal.css';
+import type { Form } from '../../types/Form';
 
 
 interface ModelCreationFormProps {
@@ -112,13 +113,13 @@ function ModelCreationForm({ onSuccess }: ModelCreationFormProps) {
         if (!validateForm()) return;  //проверка валидации формы
 
         try {
-            const requestData: Model = {
-                modelId:"000",
+            const requestData: Form = {
+               formId:"000",
                 name: modelName,
                 parts: buildPartsArray()
             };
 
-            const response = await ModelService.createModel(requestData);
+            const response = await ModelService.createForm(requestData);
             console.log('Модель успешно создана:', response);
             //  alert('Модель успешно создана!');
             // Очищаем ошибки перед закрытием

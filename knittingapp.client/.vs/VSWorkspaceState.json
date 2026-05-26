@@ -4,9 +4,11 @@
     "\\src",
     "\\src\\components",
     "\\src\\components\\Constructor",
+    "\\src\\components\\Schema",
     "\\src\\pages",
+    "\\src\\services",
     "\\src\\types"
   ],
-  "SelectedNode": "\\src\\components\\Constructor\\FormList.tsx",
+  "SelectedNode": "\\src\\components\\Constructor\\ModelCreationForm.tsx",
   "PreviewInSolutionExplorer": false
 }
