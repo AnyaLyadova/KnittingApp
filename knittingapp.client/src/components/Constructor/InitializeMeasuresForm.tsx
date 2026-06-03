@@ -163,7 +163,7 @@ export function InitializeMeasuresForm({ formId, modelName, initialMeasures, onS
         try {
 
 
-            const result=await ConstructorService.sendMeasures(formId, modelName,  measures, height, width, loopInHeight, loopInWidth);
+            const result=await ConstructorService.sendMeasures(formId, modelNameInput,  measures, height, width, loopInHeight, loopInWidth);
 
 
             if (onSuccess) {
@@ -180,7 +180,7 @@ export function InitializeMeasuresForm({ formId, modelName, initialMeasures, onS
 
     return (
         <form className="model-creation-form" onSubmit={handleSubmit}>
-            <h2>Редактирование мерок</h2>
+            <h2>Задание мерок</h2>
             <div className="form-group">
                 <label>Название модели:</label>
                 <input

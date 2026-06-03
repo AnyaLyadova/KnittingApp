@@ -33,8 +33,9 @@ namespace KnittingApp.Extensions
         
         public static Model ToObject(this ModelModel modelModel)
         {
-           Model model =new Model(modelModel.ModelName, modelModel.ModelId);
+           Model model =new Model(modelModel.ModelName);
             model.Name=modelModel.ModelName;
+            model.modelId = modelModel.ModelId;
             model.userId=modelModel.UserId;
             model.frontLoopMap=modelModel.FrontLoopMap.ToObject();
             model.backLoopMap=modelModel.BackLoopMap.ToObject() ;

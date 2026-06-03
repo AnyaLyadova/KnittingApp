@@ -160,7 +160,7 @@
         }
       }
     },
-    "/models": {
+    "/api/account/models": {
       "get": {
         "tags": [
           "Account"
@@ -198,7 +198,7 @@
         }
       }
     },
-    "/models/{modelId}": {
+    "/api/account/models/{modelId}": {
       "get": {
         "tags": [
           "Account"
@@ -976,14 +976,14 @@
         }
       }
     },
-    "/api/constructor/{draftId}/move": {
+    "/api/constructor/{modelId}/move": {
       "post": {
         "tags": [
           "Constructor"
         ],
         "parameters": [
           {
-            "name": "draftId",
+            "name": "modelId",
             "in": "path",
             "required": true,
             "schema": {
@@ -1008,35 +1008,10 @@
             }
           },
           {
-            "name": "loopWidth",
+            "name": "draftType",
             "in": "query",
             "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "loopHeight",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "loopInWidth",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "loopInHeight",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
+              "type": "string"
             }
           }
         ],
@@ -1851,9 +1826,6 @@
           "loopHeight": {
             "type": "number",
             "format": "double"
-          },
-          "reader": {
-            "$ref": "#/components/schemas/LoopsReader"
           }
         },
         "additionalProperties": false
@@ -1876,27 +1848,6 @@
         "type": "integer",
         "format": "int32"
       },
-      "LoopsReader": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "loopReaderId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "loopMapId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "loopMap": {
-            "$ref": "#/components/schemas/LoopMap"
-          }
-        },
-        "additionalProperties": false
-      },
       "Model": {
         "type": "object",
         "properties": {
@@ -1907,32 +1858,6 @@
           "modelId": {
             "type": "string",
             "format": "uuid"
-          },
-          "frontDraft": {
-            "$ref": "#/components/schemas/Draft"
-          },
-          "backDraft": {
-            "$ref": "#/components/schemas/Draft"
-          },
-          "sleeveDraft": {
-            "$ref": "#/components/schemas/Draft"
-          },
-          "frontLoopMap": {
-            "$ref": "#/components/schemas/LoopMap"
-          },
-          "backLoopMap": {
-            "$ref": "#/components/schemas/LoopMap"
-          },
-          "sleeveLoopMap": {
-            "$ref": "#/components/schemas/LoopMap"
-          },
-          "parts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Part"
-            },
-            "nullable": true,
-            "readOnly": true
           },
           "name": {
             "type": "string",
@@ -1952,26 +1877,6 @@
           },
           "rightPoint": {
             "$ref": "#/components/schemas/Point"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Part": {
-        "type": "object",
-        "properties": {
-          "width": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "partMeasures": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "number",
-              "format": "double"
-            },
-            "nullable": true,
-            "readOnly": true
           }
         },
         "additionalProperties": false

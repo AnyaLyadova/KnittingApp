@@ -56,7 +56,7 @@ namespace KnittingApp.Controllers
             return Ok();
         }
 
-        [HttpGet ("/models")]
+        [HttpGet ("models")]
 
         public async Task<List<Model>> GetModels()
         {
@@ -64,7 +64,7 @@ namespace KnittingApp.Controllers
             return await account.GetModelsByUser(Guid.Parse(userId));
         }
 
-        [HttpGet("/models/{modelId}")]
+        [HttpGet("models/{modelId}")]
         public async Task<Model> GetModel(Guid modelId)
         {
             return await account.GetModel(modelId);

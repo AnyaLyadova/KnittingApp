@@ -1,5 +1,6 @@
 ﻿using KnittingApp.Parts;
 using System.Globalization;
+using System.Text.Json.Serialization;
 using static KnittingApp.SharedConstants;
 
 namespace KnittingApp
@@ -9,35 +10,53 @@ namespace KnittingApp
         public Guid userId {  get; set; }
         public Guid modelId { get; set; }
         string name;
-        List<Part> parts=new List<Part>();  //список частей изделия
-        public Draft frontDraft { get; set; } //общая выкройка переда
-        public Draft backDraft { get; set; } //общая выкройка спинки
-        public Draft sleeveDraft { get; set; } //общая выкройка рукава
-        Dictionary<string, double> measures = new Dictionary<string, double>();
-        bool hasShoulderBevel;   //есть ли скос плеча
-        bool hasArmhole;  //есть ли вырез под втачной рукав
-        public LoopMap frontLoopMap { get; set; }
+        public string Name { get { return name; } set { name = value; } }
 
+        [JsonIgnore]
+        List<Part> parts=new List<Part>();  //список частей изделия
+        [JsonIgnore]
+        public Draft frontDraft { get; set; } //общая выкройка переда
+        [JsonIgnore]
+        public Draft backDraft { get; set; } //общая выкройка спинки
+        [JsonIgnore]
+        public Draft sleeveDraft { get; set; } //общая выкройка рукава
+        [JsonIgnore]
+        Dictionary<string, double> measures = new Dictionary<string, double>();
+        /*bool hasShoulderBevel;   //есть ли скос плеча
+        bool hasArmhole;  //есть ли вырез под втачной рукав*/
+        [JsonIgnore]
+        public LoopMap frontLoopMap { get; set; }
+        [JsonIgnore]
         public LoopMap backLoopMap { get; set; }
+        [JsonIgnore]
         public LoopMap sleeveLoopMap { get; set; }
 
         double loopWidth;  //ширина петли
         double loopHeight;  //высота петли
         double loopInHeight;  //петель в см высоты
         double loopInWidth;  //петель в см ширины
-        
 
+        [JsonIgnore]
         public List<Part> Parts { get { return parts; } }
 
         public Model(string name, Guid userId/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)  // задание мерок, инициализация частей
         {
             this.modelId = Guid.NewGuid();
             this.name = name;
+            this.userId= userId;
             /*this.loopWidth = loopWidth;
             this.loopHeight = loopHeight;*/
            // this.measures = measures;
         }
-        public string Name { get { return name; } set { name = value; } }
+
+        public Model(string name)  // задание мерок, инициализация частей
+        {
+            this.name = name;
+            this.userId = userId;
+            /*this.loopWidth = loopWidth;
+            this.loopHeight = loopHeight;*/
+            // this.measures = measures;
+        }
 
         public void AddPart(Part part)
         {
@@ -78,7 +97,6 @@ namespace KnittingApp
         }
         public Draft CreateFrontDraft()
         {
-            // partDrafts.Clear(); //сбрасываем  состояние
             List<Draft> partDrafts = new List<Draft>();
             Point startPoint = new Point(0, 0, BodyName);
             foreach (var part in parts)
@@ -89,15 +107,13 @@ namespace KnittingApp
                 }
                 if (part.GetPriority() == PartPriority.Sleeve || part.GetPriority() == PartPriority.SleeveRoll)  //пропускаем рукав
                     continue;
-                // part.InitializePart(measures, loopWidth, loopHeight);
                 Draft draft = part.GetDraft(startPoint);
                 partDrafts.Add(draft);
                 startPoint = draft.EndPoint;
             }
-            //draft.CreateDraft(partDrafts);
-            frontDraft = new Draft(partDrafts);
+            frontDraft = new Draft(partDrafts);  //склеиваем выкройку
             frontDraft.EndPoint.X = 0;
-            frontDraft.Mirror();
+            frontDraft.Mirror(); //отражаем выкройку
 
             frontLoopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
 
@@ -248,6 +264,13 @@ namespace KnittingApp
                 default:
                     throw new ArgumentException("Передана некорректная часть чертежа");
 
+            }
+            var loopWidth = currentLoopMap.loopWidth;
+            var loopHeight=currentLoopMap.loopHeight;
+            if(loopInWidth==0)
+            {
+                loopInWidth=1/loopWidth;
+                loopInHeight = 1 / loopHeight;
             }
             List<Point> newPoints;
             currentDraft.MovePoint(movingPoint, newX, newY,leftPoint,rightPoint, loopWidth,

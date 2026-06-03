@@ -99,57 +99,42 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "KnittingApp.Controllers.ConstructorController",
-    "Method": "MovePoint",
-    "RelativePath": "api/constructor/{draftId}/move",
-    "HttpMethod": "POST",
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetModels",
+    "RelativePath": "api/account/models",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[KnittingApp.Model, KnittingApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetModel",
+    "RelativePath": "api/account/models/{modelId}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "draftId",
+        "Name": "modelId",
         "Type": "System.Guid",
         "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "KnittingApp.Controllers.ConstructorController\u002BMovePointRequest",
-        "IsRequired": true
-      },
-      {
-        "Name": "newX",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "newY",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "loopWidth",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "loopHeight",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "loopInWidth",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "loopInHeight",
-        "Type": "System.Double",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "KnittingApp.Draft",
+        "Type": "KnittingApp.Model",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -394,6 +379,52 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.ConstructorController",
+    "Method": "MovePoint",
+    "RelativePath": "api/constructor/{modelId}/move",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "KnittingApp.Controllers.ConstructorController\u002BMovePointRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "newX",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "newY",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "draftType",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "KnittingApp.Draft",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -989,51 +1020,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.AccountController",
-    "Method": "GetModels",
-    "RelativePath": "models",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[KnittingApp.Model, KnittingApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "KnittingApp.Controllers.AccountController",
-    "Method": "GetModel",
-    "RelativePath": "models/{modelId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "modelId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "KnittingApp.Model",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]

@@ -79,7 +79,6 @@ namespace KnittingApp
                         break;
                 }
 
-
                 while (line[i].type == line[i + 1].type &&
                     line[i].side == line[i + 1].side &&
                     line[i].Color == line[i + 1].Color)

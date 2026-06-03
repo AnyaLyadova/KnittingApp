@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KnittingApp;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -73,7 +74,12 @@ namespace KnittingApp.Migrations
                 {
                     LoopMapId = table.Column<Guid>(type: "uuid", nullable: false),
                     loopMapJson = table.Column<string>(type: "jsonb", nullable: false),
-                    LoopsReaderId = table.Column<Guid>(type: "uuid", nullable: true)
+                    nullM = table.Column<int>(type: "integer", nullable: false),
+                    nullN = table.Column<int>(type: "integer", nullable: false),
+                    loopWidth = table.Column<double>(type: "double precision", nullable: false),
+                    loopHeight = table.Column<double>(type: "double precision", nullable: false),
+                    LoopsReaderId = table.Column<Guid>(type: "uuid", nullable: true),
+                    NullPoint = table.Column<Point>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -1,6 +1,7 @@
 ﻿using KnittingApp.Models;
 using Microsoft.Extensions.Primitives;
 using System.Drawing;
+using System.Text.Json.Serialization;
 using static KnittingApp.SharedConstants;
 namespace KnittingApp
 {
@@ -10,12 +11,14 @@ namespace KnittingApp
         public Loop[][] loopMap {  get; }
         public int m { get; set; }
         public int n { get; set; }
-        Point nullPoint;
+        [JsonIgnore]
+        public Point nullPoint { get; set; }
         public int nullM { get; set; }   //координаты точки 0,0 относительно матрицы
         public int nullN { get; set; }
         public double loopWidth { get; set; }
         public double loopHeight { get; set; }
 
+        [JsonIgnore]
         public LoopsReader reader { get; set; }
         public LoopMap(Draft draft, double loopWidth, double loopHeight)
         {
@@ -118,15 +121,10 @@ namespace KnittingApp
 
         void DraftToLoopMap(Draft draft)  //конвертация выкройки в матрицу петель
         {
-           // Point nullPoint=draft.StartPoint;  //точка (0,0) в начале чертежа (середина низа)
            Point nullPoint= draft.GetUpperPoint(); // точка (0,0) левый верхний угол
             this.nullPoint = nullPoint;
             nullM= (int)((nullPoint.Y - draft.StartPoint.Y) / loopHeight) + AddingM / 2;
             nullN= (int)((draft.StartPoint.X - nullPoint.X) / loopWidth) + AddingN / 2;
-            //   nullPoint.X += AddingN / 2;  //смещаем точку для дальнейшего расширения
-            //  nullPoint.Y += AddingM / 2;
-
-            // AddLoop(0, 0, LoopType.loop, LoopSide.front);
             int count = 1;
             foreach(var point in draft.draft)  //переносим контур выкройки в матрицу относительно нуля
               {
@@ -197,7 +195,6 @@ namespace KnittingApp
                     }
                 }
             }
-
         }
 
 

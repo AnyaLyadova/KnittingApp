@@ -35,9 +35,9 @@ namespace KnittingApp.Services
             var modelList = modelModels.Select(m => m.ToObject()).ToList();
             return modelList;
         }
-        public async Task<Model> CreateMode(string name)
+        public async Task<Model> CreateMode(string name, Guid userId)
         {
-            Model model = new Model(name);
+            Model model = new Model(name, userId);
             await modelRepository.CreateModel(model.ToModel());
             return model;
         }
@@ -126,9 +126,9 @@ namespace KnittingApp.Services
 
 
 
-        public async Task<Draft> MovePoint(Guid id,Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, string draftType)
+        public async Task<Draft> MovePoint(Guid modelId,Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, string draftType)
         {
-            var modelModel = await modelRepository.GetModel(id);
+            var modelModel = await modelRepository.GetModel(modelId);
             var model = modelModel.ToObject();
             var draft = model.MovePoint(movingPoint,newX, newY, leftPoint, rightPoint, draftType);
             await modelRepository.UpdateModel(model.ToModel());

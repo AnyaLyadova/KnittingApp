@@ -169,6 +169,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
     }, [loopMap]);
 
 
+
     // В компоненте, в обработчике движения мыши на canvas
     const handleCanvasMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
         if (!loopMapState || !loopMapState.loopMap) return;
@@ -302,6 +303,41 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
     }, [loopMapState, currentColor, isEraserMode, isDraggingSchema]);
 
 
+
+    // Функция для скачивания PNG
+    const downloadAsPNG = useCallback(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        // Создаем ссылку на изображение
+        const link = document.createElement('a');
+        link.download = `draft-${draftType}-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }, [draftType]);
+
+    // Функция для скачивания PDF
+    const downloadAsPDF = useCallback(async () => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        // Импортируем jsPDF
+        const { jsPDF } = await import('jspdf');
+
+        // Получаем данные canvas
+        const imgData = canvas.toDataURL('image/png');
+
+        // Создаем PDF с размерами canvas
+        const pdf = new jsPDF({
+            orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+            unit: 'px',
+            format: [canvas.width, canvas.height]
+        });
+
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save(`draft-${draftType}-${Date.now()}.pdf`);
+    }, [draftType]);
+
     // ==================== СОХРАНЕНИЕ ЦВЕТОВОЙ СХЕМЫ ====================
     const handleSaveColorScheme = useCallback(async () => {
         // если нет изменений — не отправляем
@@ -331,7 +367,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             // Очищаем список ожидающих изменений
             setPendingColorChanges({ mIndexes: [], nIndexes: [], colors: [] });
 
-            // Уведомляем родителя (если нужен)
+            // Уведомляем родителя
             onColorSchemeSaved?.(newLoopMap);
 
         } catch (error) {
@@ -420,7 +456,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
         const cellWidthPx = realCellWidth * transformParams.scale;
         const cellHeightPx = realCellHeight * transformParams.scale;
         onGridMetricsChange?.(cellWidthPx, cellHeightPx);
-    }, [points, width, height, calculateTransformParams, onGridMetricsChange]);
+    }, [points, width, height, calculateTransformParams, onGridMetricsChange, ]);
 
     // ==================== ОТРИСОВКА СЕТКИ И ЯЧЕЕК ====================
     const drawGridAndCells = useCallback((
@@ -757,7 +793,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             setStatusMessage('Отправка изменений на сервер...');
 
             const newDraft = await DraftService.movePoint(
-                draft.DraftId,
+                modelId,
                 originalPoint,
                 newX,
                 newY,
@@ -943,27 +979,51 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
 
     const { scale, offsetX, offsetY } = transformParams;
 
+
+
+    
+
    
     
 
     return (
         <div style={{ position: 'relative', width, height, border: '1px solid #ccc', borderRadius: '8px' }}>
             {renderStatusBar()}
-            <canvas
-                ref={canvasRef}
-                width={width}
-                height={height}
-                style={{ position: 'absolute', top: 0, left: 0, borderRadius: '8px' }}
-                onDoubleClick={handleCanvasDoubleClick}
-               // onClick={handleCanvasClick}
-                onClick={(e) => {
-                    handleCanvasClick(e);           // существующий обработчик для точек
-                    handleCanvasCellClick(e);       // новый обработчик для ячеек
-                }}
-                onMouseMove={handleCanvasMouseMove}
-            />
 
-            <div style={{ position: 'absolute', top: -40, right: 0, display: 'flex', gap: '10px', zIndex: 20 }}>
+            <div style={{ top: -40, right: 0, display: 'flex', gap: '10px', zIndex: 20 }}>
+                <button
+                    onClick={downloadAsPNG}
+                    style={{
+                        padding: '6px 12px',
+                        backgroundColor: '#28a745',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '12px'
+                    }}
+                >
+                    Скачать PNG
+                </button>
+
+                <button
+                    onClick={downloadAsPDF}
+                    style={{
+                        padding: '6px 12px',
+                        backgroundColor: '#dc3545',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '12px'
+                    }}
+                >
+                    Скачать PDF
+                </button>
+
+            </div>
+
+            <div style={{ top: -40, right: 0, display: 'flex', gap: '10px', zIndex: 20 }}>
                 <button
                     onClick={handleSaveColorScheme}
                     style={{
@@ -979,6 +1039,22 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
                     Сохранить цветовую схему
                 </button>
             </div>
+
+            <canvas
+                ref={canvasRef}
+                width={width}
+                height={height}
+                style={{top: 0, left: 0, borderRadius: '8px' }}
+                onDoubleClick={handleCanvasDoubleClick}
+               // onClick={handleCanvasClick}
+                onClick={(e) => {
+                    handleCanvasClick(e);           // существующий обработчик для точек
+                    handleCanvasCellClick(e);       // новый обработчик для ячеек
+                }}
+                onMouseMove={handleCanvasMouseMove}
+            />
+
+            
 
             <DndContext onDragMove={handleDragMove} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
                 {points.map((point, idx) => (

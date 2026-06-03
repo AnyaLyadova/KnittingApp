@@ -10,12 +10,13 @@ import ConstructorView from './pages/ConstructorView'
 import SchemaConstructorView from './pages/SchemaConstructorView'
 import Navigation from './components/Default/Navigation'
 import AuthView from './pages/AuthView';
+import AccountView from './pages/AccountView';
 
 
-type ViewType = 'constructor' | 'schema';
+type ViewType = 'constructor' | 'schema'|'account';
 
 function App() {
-    const [currentView, setCurrentView] = useState<ViewType>('constructor');
+    const [currentView, setCurrentView] = useState<ViewType>('account');
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
         // Проверяем, есть ли пользователь в localStorage при загрузке
         return !!localStorage.getItem('access_token');
@@ -42,6 +43,7 @@ function App() {
             <div className="content">
                 {currentView === 'constructor' && <ConstructorView />}
                 {currentView === 'schema' && <SchemaConstructorView />}
+                {currentView === 'account' && <AccountView />}
             </div>
         </div>
     );

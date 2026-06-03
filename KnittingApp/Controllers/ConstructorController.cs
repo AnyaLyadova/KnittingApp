@@ -217,14 +217,14 @@ namespace KnittingApp.Controllers
         }
 
 
-        [HttpPost ("{draftId}/move")]
+        [HttpPost ("{modelId}/move")]
 
-        public ActionResult<Draft> MovePoint(Guid draftId,[FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY, 
-           [FromQuery] double loopWidth, [FromQuery]double loopHeight, [FromQuery]double loopInWidth, [FromQuery]double loopInHeight)
+        public async Task<ActionResult<Draft>> MovePoint(Guid modelId,[FromBody] MovePointRequest request, [FromQuery] double newX, [FromQuery]double newY, [FromQuery]string draftType
+           /*[FromQuery] double loopWidth, [FromQuery]double loopHeight, [FromQuery]double loopInWidth, [FromQuery]double loopInHeight*/)
         {
             
-            return Ok(constructor.MovePoint(draftId,request.movingPoint, newX, newY, request.leftPoint, request.rightPoint,
-                 loopWidth, loopHeight, loopInWidth, loopInHeight));
+            return Ok(await constructor.MovePoint(modelId,request.movingPoint, newX, newY, request.leftPoint, request.rightPoint, draftType
+                /* loopWidth, loopHeight, loopInWidth, loopInHeight*/));
         }
 
         public class MovePointRequest
@@ -237,11 +237,11 @@ namespace KnittingApp.Controllers
 
         [HttpPut("{modelId}/color")]
 
-        public ActionResult<LoopMap> ColorLoopMap(Guid modelId, [FromBody] ColorLoopMapRequest request, [FromQuery] string draftType)
+        public async Task<ActionResult<LoopMap>> ColorLoopMap(Guid modelId, [FromBody] ColorLoopMapRequest request, [FromQuery] string draftType)
         {
             if (request.mIndexes == null || request.mIndexes == null || request.colors == null)
                 return BadRequest("Переданые списки равны null");
-            return  Ok(constructor.ColorLoopMap(modelId,request.mIndexes, request.nIndexes, request.colors, draftType));
+            return  Ok( await constructor.ColorLoopMap(modelId,request.mIndexes, request.nIndexes, request.colors, draftType));
         }
 
         [HttpPut("{modelId}/color/all")]

@@ -23,6 +23,7 @@ namespace KnittingApp.Repository
         {
             if (model == null)
                 throw new ArgumentNullException("Переданное model было null");
+            _context.ChangeTracker.Clear();
             _context.Models.Update(model);
             await _context.SaveChangesAsync();
             return model;
@@ -34,7 +35,14 @@ namespace KnittingApp.Repository
         }
         public async Task<List<ModelModel>> GetModelByUser(Guid userId)
         {
-            var models = await _context.Models.Where(m=>m.UserId==userId).AsNoTracking().ToListAsync();
+            var models = await _context.Models.Where(m=>m.UserId==userId)
+                 .Include(m => m.FrontDraft)
+                .Include(m => m.BackDraft)
+                .Include(m => m.SleeveDraft)
+                .Include(m => m.FrontLoopMap)
+                .Include(m => m.BackLoopMap)
+                .Include(m => m.SleeveLoopMap)
+                .AsNoTracking().ToListAsync();
             return models;
         }
         public async Task<ModelModel> GetModel(Guid id)

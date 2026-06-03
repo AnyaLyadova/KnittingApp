@@ -46,7 +46,7 @@ export const ConstructorService = {
 
     //раскрашивание схемы
     async colorLoopMap(modelId: string, mIndexes: number[], nIndexes: number[], colors: string[], draftType: string): Promise<LoopMap> {
-        const response = await apiClient.put(`/constructor/${modelId} / color`, {
+        const response = await apiClient.put(`/constructor/${modelId}/color`, {
             mIndexes: mIndexes,
             nIndexes: nIndexes,
             colors: colors

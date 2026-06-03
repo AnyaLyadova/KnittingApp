@@ -25,7 +25,7 @@ export const DraftService = {
     },
 
     async movePoint(
-        draftId:string,
+        modelId:string,
         movingPoint: Point,  // старая точка (с исходными координатами)
         newX: number,        // новая X координата
         newY: number,        // новая Y координата
@@ -33,7 +33,7 @@ export const DraftService = {
         rightPoint: Point,    // правая опорная точка
         draftType:string
     ): Promise<Draft> {
-        const response = await apiClient.post<Draft>(`/constructor/${draftId}/move`, {
+        const response = await apiClient.post<Draft>(`/constructor/${modelId}/move`, {
             movingPoint: movingPoint,
             leftPoint: leftPoint,
             rightPoint: rightPoint

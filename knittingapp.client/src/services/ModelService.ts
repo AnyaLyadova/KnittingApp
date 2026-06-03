@@ -76,5 +76,10 @@ export const ModelService = {
             });
         return response.data;
     },
+
+    async getModels(): Promise<Model[]> {
+        const response = await apiClient.get('/account/models'); // путь может отличаться
+        return response.data;
+    },
    
     };

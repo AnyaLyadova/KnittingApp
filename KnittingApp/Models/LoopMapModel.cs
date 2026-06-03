@@ -11,8 +11,17 @@ namespace KnittingApp.Models
         [Column(TypeName = "jsonb")]
         public string loopMapJson { get; set; } //хранение матрицы в виде Json
 
+        public int nullM { get; set; }   //координаты точки 0,0 относительно матрицы
         
+        public int nullN { get; set; }
+        
+        public double loopWidth { get; set; }
+        
+        public double loopHeight { get; set; }
+
         public Guid? LoopsReaderId { get; set; }
+        [Column(TypeName = "jsonb")]
+        public string? NullPoint { get; set; }  
 
         public LoopsReaderModel LoopsReader { get; set; }
 

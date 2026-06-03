@@ -7,7 +7,7 @@ export interface Point {
 }
 
 export interface Draft {
-    DraftId:string
+    draftId:string
     draft: Point[];
 
 }

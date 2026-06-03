@@ -98,6 +98,8 @@ function ConstructorView() {
         setSelectedForm(null);
         setCurrentMeasures({});
         setCurrentModel(createdModel);
+        setCurrentModel(createdModel);
+        loadDraftForModel(createdModel.modelId);
     };
 
     // Закрытие окна мерок
@@ -105,7 +107,7 @@ function ConstructorView() {
         setIsMeasuresModalOpen(false);
         setSelectedForm(null);
         setCurrentMeasures({});
-        loadDraft();
+       // loadDraft();
     };
 
 
@@ -163,6 +165,7 @@ function ConstructorView() {
 
             if (draftData) {
                 setDraft(draftData);
+                console.log("draft: " + draftData)
                 setDraftType(type);  // обновляем тип после успешной загрузки
 
                 const map = await ModelService.getLoopMap(currentModel.modelId,type);
@@ -174,9 +177,28 @@ function ConstructorView() {
         } finally {
             setTimeout(() => setSkipNextCellClick(false), 100);
         }
-    }, []);
+    }, [currentModel, setLoopMap]);
 
-    const loadDraft = useCallback(async () => {
+
+
+    const loadDraftForModel = useCallback(async (modelId: string) => {
+        try {
+            // Запрашиваем передний чертеж (как при нажатии кнопки)
+            const draftData = await DraftService.getFrontDraft(modelId);
+            setDraft(draftData);
+            setDraftType("front");
+
+            const map = await ModelService.getLoopMap(modelId, "front");
+            console.log("map: ");
+            console.log(map);
+            console.log("loopWidth " + map.loopWidth);
+            setLoopMap(map);
+        } catch (err) {
+            console.error('Ошибка загрузки чертежа:', err);
+        }
+    }, [setDraft, setDraftType, setLoopMap]);
+
+    /*const loadDraft = useCallback(async () => {
         if (selectedForm === null) {
             setDraft(null);
             setLoopMap(null);
@@ -191,7 +213,7 @@ function ConstructorView() {
             setDraft(null);
             setLoopMap(null);
         }
-    }, [selectedForm, switchDraft, currentModel]);
+    }, [selectedForm, switchDraft, currentModel, setDraft, setDraftType, setLoopMap]);*/
 
 
     // Обработчики (могут быть пустыми, но должны быть переданы)
@@ -642,6 +664,7 @@ function ConstructorView() {
                 ref={draftEditorRef}
                 onLoopMapUpdate={handleLoopMapUpdate}
                 draftType={draftType}
+                modelId={currentModel?.modelId}
             />
 
             {/* Призрак перетаскиваемой схемы */}

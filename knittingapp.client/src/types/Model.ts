@@ -1,7 +1,6 @@
 ﻿export interface Model {
     modelId: string;
     name: string;
-    parts: string[];  //массив выбраных частей
 }
 
 

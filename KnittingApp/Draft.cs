@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 using static KnittingApp.SharedConstants;
 using static System.Net.Mime.MediaTypeNames;
@@ -7,6 +8,7 @@ namespace KnittingApp
 {
     public class Draft
     {
+        [JsonPropertyName("draftId")]
         public Guid DraftId { get; set; }
         public LinkedList<Point> draft { get; private set; }
         Point startPoint;
@@ -320,7 +322,7 @@ namespace KnittingApp
                 newPoints.Add(p);
                 currentPoint = currentPoint.Next;
             }
-    }
+        }
 
         bool IsNodeBefore(LinkedListNode<Point> a, LinkedListNode<Point> b)
         {

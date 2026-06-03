@@ -365,13 +365,19 @@ namespace KnittingApp
              return model.MovePoint(movingPoint, newX, newY,leftPoint, rightPoint, draftType);
          }*/
 
-        public async Task<Draft> MovePoint(Guid draftId,Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint,
+        /*public async Task<Draft> MovePoint(Guid Id,Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint,
             double loopWidth, double loopHeight, double loopInWidth, double loopInHeight)
         {
-            return await draftService.MovePoint(draftId, movingPoint, newX, newY, leftPoint, rightPoint,
-                loopWidth, loopHeight, loopInWidth, loopInHeight);
-        }
+            *//*return await draftService.MovePoint(draftId, movingPoint, newX, newY, leftPoint, rightPoint,
+                loopWidth, loopHeight, loopInWidth, loopInHeight);*/
 
+       // }
+
+
+        public async Task<Draft> MovePoint(Guid modelId,Point movingPoint, double newX, double newY, Point leftPoint, Point rightPoint, string draftType)
+        {
+            return await modelService.MovePoint(modelId,movingPoint, newX, newY, leftPoint, rightPoint, draftType);
+        }
 
         /*public LoopMap ColorLoopMap(List<int> mIndexes, List<int> nIndexes, List<string> colors, string draftType)
         {
