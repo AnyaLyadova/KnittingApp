@@ -9,6 +9,7 @@ import type { LoopMap } from '../types/Schema';
 import type { Model } from '../types/Model';
 import ColorCircle from '../components/Schema/ColorCircle';
 import '../styles/ConstructorView.css';
+import ReaderField from '../components/Account/ReaderField';
 
 interface ColorCircleValue {
     color: string;
@@ -18,7 +19,7 @@ interface ColorCircleValue {
 const AccountView: React.FC = () => {
     // Состояние для выбранной модели
     const [curModelId, setCurModelId] = useState<string | null>(null);
-   // const [currentModel, setCurrentModel] = useState<Model | null>(null);
+    const [currentModel, setCurrentModel] = useState<Model | null>(null);
 
     // Состояния для чертежа
     const [draft, setDraft] = useState<Draft | null>(null);
@@ -31,7 +32,7 @@ const AccountView: React.FC = () => {
         isEraser: false
     });
 
-    // Состояния для схем (если нужны)
+    // Состояния для схем
     const [isDraggingSchema] = useState(false);
     const [gridCellWidth, setGridCellWidth] = useState(20);
     const [gridCellHeight, setGridCellHeight] = useState(25);
@@ -101,6 +102,11 @@ const AccountView: React.FC = () => {
                 {/* Список моделей */}
                 <ModelList onModelSelect={handleModelSelect} />
             </main>
+
+            {/* Компонент чтения схемы */}
+            {curModelId && (
+                <ReaderField modelId={curModelId} initialType="front" />
+            )}
 
             {/* Панель с цветовым кругом */}
             <div className="right-panel">

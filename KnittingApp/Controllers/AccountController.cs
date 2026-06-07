@@ -18,6 +18,12 @@ namespace KnittingApp.Controllers
             this.account = account;
         }
 
+        [HttpGet("{modelId}/reader")]
+        public async Task<ActionResult<Guid>> GetLoopReader(Guid modelId, [FromQuery] string type)
+        {
+            return await account.GetLoopsReaderByModel(modelId, type);
+        }
+
         [HttpGet("{readerId}")]
 
         public async Task<ActionResult<(List<string>, List<string>)>> GetCurrentString(Guid readerId)
@@ -25,6 +31,13 @@ namespace KnittingApp.Controllers
 
             var curString = await account.GetCurrentStringById(readerId);
             return Ok(curString);
+        }
+
+        [HttpPost("{readerId}/next")]
+        public async Task<IActionResult>MoveNext(Guid readerId)
+        {
+            await account.MoveNext(readerId);
+            return Ok();
         }
 
         /*[HttpGet]

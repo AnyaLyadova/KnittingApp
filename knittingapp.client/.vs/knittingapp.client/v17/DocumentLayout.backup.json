@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\pages\\AccountView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\AccountView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Account\\ReaderField.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\Account\\ReaderField.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ReaderService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\ReaderService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ModelService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\ModelService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Constructor\\DraftEditor.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\Constructor\\DraftEditor.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\DraftService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\DraftService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ModelService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\ModelService.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\types\\Model.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -25,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\App.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\App.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\pages\\AccountView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\AccountView.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Account\\ModelList.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -78,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,7 +102,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "ReaderField.tsx",
+              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Account\\ReaderField.tsx",
+              "RelativeDocumentMoniker": "src\\components\\Account\\ReaderField.tsx",
+              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Account\\ReaderField.tsx",
+              "RelativeToolTip": "src\\components\\Account\\ReaderField.tsx",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-06-05T13:28:33.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReaderService.ts",
+              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ReaderService.ts",
+              "RelativeDocumentMoniker": "src\\services\\ReaderService.ts",
+              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ReaderService.ts",
+              "RelativeToolTip": "src\\services\\ReaderService.ts",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswCkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-06-05T13:03:53.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Navigation.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Default\\Navigation.tsx",
               "RelativeDocumentMoniker": "src\\components\\Default\\Navigation.tsx",
@@ -106,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "App.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\App.tsx",
               "RelativeDocumentMoniker": "src\\App.tsx",
@@ -118,19 +152,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "AccountView.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\pages\\AccountView.tsx",
               "RelativeDocumentMoniker": "src\\pages\\AccountView.tsx",
               "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\pages\\AccountView.tsx",
               "RelativeToolTip": "src\\pages\\AccountView.tsx",
-              "ViewState": "AgIAABIAAAAAAAAAAAAswCMAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAswGEAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-05-29T16:52:23.768Z"
+              "WhenOpened": "2026-05-29T16:52:23.768Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ModelList.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Account\\ModelList.tsx",
               "RelativeDocumentMoniker": "src\\components\\Account\\ModelList.tsx",
@@ -142,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Schema.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\types\\Schema.ts",
               "RelativeDocumentMoniker": "src\\types\\Schema.ts",
@@ -154,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "Form.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\types\\Form.ts",
               "RelativeDocumentMoniker": "src\\types\\Form.ts",
@@ -166,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "FormList.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Constructor\\FormList.tsx",
               "RelativeDocumentMoniker": "src\\components\\Constructor\\FormList.tsx",
@@ -178,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "InitializeMeasuresForm.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Constructor\\InitializeMeasuresForm.tsx",
               "RelativeDocumentMoniker": "src\\components\\Constructor\\InitializeMeasuresForm.tsx",
@@ -190,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "ConstructorView.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\pages\\ConstructorView.tsx",
               "RelativeDocumentMoniker": "src\\pages\\ConstructorView.tsx",
@@ -202,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Model.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\types\\Model.ts",
               "RelativeDocumentMoniker": "src\\types\\Model.ts",
@@ -214,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Draft.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\types\\Draft.ts",
               "RelativeDocumentMoniker": "src\\types\\Draft.ts",
@@ -226,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "DraftEditor.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Constructor\\DraftEditor.tsx",
               "RelativeDocumentMoniker": "src\\components\\Constructor\\DraftEditor.tsx",
@@ -239,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "apiClient.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\apiClient.ts",
               "RelativeDocumentMoniker": "src\\services\\apiClient.ts",
@@ -251,19 +286,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ModelService.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ModelService.ts",
               "RelativeDocumentMoniker": "src\\services\\ModelService.ts",
               "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ModelService.ts",
               "RelativeToolTip": "src\\services\\ModelService.ts",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-05-18T15:36:37.028Z"
+              "WhenOpened": "2026-05-18T15:36:37.028Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "ConstructorService.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\ConstructorService.ts",
               "RelativeDocumentMoniker": "src\\services\\ConstructorService.ts",
@@ -275,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ColorCircle.tsx",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\components\\Schema\\ColorCircle.tsx",
               "RelativeDocumentMoniker": "src\\components\\Schema\\ColorCircle.tsx",
@@ -287,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "DraftService.ts",
               "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\knittingapp.client\\src\\services\\DraftService.ts",
               "RelativeDocumentMoniker": "src\\services\\DraftService.ts",

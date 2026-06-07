@@ -88,9 +88,14 @@ namespace KnittingApp
                 }
                 currentString.Item1.Add(loopCount +" "+ stringSide+" " + stringType +" "+ colors[color]);
                 currentString.Item2.Add(color);
-                --currentIndex;
+                //--currentIndex;
             }
             return currentString;
+        }
+
+        public void GoNext() 
+        {
+            --currentIndex;
         }
 
         public int GetCurrentIndex()

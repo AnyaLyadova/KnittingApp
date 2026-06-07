@@ -1,4 +1,5 @@
-﻿using KnittingApp.Repository;
+﻿using KnittingApp.Parts;
+using KnittingApp.Repository;
 using KnittingApp.Services;
 
 namespace KnittingApp
@@ -28,11 +29,24 @@ namespace KnittingApp
             return await loopReaderService.GetCurrentString(loopsReaderId);
         }
 
-        public async Task<LoopsReader> GetLoopsReaderByModel(Guid modelId)
+        public async Task MoveNext(Guid loopsReaderId) 
+        { 
+            await loopReaderService.MoveNext(loopsReaderId);
+        }
+
+        public async Task<Guid> GetLoopsReaderByModel(Guid modelId, string type)
         {
             var model=await modelService.GetModel(modelId);
-            var reader = model.frontLoopMap.reader;
-            return reader;
+            switch (type){
+                case "front":
+                    return model.frontLoopMap.reader.LoopReaderId;
+                case "back":
+                    return model.backLoopMap.reader.LoopReaderId;
+                case "sleeve":
+                    return model.sleeveLoopMap.reader.LoopReaderId;
+                default:
+                    throw new ArgumentException("Тип не существует");
+            }
         }
 
         public async Task<int> GetCurrentIndex(Guid readerId)
