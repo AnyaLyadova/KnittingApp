@@ -1,6 +1,37 @@
 [
   {
     "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "GetLoopReader",
+    "RelativePath": "api/account/{modelId}/reader",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Guid",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
     "Method": "GetCurrentString",
     "RelativePath": "api/account/{readerId}",
     "HttpMethod": "GET",
@@ -24,6 +55,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "KnittingApp.Controllers.AccountController",
+    "Method": "MoveNext",
+    "RelativePath": "api/account/{readerId}/next",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "readerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "KnittingApp.Controllers.AccountController",

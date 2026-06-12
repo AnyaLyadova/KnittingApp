@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+п»їimport React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReaderService from '../../services/ReaderService';
 
 interface ReaderFieldProps {
@@ -7,7 +7,7 @@ interface ReaderFieldProps {
 }
 
 const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front' }) => {
-    // Состояния
+    // РЎРѕСЃС‚РѕСЏРЅРёСЏ
     const [currentType, setCurrentType] = useState<string>(initialType);
     const [readerId, setReaderId] = useState<string | null>(null);
     const [currentString, setCurrentString] = useState<string[]>([]);
@@ -15,12 +15,12 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Состояния для таймера
-    const [spentTime, setSpentTime] = useState<number>(0); // в секундах
+    // РЎРѕСЃС‚РѕСЏРЅРёСЏ РґР»СЏ С‚Р°Р№РјРµСЂР°
+    const [spentTime, setSpentTime] = useState<number>(0); // РІ СЃРµРєСѓРЅРґР°С…
     const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
     const timerIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    // Загрузка readerId при монтировании или смене типа
+    // Р—Р°РіСЂСѓР·РєР° readerId РїСЂРё РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё РёР»Рё СЃРјРµРЅРµ С‚РёРїР°
     const loadReaderId = useCallback(async (type: string) => {
         if (!modelId) return;
 
@@ -30,48 +30,49 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
             setReaderId(id);
             return id;
         } catch (err) {
-            console.error('Ошибка загрузки readerId:', err);
-            setError('Не удалось загрузить ридер');
+            console.error('РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё readerId:', err);
+            setError('РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ СЂРёРґРµСЂ');
             return null;
         } finally {
             setIsLoading(false);
         }
     }, [modelId]);
 
-    // Загрузка текущей строки
+    // Р—Р°РіСЂСѓР·РєР° С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё
     const loadCurrentString = useCallback(async (id: string) => {
         if (!id) return;
 
         try {
-            const [stringSegments, stringColors] = await ReaderService.getCurrentString(id);
-            setCurrentString(stringSegments);
-            setColors(stringColors);
+            const data = await ReaderService.getCurrentString(id);
+            console.log('РџРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ:', data);
+            setCurrentString(data.segments || []);
+            setColors(data.colors || []);
         } catch (err) {
-            console.error('Ошибка загрузки текущей строки:', err);
-            setError('Не удалось загрузить строку');
+            console.error('РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё:', err);
+            setError('РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ СЃС‚СЂРѕРєСѓ');
         }
     }, []);
 
-    // Загрузка прогресса и времени при получении readerId
+    // Р—Р°РіСЂСѓР·РєР° РїСЂРѕРіСЂРµСЃСЃР° Рё РІСЂРµРјРµРЅРё РїСЂРё РїРѕР»СѓС‡РµРЅРёРё readerId
     const loadReaderData = useCallback(async (id: string) => {
         if (!id) return;
 
         try {
-            // Загружаем время
+            // Р—Р°РіСЂСѓР¶Р°РµРј РІСЂРµРјСЏ
             const timeStr = await ReaderService.getSpentTime(id);
-            // Преобразуем строку времени в секунды (формат "hh:mm:ss")
+            // РџСЂРµРѕР±СЂР°Р·СѓРµРј СЃС‚СЂРѕРєСѓ РІСЂРµРјРµРЅРё РІ СЃРµРєСѓРЅРґС‹ (С„РѕСЂРјР°С‚ "hh:mm:ss")
             const parts = timeStr.split(':');
             const seconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2]);
             setSpentTime(seconds);
 
-            // Загружаем первую строку
+            // Р—Р°РіСЂСѓР¶Р°РµРј РїРµСЂРІСѓСЋ СЃС‚СЂРѕРєСѓ
             await loadCurrentString(id);
         } catch (err) {
-            console.error('Ошибка загрузки данных ридера:', err);
+            console.error('РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С… СЂРёРґРµСЂР°:', err);
         }
     }, [loadCurrentString]);
 
-    // Переключение типа чертежа
+    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° С‡РµСЂС‚РµР¶Р°
     const switchType = useCallback(async (type: string) => {
         setCurrentType(type);
         setCurrentString([]);
@@ -83,7 +84,7 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
         }
     }, [loadReaderId, loadReaderData]);
 
-    // Переход к следующему ряду
+    // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЂСЏРґСѓ
     const handleMoveNext = useCallback(async () => {
         if (!readerId) return;
 
@@ -92,14 +93,14 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
             await ReaderService.moveNext(readerId);
             await loadCurrentString(readerId);
         } catch (err) {
-            console.error('Ошибка перехода к следующему ряду:', err);
-            setError('Не удалось перейти к следующему ряду');
+            console.error('РћС€РёР±РєР° РїРµСЂРµС…РѕРґР° Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЂСЏРґСѓ:', err);
+            setError('РќРµ СѓРґР°Р»РѕСЃСЊ РїРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЂСЏРґСѓ');
         } finally {
             setIsLoading(false);
         }
     }, [readerId, loadCurrentString]);
 
-    // Таймер: запуск
+    // РўР°Р№РјРµСЂ: Р·Р°РїСѓСЃРє
     const startTimer = useCallback(() => {
         if (timerIntervalRef.current) return;
 
@@ -109,7 +110,7 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
         setIsTimerRunning(true);
     }, []);
 
-    // Таймер: остановка
+    // РўР°Р№РјРµСЂ: РѕСЃС‚Р°РЅРѕРІРєР°
     const stopTimer = useCallback(async () => {
         if (timerIntervalRef.current) {
             clearInterval(timerIntervalRef.current);
@@ -117,18 +118,18 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
         }
         setIsTimerRunning(false);
 
-        // Отправляем время на сервер
+        // РћС‚РїСЂР°РІР»СЏРµРј РІСЂРµРјСЏ РЅР° СЃРµСЂРІРµСЂ
         if (readerId) {
             try {
                 const timeString = new Date(spentTime * 1000).toISOString().substr(11, 8);
                 await ReaderService.setSpentTime(readerId, timeString);
             } catch (err) {
-                console.error('Ошибка сохранения времени:', err);
+                console.error('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РІСЂРµРјРµРЅРё:', err);
             }
         }
     }, [readerId, spentTime]);
 
-    // Инициализация при монтировании
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСЂРё РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё
     useEffect(() => {
         const init = async () => {
             const newReaderId = await loadReaderId(currentType);
@@ -139,20 +140,20 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
 
         init();
 
-        // Очистка при размонтировании
+        // РћС‡РёСЃС‚РєР° РїСЂРё СЂР°Р·РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё
         return () => {
             if (timerIntervalRef.current) {
                 clearInterval(timerIntervalRef.current);
             }
-            // Отправляем время при закрытии
+            // РћС‚РїСЂР°РІР»СЏРµРј РІСЂРµРјСЏ РїСЂРё Р·Р°РєСЂС‹С‚РёРё
             if (readerId && spentTime > 0) {
                 const timeString = new Date(spentTime * 1000).toISOString().substr(11, 8);
                 ReaderService.setSpentTime(readerId, timeString).catch(console.error);
             }
         };
-    }, []); // Пустой массив — только при монтировании
+    }, []); // РџСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ вЂ” С‚РѕР»СЊРєРѕ РїСЂРё РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё
 
-    // Форматирование времени
+    // Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ РІСЂРµРјРµРЅРё
     const formatTime = (seconds: number): string => {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
@@ -162,9 +163,9 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
 
     return (
         <div className="reader-field" style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-            <h3>Чтение схемы</h3>
+            <h3>Р§С‚РµРЅРёРµ СЃС…РµРјС‹</h3>
 
-            {/* Кнопки переключения типа */}
+            {/* РљРЅРѕРїРєРё РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ С‚РёРїР° */}
             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <button
                     onClick={() => switchType('front')}
@@ -177,7 +178,7 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                         cursor: 'pointer'
                     }}
                 >
-                    Перед
+                    РџРµСЂРµРґ
                 </button>
                 <button
                     onClick={() => switchType('back')}
@@ -190,7 +191,7 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                         cursor: 'pointer'
                     }}
                 >
-                    Спинка
+                    РЎРїРёРЅРєР°
                 </button>
                 <button
                     onClick={() => switchType('sleeve')}
@@ -203,11 +204,11 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                         cursor: 'pointer'
                     }}
                 >
-                    Рукав
+                    Р СѓРєР°РІ
                 </button>
             </div>
 
-            {/* Таймер */}
+            {/* РўР°Р№РјРµСЂ */}
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
                 <span style={{ fontSize: '24px', fontFamily: 'monospace' }}>{formatTime(spentTime)}</span>
                 {!isTimerRunning ? (
@@ -222,7 +223,7 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                             cursor: 'pointer'
                         }}
                     >
-                        Запустить
+                        Р—Р°РїСѓСЃС‚РёС‚СЊ
                     </button>
                 ) : (
                     <button
@@ -236,12 +237,12 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                             cursor: 'pointer'
                         }}
                     >
-                        Остановить
+                        РћСЃС‚Р°РЅРѕРІРёС‚СЊ
                     </button>
                 )}
             </div>
 
-            {/* Кнопка "Следующий ряд" */}
+            {/* РљРЅРѕРїРєР° "РЎР»РµРґСѓСЋС‰РёР№ СЂСЏРґ" */}
             <div style={{ marginBottom: '20px' }}>
                 <button
                     onClick={handleMoveNext}
@@ -256,20 +257,20 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                         opacity: isLoading ? 0.6 : 1
                     }}
                 >
-                    {isLoading ? 'Загрузка...' : 'Следующий ряд'}
+                    {isLoading ? 'Р—Р°РіСЂСѓР·РєР°...' : 'РЎР»РµРґСѓСЋС‰РёР№ СЂСЏРґ'}
                 </button>
             </div>
 
-            {/* Отображение ошибки */}
+            {/* РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё */}
             {error && (
                 <div style={{ color: 'red', marginBottom: '10px' }}>
                     {error}
                 </div>
             )}
 
-            {/* Отображение текущей строки */}
+            {/* РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё */}
             <div className="current-string" style={{ marginTop: '20px' }}>
-                <h4>Текущий ряд:</h4>
+                <h4>РўРµРєСѓС‰РёР№ СЂСЏРґ:</h4>
                 <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',
@@ -280,19 +281,27 @@ const ReaderField: React.FC<ReaderFieldProps> = ({ modelId, initialType = 'front
                     borderRadius: '8px',
                     minHeight: '60px'
                 }}>
-                    {currentString.map((segment, index) => (
-                        <span
-                            key={index}
-                            style={{
-                                color: colors[index] || '#000000',
-                                fontSize: '16px',
-                                fontWeight: '500'
-                            }}
-                        >
-                            {segment}
-                            {index < currentString.length - 1 && <span style={{ color: '#000', marginLeft: '8px' }}>, </span>}
-                        </span>
-                    ))}
+                    {currentString.map((segment, index) => {
+                        // Р•СЃР»Рё С†РІРµС‚ "none" РёР»Рё РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚, РёСЃРїРѕР»СЊР·СѓРµРј С‡С‘СЂРЅС‹Р№
+                        let textColor = '#000000';
+                        if (colors[index] && colors[index] !== 'none') {
+                            textColor = colors[index];
+                        }
+
+                        return (
+                            <span
+                                key={index}
+                                style={{
+                                    color: textColor,
+                                    fontSize: '16px',
+                                    fontWeight: '500'
+                                }}
+                            >
+                                {segment}
+                                {index < currentString.length - 1 && <span style={{ color: '#000000', marginLeft: '8px' }}>, </span>}
+                            </span>
+                        );
+                    })}
                 </div>
             </div>
         </div>

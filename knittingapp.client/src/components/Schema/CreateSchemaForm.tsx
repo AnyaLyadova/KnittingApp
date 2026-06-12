@@ -68,6 +68,7 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ isOpen, onClose, on
     };
 
     return (
+        <div className="modal">
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close" onClick={onClose}>✕</button>
@@ -126,6 +127,7 @@ const CreateSchemaForm: React.FC<CreateSchemaFormProps> = ({ isOpen, onClose, on
                         Создать
                     </button>
                 </form>
+            </div>
             </div>
         </div>
     );

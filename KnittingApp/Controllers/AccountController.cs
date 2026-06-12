@@ -29,8 +29,23 @@ namespace KnittingApp.Controllers
         public async Task<ActionResult<(List<string>, List<string>)>> GetCurrentString(Guid readerId)
         {
 
-            var curString = await account.GetCurrentStringById(readerId);
-            return Ok(curString);
+            /*var curString = await account.GetCurrentStringById(readerId);
+            return Ok(curString);*/
+            var (segments, colors) = await account.GetCurrentStringById(readerId);
+
+            var result = new CurrentStringDto
+            {
+                Segments = segments,
+                Colors = colors
+            };
+
+            return Ok(result);
+        }
+
+        public class CurrentStringDto
+        {
+            public List<string> Segments { get; set; }
+            public List<string> Colors { get; set; }
         }
 
         [HttpPost("{readerId}/next")]

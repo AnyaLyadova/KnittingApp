@@ -72,10 +72,10 @@ function SchemaConstructorView() {
 
 
         return (
-            <div className="schema-constructor-view">
+            <div className="content-view">
                 <div className="left-panel">
                     <div className="schemas-header">
-                        <h2>Схемы</h2>
+                        <h1>Схемы</h1>
                         <button
                             className="create-schema-btn"
                             onClick={() => setIsModalOpen(true)}
@@ -96,7 +96,7 @@ function SchemaConstructorView() {
                                         className={`schema-btn ${selectedSchemaId === schema.schemaId ? 'active' : ''}`}
                                         onClick={() => handleSelectSchema(schema.schemaId!)}
                                     >
-                                        <div className="schema-name">{schema.schemaName}</div>
+                                        <div className="schema-name" style={{ color: 'white' }}>{schema.schemaName}</div>
                                         {/*<div className="schema-size">
                                         {schema.loopMap.m} × {schema.loopMap.n}
                                     </div>*/}
@@ -118,8 +118,8 @@ function SchemaConstructorView() {
                         )}
                     </div>
                 </div>
-
-                <div className="right-panel">
+                <main>
+                <div className="color-circle">
                     <div className="color-picker-section">
                         <ColorCircle
                             value={colorCircleValue}
@@ -135,13 +135,14 @@ function SchemaConstructorView() {
                             onPixelChange={handlePixelChange}
                         />
                     </div>
-                </div>
+               </div>
 
                 <CreateSchemaForm
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     onCreate={handleCreateSchema}
-                />
+                    />
+                </main>
             </div>
         );
     }

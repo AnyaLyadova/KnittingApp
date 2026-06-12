@@ -78,12 +78,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitch, onSuccess }) => {
         title: {
             textAlign: 'center' as const,
             marginBottom: '20px',
-            color: '#333',
+            color: 'white',
         },
         form: {
             display: 'flex',
             flexDirection: 'column' as const,
             gap: '15px',
+            color: 'white'
         },
         field: {
             display: 'flex',
@@ -93,11 +94,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitch, onSuccess }) => {
         label: {
             fontSize: '14px',
             fontWeight: '500',
-            color: '#555',
+            color: 'white',
         },
         hint: {
             fontSize: '12px',
-            color: '#999',
+            color: 'white',
             marginBottom: '2px',
         },
         input: {
@@ -124,7 +125,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitch, onSuccess }) => {
             padding: '12px',
             fontSize: '16px',
             fontWeight: '600',
-            color: '#fff',
+            color: 'white',
             backgroundColor: '#2ecc71',
             border: 'none',
             borderRadius: '4px',
@@ -135,12 +136,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitch, onSuccess }) => {
             textAlign: 'center' as const,
             marginTop: '20px',
             fontSize: '14px',
-            color: '#666',
+            color: 'white',
         },
         linkButton: {
             background: 'none',
             border: 'none',
-            color: '#2ecc71',
+            color: 'white',
             cursor: 'pointer',
             fontSize: '14px',
             textDecoration: 'underline',
@@ -148,7 +149,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitch, onSuccess }) => {
     };
 
     return (
-        <div style={styles.block}>
+        <div className="login-form"  style={styles.block}>
             <h2 style={styles.title}>Регистрация</h2>
             <form onSubmit={handleSubmit} style={styles.form}>
                 <div style={styles.field}>

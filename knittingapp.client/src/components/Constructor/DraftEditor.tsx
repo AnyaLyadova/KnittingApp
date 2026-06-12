@@ -583,7 +583,7 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
             );
         }
 
-        // ==================== ФАНТОМНЫЕ ЛИНИИ ====================
+        // ==================== ШТРИХОВЫЕ ЛИНИИ ====================
         if (selectedPoints.length === 2 && movingPointIndex !== null && phantomX !== null && phantomY !== null) {
             const [leftIndex, rightIndex] = selectedPoints;
             const leftPoint = points[leftIndex];
@@ -791,7 +791,8 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
 
         try {
             setStatusMessage('Отправка изменений на сервер...');
-
+            console.log("Original point: " + originalPoint);
+            console.log("new x: " + newX + " new y: " + newY);
             const newDraft = await DraftService.movePoint(
                 modelId,
                 originalPoint,
@@ -990,61 +991,17 @@ export const DraftEditor = forwardRef<DraftEditorRef, DraftEditorProps>(({
         <div style={{ position: 'relative', width, height, border: '1px solid #ccc', borderRadius: '8px' }}>
             {renderStatusBar()}
 
-            <div style={{ top: -40, right: 0, display: 'flex', gap: '10px', zIndex: 20 }}>
-                <button
-                    onClick={downloadAsPNG}
-                    style={{
-                        padding: '6px 12px',
-                        backgroundColor: '#28a745',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '12px'
-                    }}
-                >
-                    Скачать PNG
-                </button>
-
-                <button
-                    onClick={downloadAsPDF}
-                    style={{
-                        padding: '6px 12px',
-                        backgroundColor: '#dc3545',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '12px'
-                    }}
-                >
-                    Скачать PDF
-                </button>
-
-            </div>
-
-            <div style={{ top: -40, right: 0, display: 'flex', gap: '10px', zIndex: 20 }}>
-                <button
-                    onClick={handleSaveColorScheme}
-                    style={{
-                        padding: '6px 12px',
-                        backgroundColor: '#007aff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '12px'
-                    }}
-                >
-                    Сохранить цветовую схему
-                </button>
+            <div style={{ position: 'absolute', top: 10, right: 10, display: 'flex', gap: '10px', zIndex: 30 }}>
+                <button onClick={downloadAsPNG}>Скачать PNG</button>
+                <button onClick={downloadAsPDF}>Скачать PDF</button>
+                <button onClick={handleSaveColorScheme}>Сохранить цветовую схему</button>
             </div>
 
             <canvas
                 ref={canvasRef}
                 width={width}
                 height={height}
-                style={{top: 0, left: 0, borderRadius: '8px' }}
+                style={{ position: 'absolute',top: 0, left: 0, borderRadius: '8px' }}
                 onDoubleClick={handleCanvasDoubleClick}
                // onClick={handleCanvasClick}
                 onClick={(e) => {

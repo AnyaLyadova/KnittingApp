@@ -19,6 +19,12 @@ namespace KnittingApp.Services
             return reader;
         }
 
+        public async Task<LoopsReader> GetReaderById(Guid readerId)
+        {
+            var model = await loopsReaderRepository.GetLoopsReader(readerId);
+            return model.ToObject();
+        }
+
         public async Task<(List<string>, List<string>)> GetCurrentString(Guid readerId)
         {
             var readerModel=await loopsReaderRepository.GetLoopsReader(readerId);

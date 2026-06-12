@@ -1,0 +1,41 @@
+﻿
+.left-panel {
+    left: 0;
+    top: 0;
+    width: 280px; /* Фиксированная ширина */
+    height: 100vh; /* На всю высоту экрана */
+    background-color: #3d602f; /* Зеленый фон */
+    color: white;
+    padding: 20px;
+    overflow-y: auto; /* Скролл если много элементов */
+    z-index: 100;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 280px; /* Фиксированная ширина */
+    background-color: #3d602f;
+    color: white;
+    flex-shrink: 0; /* Чтобы не сжималась */
+    display: flex;
+    flex-direction: column;
+}
+/* Основной контейнер - делаем его флексом */
+main {
+
+    min-height: 100vh;
+    flex: 1; /* Растягивается на всю оставшуюся ширину */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Правая панель */
+.right-panel {
+    width: 280px;
+    flex-shrink: 0; /* Запрещаем сжиматься */
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    border-left: 1px solid #e0e0e0; 
+}
+.content-view {
+    display: flex; /* Добавляем! Именно он будет размещать панели и main в ряд */
+    min-height: 100vh;
+}

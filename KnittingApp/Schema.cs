@@ -25,6 +25,7 @@ namespace KnittingApp
             this.schemaName = schemaName;
             loopMap = new LoopMap(m, n);
             LoopMapId=loopMap.LoopMapId;
+            loopMap.LoopsReaderId = null;
             schemaId = Guid.NewGuid();
             schemaImage = "null";
             this.userId=userId;

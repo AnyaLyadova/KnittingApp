@@ -27,6 +27,14 @@ namespace KnittingApp.Models
         public Guid SleeveDraftId { get; set; }
         [Required]
         public string MeasuresJson { get; set; } = "{}";  //мерки в json
+        [Required]
+        public double loopWidth { get; set; }
+        [Required]
+        public double loopHeight { get; set; }  
+        [Required]
+        public double loopInHeight { get; set; }
+        [Required]
+        public double loopInWidth { get; set; }
 
         [NotMapped]
         public Dictionary<string, double> Measures

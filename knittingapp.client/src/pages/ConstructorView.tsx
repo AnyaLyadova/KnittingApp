@@ -517,12 +517,10 @@ function ConstructorView() {
 
 
     return (
-        <div className="constructor-view">
-            <header className="constructor-header">
-                <h1>Конструктор моделей</h1>
-            </header>
+        <div className="content-view">
+            
 
-            <main className="constructor-main">
+            <div className="left-panel">
                 {/* Кнопка открытия формы */}
                 <button
                     className="create-model-btn"
@@ -533,7 +531,7 @@ function ConstructorView() {
 
                 {/*Список моделей*/ }
                 <FormList onModelClick={handleModelClick} />
-            </main>
+            </div>
 
             {/* Модальное окно создания моделей*/}
             {isModalOpen && (
@@ -581,15 +579,12 @@ function ConstructorView() {
 
             )}
 
-
-            <div>
-                <SchemasList
-                    onSelectSchema={handleSelectSchema}
-                />
-            </div>
-
+            <main>
+                <header className="constructor-header">
+                    <h1>Конструктор моделей</h1>
+                </header>
             {/* Панель с цветовым кругом */}
-            <div className="right-panel">
+            <div className="color=circle">
                 <div className="color-picker-section">
                     <ColorCircle
                         value={colorCircleValue}
@@ -599,9 +594,7 @@ function ConstructorView() {
             </div>
 
 
-
-
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '10px', position: 'relative', zIndex: 10 }}>
+            <div style={{  gap: '10px', marginBottom: '10px', position: 'relative', zIndex: 10 }}>
                 <button
                     onClick={() => switchDraft("front")}
                     style={{
@@ -691,7 +684,13 @@ function ConstructorView() {
                     />
                 </div>
             )}
+            </main>
 
+            <div className="right-panel">
+                <SchemasList
+                    onSelectSchema={handleSelectSchema}
+                />
+            </div>
         </div>
 
     );

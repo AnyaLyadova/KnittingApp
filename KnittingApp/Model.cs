@@ -31,10 +31,10 @@ namespace KnittingApp
         [JsonIgnore]
         public LoopMap sleeveLoopMap { get; set; }
 
-        double loopWidth;  //ширина петли
-        double loopHeight;  //высота петли
-        double loopInHeight;  //петель в см высоты
-        double loopInWidth;  //петель в см ширины
+        public double loopWidth { get; set; }  //ширина петли
+        public double loopHeight { get; set; }  //высота петли
+        public double loopInHeight { get; set; }  //петель в см высоты
+        public double loopInWidth { get; set; }  //петель в см ширины
 
         [JsonIgnore]
         public List<Part> Parts { get { return parts; } }
@@ -117,7 +117,7 @@ namespace KnittingApp
 
             frontLoopMap=new LoopMap(frontDraft, loopWidth, loopHeight);
 
-            var reader = new LoopsReader(frontLoopMap.n-1, frontLoopMap);
+            var reader = new LoopsReader(frontLoopMap.m-1, frontLoopMap);
             frontLoopMap.reader = reader;
 
             return frontDraft;
@@ -151,7 +151,7 @@ namespace KnittingApp
             backDraft.Mirror();
 
             backLoopMap = new LoopMap(backDraft, loopWidth, loopHeight);
-            var reader = new LoopsReader(backLoopMap.n - 1, backLoopMap);
+            var reader = new LoopsReader(backLoopMap.m - 1, backLoopMap);
             backLoopMap.reader = reader;
 
             return backDraft;
@@ -181,7 +181,7 @@ namespace KnittingApp
             sleeveDraft.Mirror();
 
             sleeveLoopMap = new LoopMap(sleeveDraft, loopWidth, loopHeight);
-            var reader = new LoopsReader(sleeveLoopMap.n - 1, sleeveLoopMap);
+            var reader = new LoopsReader(sleeveLoopMap.m - 1, sleeveLoopMap);
             sleeveLoopMap.reader = reader;
             return sleeveDraft;
         }

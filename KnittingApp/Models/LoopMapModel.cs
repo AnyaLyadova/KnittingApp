@@ -23,7 +23,7 @@ namespace KnittingApp.Models
         [Column(TypeName = "jsonb")]
         public string? NullPoint { get; set; }  
 
-        public LoopsReaderModel LoopsReader { get; set; }
+        public LoopsReaderModel? LoopsReader { get; set; }
 
     }
 }

@@ -9,6 +9,7 @@ import type { LoopMap } from '../types/Schema';
 import type { Model } from '../types/Model';
 import ColorCircle from '../components/Schema/ColorCircle';
 import '../styles/ConstructorView.css';
+import '../styles/LeftColumn.css'
 import ReaderField from '../components/Account/ReaderField';
 
 interface ColorCircleValue {
@@ -93,23 +94,23 @@ const AccountView: React.FC = () => {
     }, [curModelId, loadDraftForModel]);
 
     return (
-        <div className="constructor-view">
+        <div className="content-view">
+            <div className="left-panel">
             <header className="constructor-header">
-                <h1>Мои модели</h1>
+                <h3>Мои модели</h3>
             </header>
-
-            <main className="constructor-main">
                 {/* Список моделей */}
                 <ModelList onModelSelect={handleModelSelect} />
-            </main>
+            </div>
 
+            <main>
             {/* Компонент чтения схемы */}
             {curModelId && (
                 <ReaderField modelId={curModelId} initialType="front" />
             )}
 
             {/* Панель с цветовым кругом */}
-            <div className="right-panel">
+            <div className="color-circle">
                 <div className="color-picker-section">
                     <ColorCircle
                         value={colorCircleValue}
@@ -187,7 +188,8 @@ const AccountView: React.FC = () => {
                     draftType={draftType}
                     modelId={curModelId}
                 />
-            )}
+                )}
+            </main>
         </div>
     );
 };

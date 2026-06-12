@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using KnittingApp;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -8,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KnittingApp.Migrations
 {
     /// <inheritdoc />
-    public partial class KnittingAppMigrations : Migration
+    public partial class KnittingAppMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -79,7 +78,7 @@ namespace KnittingApp.Migrations
                     loopWidth = table.Column<double>(type: "double precision", nullable: false),
                     loopHeight = table.Column<double>(type: "double precision", nullable: false),
                     LoopsReaderId = table.Column<Guid>(type: "uuid", nullable: true),
-                    NullPoint = table.Column<Point>(type: "jsonb", nullable: true)
+                    NullPoint = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,7 +103,11 @@ namespace KnittingApp.Migrations
                     FrontDraftId = table.Column<Guid>(type: "uuid", nullable: false),
                     BackDraftId = table.Column<Guid>(type: "uuid", nullable: false),
                     SleeveDraftId = table.Column<Guid>(type: "uuid", nullable: false),
-                    MeasuresJson = table.Column<string>(type: "text", nullable: false)
+                    MeasuresJson = table.Column<string>(type: "text", nullable: false),
+                    loopWidth = table.Column<double>(type: "double precision", nullable: false),
+                    loopHeight = table.Column<double>(type: "double precision", nullable: false),
+                    loopInHeight = table.Column<double>(type: "double precision", nullable: false),
+                    loopInWidth = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {

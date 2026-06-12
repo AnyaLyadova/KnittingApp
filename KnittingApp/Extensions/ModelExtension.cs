@@ -27,6 +27,11 @@ namespace KnittingApp.Extensions
             modelModel.BackDraft=model.GetBackDraft().ToModel();
             modelModel.SleeveDraft=model.GetSleeveDraft().ToModel();
 
+            modelModel.loopHeight=model.loopHeight;
+            modelModel.loopWidth=model.loopWidth;
+            modelModel.loopInHeight=model.loopInHeight;
+            modelModel.loopInWidth=model.loopInWidth;
+
             modelModel.Measures = model.GetMeasures();
             return modelModel;
         }
@@ -43,6 +48,10 @@ namespace KnittingApp.Extensions
             model.frontDraft=modelModel.FrontDraft.ToObject();
             model.backDraft=modelModel.BackDraft.ToObject();
             model.sleeveDraft=modelModel.SleeveDraft.ToObject();
+            model.loopHeight=modelModel.loopHeight;
+            model.loopWidth=modelModel.loopWidth;
+            model.loopInHeight=modelModel.loopInHeight;
+            model.loopInWidth=modelModel.loopInWidth;
             model.AddMeasure(modelModel.Measures);
 
             return model;

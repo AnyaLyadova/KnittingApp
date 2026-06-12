@@ -36,60 +36,77 @@ namespace KnittingApp
 
         public (List<string>, List<string>) GetCurrentString()
         {
+            GetLoopMapColors();
             if (currentIndex < 0)
                 return (new List<string> { "end" }, new List<string>());
-           var currentString=(new List<string>(), new List<string>());
-            var line = loopMap.loopMap[currentIndex];
-            for(int i=0; i < line.Length; ++i)
+            var iEmpty = false;
+            var currentString = (new List<string>(), new List<string>());
+            do
             {
-                if (line[i].type == SharedConstants.LoopType.none)
-                    continue;
-                int loopCount = 1;
-                var type=line[i].type;
-                var side=line[i].side;
-                var color = line[i].Color;
-                string stringType;
-                switch (type)
-                {
-                    case SharedConstants.LoopType.loop:
-                        stringType="петля";
-                        break;
-                    case SharedConstants.LoopType.increase:
-                        stringType = "прибавка";
-                        break;
-                    case SharedConstants.LoopType.decrease:
-                        stringType = "убавка";
-                        break;
-                    default:
-                        stringType = "петля";
-                        break;
-                }
+                
+                var line = loopMap.loopMap[currentIndex];
 
-                string stringSide;
-                switch (side)
+                for (int i = 0; i < line.Length-2; ++i)
                 {
-                    case SharedConstants.LoopSide.front:
-                        stringSide = "лицевая";
-                        break;
-                    case SharedConstants.LoopSide.back:
-                        stringSide = "изнаночная";
-                        break;
-                    default:
-                        stringSide = "лицевая";
-                        break;
-                }
+                    if (line[i] == null || line[i].type == SharedConstants.LoopType.none)
+                        continue;
+                    int loopCount = 1;
+                    var type = line[i].type;
+                    var side = line[i].side;
+                    var color = line[i].Color;
+                    string stringType;
+                    switch (type)
+                    {
+                        case SharedConstants.LoopType.loop:
+                            stringType = "петля";
+                            break;
+                        case SharedConstants.LoopType.increase:
+                            stringType = "прибавка";
+                            break;
+                        case SharedConstants.LoopType.decrease:
+                            stringType = "убавка";
+                            break;
+                        default:
+                            stringType = "петля";
+                            break;
+                    }
 
-                while (line[i].type == line[i + 1].type &&
-                    line[i].side == line[i + 1].side &&
-                    line[i].Color == line[i + 1].Color)
-                {
-                    ++loopCount;
-                    ++i;
+                    string stringSide;
+                    switch (side)
+                    {
+                        case SharedConstants.LoopSide.front:
+                            stringSide = "лицевая";
+                            break;
+                        case SharedConstants.LoopSide.back:
+                            stringSide = "изнаночная";
+                            break;
+                        default:
+                            stringSide = "лицевая";
+                            break;
+                    }
+
+                    while (line[i + 1]!=null&&line[i]!=null&&line[i].type == line[i + 1].type &&
+                        line[i].side == line[i + 1].side &&
+                        line[i].Color == line[i + 1].Color)
+                    {
+                        ++loopCount;
+                        ++i;
+                    }
+                    currentString.Item1.Add(loopCount + " " + stringSide + " " + stringType + " " + colors[color]);
+                    currentString.Item2.Add(color);
+                    //--currentIndex;
                 }
-                currentString.Item1.Add(loopCount +" "+ stringSide+" " + stringType +" "+ colors[color]);
-                currentString.Item2.Add(color);
-                //--currentIndex;
-            }
+                if (currentString.Item1.Count == 0)
+                {
+                    --currentIndex;
+                    iEmpty = true;
+                }
+                else
+                    iEmpty = false;
+            } while (iEmpty == true);
+
+
+
             return currentString;
         }
 

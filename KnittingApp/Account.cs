@@ -37,16 +37,22 @@ namespace KnittingApp
         public async Task<Guid> GetLoopsReaderByModel(Guid modelId, string type)
         {
             var model=await modelService.GetModel(modelId);
+            LoopMap curLoopMap;
             switch (type){
                 case "front":
-                    return model.frontLoopMap.reader.LoopReaderId;
+                    curLoopMap= model.frontLoopMap;
+                    break;
                 case "back":
-                    return model.backLoopMap.reader.LoopReaderId;
+                    curLoopMap = model.backLoopMap;
+                    break;
                 case "sleeve":
-                    return model.sleeveLoopMap.reader.LoopReaderId;
+                    curLoopMap = model.sleeveLoopMap;
+                    break;
                 default:
                     throw new ArgumentException("Тип не существует");
             }
+                return curLoopMap.LoopsReaderId ?? throw new ArgumentException("LoopsReaderId был null");
+
         }
 
         public async Task<int> GetCurrentIndex(Guid readerId)

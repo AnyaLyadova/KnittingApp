@@ -16,10 +16,10 @@ namespace KnittingApp.Extensions
             model.loopHeight=loopMap.loopHeight;
             if(loopMap.nullPoint!=null)
                 model.NullPoint= JsonSerializer.Serialize(loopMap.nullPoint);
+            model.LoopsReaderId = loopMap.LoopsReaderId==Guid.Empty?null: loopMap.LoopsReaderId;
             if (loopMap.reader != null)
             {
                 model.LoopsReader = loopMap.reader.ToModel();
-                model.LoopsReaderId = loopMap.reader.LoopReaderId;
             }
             
             return model;
@@ -28,8 +28,9 @@ namespace KnittingApp.Extensions
         public static LoopMap ToObject(this LoopMapModel model)
         {
             LoopMap loopMap = new LoopMap(model.LoopMapId,ToLoopMap(model.loopMapJson));
+            loopMap.LoopsReaderId=model.LoopsReaderId ?? null;
             if(model.LoopsReader!=null) 
-             loopMap.reader= model.LoopsReader.ToObject();
+                loopMap.reader= model.LoopsReader.ToObject();
             loopMap.nullN=model.nullN;
             loopMap.nullM=model.nullM;
             loopMap.loopHeight=model.loopHeight;

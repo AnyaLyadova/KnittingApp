@@ -5,7 +5,7 @@ namespace KnittingApp
     public class KnittingModelBuilder
     {
         List<Part> parts = new List<Part>{new Armhole(), new Body(), new Neck(), new Quad(),
-        new Sleeve(), new SleeveRoll(), new Shoulder()}; 
+        new Sleeve(), new SleeveRoll(), new Shoulder(), new VNeck()}; 
         public Model CreateModel(string name,List<string> stringParts, Guid userId/*,double loopWidth, double loopHeight*//*, Dictionary<string, double> measures*/)
         {
             Model model=new(name, userId/*, loopWidth, loopHeight*//*, measures*/);

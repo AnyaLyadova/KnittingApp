@@ -77,7 +77,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitch, onSuccess }) => {
         title: {
             textAlign: 'center' as const,
             marginBottom: '20px',
-            color: '#333',
+            color: 'white',
+            fontWeight: 'bold'
         },
         form: {
             display: 'flex',
@@ -92,7 +93,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitch, onSuccess }) => {
         label: {
             fontSize: '14px',
             fontWeight: '500',
-            color: '#555',
+            color: 'white',
         },
         input: {
             padding: '10px',
@@ -118,7 +119,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitch, onSuccess }) => {
             padding: '12px',
             fontSize: '16px',
             fontWeight: '600',
-            color: '#fff',
+            color: 'white',
             backgroundColor: '#3498db',
             border: 'none',
             borderRadius: '4px',
@@ -129,12 +130,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitch, onSuccess }) => {
             textAlign: 'center' as const,
             marginTop: '20px',
             fontSize: '14px',
-            color: '#666',
+            color: 'white',
         },
         linkButton: {
             background: 'none',
             border: 'none',
-            color: '#3498db',
+            color: 'white',
             cursor: 'pointer',
             fontSize: '14px',
             textDecoration: 'underline',
@@ -142,7 +143,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitch, onSuccess }) => {
     };
 
     return (
-        <div style={styles.block}>
+        <div className="login-form" style={styles.block}>
             <h2 style={styles.title}>Вход</h2>
             <form onSubmit={handleSubmit} style={styles.form}>
                 <div style={styles.field}>

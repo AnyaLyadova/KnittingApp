@@ -64,7 +64,6 @@ const ModelList: React.FC<ModelListProps> = ({ onModelSelect }) => {
 
     return (
         <div className="model-list">
-            <h3>Мои модели</h3>
             <div className="models-grid">
                 {models.map((model) => (
                     <button

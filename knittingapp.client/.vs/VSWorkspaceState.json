@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\components",
     "\\src\\components\\Account",
+    "\\src\\components\\Auth",
     "\\src\\components\\Constructor",
     "\\src\\components\\Default",
     "\\src\\components\\Schema",
     "\\src\\pages",
-    "\\src\\services",
-    "\\src\\types"
+    "\\src\\styles"
   ],
-  "SelectedNode": "\\src\\pages\\AccountView.tsx",
+  "SelectedNode": "\\src\\components\\Auth\\RegisterForm.tsx",
   "PreviewInSolutionExplorer": false
 }

@@ -3,6 +3,7 @@
     public interface ILoopsReaderService
     {
         public Task<(List<string>, List<string>)> GetCurrentString(Guid readerId);
+        public Task<LoopsReader> GetReaderById(Guid readerId);
 
         public Task<int> GetCurrentIndex(Guid readerId);
         public Task MoveNext(Guid readerId);

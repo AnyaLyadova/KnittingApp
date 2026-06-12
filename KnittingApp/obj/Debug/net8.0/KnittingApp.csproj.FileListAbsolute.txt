@@ -147,7 +147,6 @@ C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Deb
 C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\KnittingApp.pdb
 C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\KnittingApp.genruntimeconfig.cache
 C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\ref\KnittingApp.dll
-C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\KnittingApp.csproj.AssemblyReference.cache
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\rpswa.dswa.cache.json
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\KnittingApp.GeneratedMSBuildEditorConfig.editorconfig
@@ -298,3 +297,4 @@ C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Deb
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\KnittingApp.genruntimeconfig.cache
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\ref\KnittingApp.dll
 C:\Users\alena\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Admin\Desktop\универ\диплом\KnittingApp\KnittingApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

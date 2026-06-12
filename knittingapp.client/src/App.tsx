@@ -31,12 +31,10 @@ function App() {
         setIsAuthenticated(false);
     };*/
 
-    // Если не авторизован - показываем страницу авторизации
     if (!isAuthenticated) {
         return <AuthView onLoginSuccess={handleLoginSuccess} />;
     }
 
-    // Если авторизован - показываем основной контент
     return (
         <div className="app">
             <Navigation currentView={currentView} onViewChange={setCurrentView} />

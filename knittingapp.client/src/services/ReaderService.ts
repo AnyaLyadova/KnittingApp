@@ -1,44 +1,49 @@
-// ReaderService.ts
-import apiClient from './apiClient'; // путь к вашему apiClient
+п»ї// ReaderService.ts
+import apiClient from './apiClient'; // РїСѓС‚СЊ Рє РІР°С€РµРјСѓ apiClient
 
 export interface ReaderProgress {
     progress: number;
-    spentTime: string; // TimeSpan в виде строки "hh:mm:ss"
+    spentTime: string; // TimeSpan РІ РІРёРґРµ СЃС‚СЂРѕРєРё "hh:mm:ss"
 }
 
 class ReaderService {
-    // Получить LoopsReader по ID модели и типу чертежа
+    // РџРѕР»СѓС‡РёС‚СЊ LoopsReader РїРѕ ID РјРѕРґРµР»Рё Рё С‚РёРїСѓ С‡РµСЂС‚РµР¶Р°
     async getLoopReader(modelId: string, type: string): Promise<string> {
         const response = await apiClient.get(`/account/${modelId}/reader`, {
             params: { type: type }
         });
-        return response.data; // возвращает Guid readerId
+        return response.data; // РІРѕР·РІСЂР°С‰Р°РµС‚ Guid readerId
     }
 
-    // Получить текущую строку (список петель) по ID ридера
+   /* // РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰СѓСЋ СЃС‚СЂРѕРєСѓ (СЃРїРёСЃРѕРє РїРµС‚РµР»СЊ) РїРѕ ID СЂРёРґРµСЂР°
     async getCurrentString(readerId: string): Promise<[string[], string[]]> {
         const response = await apiClient.get(`/account/${readerId}`);
-        return response.data; // возвращает (List<string>, List<string>)
+        return response.data; // РІРѕР·РІСЂР°С‰Р°РµС‚ (List<string>, List<string>)
+    }*/
+
+    async getCurrentString(readerId: string): Promise<{ segments: string[], colors: string[] }> {
+        const response = await apiClient.get(`/account/${readerId}`);
+        return response.data;
     }
 
-    // Перейти к следующей строке
+    // РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРµ
     async moveNext(readerId: string): Promise<void> {
         await apiClient.post(`/account/${readerId}/next`);
     }
 
-    // Получить прогресс 
+    // РџРѕР»СѓС‡РёС‚СЊ РїСЂРѕРіСЂРµСЃСЃ 
     async getProgress(readerId: string): Promise<number> {
         const response = await apiClient.get(`/account/${readerId}/progress`);
         return response.data;
     }
 
-    // Получить затраченное время 
+    // РџРѕР»СѓС‡РёС‚СЊ Р·Р°С‚СЂР°С‡РµРЅРЅРѕРµ РІСЂРµРјСЏ 
     async getSpentTime(readerId: string): Promise<string> {
         const response = await apiClient.get(`/account/${readerId}/time`);
-        return response.data; // TimeSpan в формате "hh:mm:ss"
+        return response.data; // TimeSpan РІ С„РѕСЂРјР°С‚Рµ "hh:mm:ss"
     }
 
-    // Установить затраченное время
+    // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·Р°С‚СЂР°С‡РµРЅРЅРѕРµ РІСЂРµРјСЏ
     async setSpentTime(readerId: string, time: string): Promise<void> {
         await apiClient.post(`/account/${readerId}/time`, null, {
             params: { time: time }

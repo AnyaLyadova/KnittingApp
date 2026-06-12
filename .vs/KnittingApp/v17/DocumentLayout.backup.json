@@ -1,26 +1,86 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\alena\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\extensions\\loopmapextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\extensions\\loopmapextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\alena\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\loopmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\loopmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\schemaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\services\\schemaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\repository\\schemarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\repository\\schemarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\models\\loopmapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\models\\loopmapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\schema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\schema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\extensions\\schemaextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\extensions\\schemaextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\alena\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\loopsreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\loopmapservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\services\\loopmapservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\draft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\draft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\repository\\modelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\repository\\modelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\constructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\constructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\controllers\\constructorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\controllers\\constructorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\loopsreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\loopsreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\alena\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\loopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\iloopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\services\\iloopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\loopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\services\\loopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\alena\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\services\\iloopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\services\\iloopsreaderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\extensions\\draftextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\extensions\\draftextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|c:\\users\\admin\\desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\knittingapp\\knittingapp\\models\\draftmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10C10D0C-6612-49EE-A1A7-836B2E50052B}|KnittingApp\\KnittingApp.csproj|solutionrelative:knittingapp\\models\\draftmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,69 +93,270 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5a897cd2-96ef-41cf-b52e-8ddcbc6fd8ca}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoopMapExtension.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\LoopMapExtension.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Extensions\\LoopMapExtension.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\LoopMapExtension.cs",
+              "RelativeToolTip": "KnittingApp\\Extensions\\LoopMapExtension.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:43:31.55Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LoopsReaderService.cs",
-              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopsReaderService.cs",
-              "RelativeDocumentMoniker": "KnittingApp\\Services\\LoopsReaderService.cs",
-              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopsReaderService.cs",
-              "RelativeToolTip": "KnittingApp\\Services\\LoopsReaderService.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAA5wCIAAABHAAAAAAAAAA==",
+              "Title": "SchemaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Repository\\SchemaRepository.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Repository\\SchemaRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Repository\\SchemaRepository.cs",
+              "RelativeToolTip": "KnittingApp\\Repository\\SchemaRepository.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAkwDEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T11:51:12.849Z",
+              "WhenOpened": "2026-06-11T19:32:34.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SchemaExtension.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\SchemaExtension.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Extensions\\SchemaExtension.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\SchemaExtension.cs",
+              "RelativeToolTip": "KnittingApp\\Extensions\\SchemaExtension.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:28:30.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Schema.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Schema.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Schema.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Schema.cs",
+              "RelativeToolTip": "KnittingApp\\Schema.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwBsAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:11:58.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SchemaService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\SchemaService.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Services\\SchemaService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\SchemaService.cs",
+              "RelativeToolTip": "KnittingApp\\Services\\SchemaService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAkwCoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:11:38.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoopMapService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopMapService.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Services\\LoopMapService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopMapService.cs",
+              "RelativeToolTip": "KnittingApp\\Services\\LoopMapService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T19:10:51.482Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ILoopsReaderService.cs",
-              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\ILoopsReaderService.cs",
-              "RelativeDocumentMoniker": "KnittingApp\\Services\\ILoopsReaderService.cs",
-              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\ILoopsReaderService.cs",
-              "RelativeToolTip": "KnittingApp\\Services\\ILoopsReaderService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
+              "Title": "LoopMapModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Models\\LoopMapModel.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Models\\LoopMapModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Models\\LoopMapModel.cs",
+              "RelativeToolTip": "KnittingApp\\Models\\LoopMapModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T11:50:44.884Z",
+              "WhenOpened": "2026-06-11T19:08:36.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LoopMap.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopMap.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\LoopMap.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopMap.cs",
+              "RelativeToolTip": "KnittingApp\\LoopMap.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T14:11:35.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ModelRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Repository\\ModelRepository.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Repository\\ModelRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Repository\\ModelRepository.cs",
+              "RelativeToolTip": "KnittingApp\\Repository\\ModelRepository.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwBsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T13:57:56.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Constructor.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Constructor.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Constructor.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Constructor.cs",
+              "RelativeToolTip": "KnittingApp\\Constructor.cs",
+              "ViewState": "AgIAAHQBAAAAAAAAAAAcwHoBAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T13:47:01.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ConstructorController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\ConstructorController.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Controllers\\ConstructorController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\ConstructorController.cs",
+              "RelativeToolTip": "KnittingApp\\Controllers\\ConstructorController.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAQwOcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T13:46:11.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Model.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Model.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Model.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Model.cs",
+              "RelativeToolTip": "KnittingApp\\Model.cs",
+              "ViewState": "AgIAABUBAAAAAAAAAADwvx4BAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-11T13:45:43.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Draft.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Draft.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Draft.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Draft.cs",
+              "RelativeToolTip": "KnittingApp\\Draft.cs",
+              "ViewState": "AgIAAOAAAAAAAAAAAAAAADABAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T12:13:28.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DraftExtension.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\DraftExtension.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Extensions\\DraftExtension.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Extensions\\DraftExtension.cs",
+              "RelativeToolTip": "KnittingApp\\Extensions\\DraftExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T12:11:10.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DraftModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Models\\DraftModel.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Models\\DraftModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Models\\DraftModel.cs",
+              "RelativeToolTip": "KnittingApp\\Models\\DraftModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T12:11:02.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "LoopsReaderService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopsReaderService.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Services\\LoopsReaderService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\LoopsReaderService.cs",
+              "RelativeToolTip": "KnittingApp\\Services\\LoopsReaderService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBUAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T11:51:12.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ILoopsReaderService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\ILoopsReaderService.cs",
+              "RelativeDocumentMoniker": "KnittingApp\\Services\\ILoopsReaderService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Services\\ILoopsReaderService.cs",
+              "RelativeToolTip": "KnittingApp\\Services\\ILoopsReaderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T11:50:44.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Account.cs",
-              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Account.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Account.cs",
               "RelativeDocumentMoniker": "KnittingApp\\Account.cs",
-              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Account.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Account.cs",
               "RelativeToolTip": "KnittingApp\\Account.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwCkAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAUwDUAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-01T09:52:21.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 14,
               "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "KnittingApp\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\Controllers\\AccountController.cs",
               "RelativeToolTip": "KnittingApp\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwBUAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAA5wCoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T09:25:49.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-01T09:25:49.789Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 15,
               "Title": "LoopsReader.cs",
-              "DocumentMoniker": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopsReader.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopsReader.cs",
               "RelativeDocumentMoniker": "KnittingApp\\LoopsReader.cs",
-              "ToolTip": "C:\\Users\\alena\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopsReader.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0434\u0438\u043F\u043B\u043E\u043C\\KnittingApp\\KnittingApp\\LoopsReader.cs",
               "RelativeToolTip": "KnittingApp\\LoopsReader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAkwG0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T15:45:24.875Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-25T15:45:24.875Z"
             }
           ]
         }

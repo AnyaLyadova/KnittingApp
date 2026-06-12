@@ -18,11 +18,13 @@ namespace KnittingApp
         public double loopWidth { get; set; }
         public double loopHeight { get; set; }
 
+        public Guid? LoopsReaderId { get; set; }
+
         [JsonIgnore]
         public LoopsReader reader { get; set; }
         public LoopMap(Draft draft, double loopWidth, double loopHeight)
         {
-            LoopMapId = new Guid();
+            LoopMapId = Guid.NewGuid();
             Point upper = draft.GetUpperPoint();
             Point bottom = draft.GetBottomPoint();
             int m = (int)(Math.Abs(upper.Y - bottom.Y) / loopHeight) + AddingM + 1;
