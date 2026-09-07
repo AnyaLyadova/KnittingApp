@@ -104,13 +104,13 @@
         public static Dictionary<string, string> SleeveRollParts = new Dictionary<string, string>
         {
             {SleeveRollName, "Скос рукава"},
-            {"noSleeveRoll", "Без скоса рукава"}
+            {"none", "Без скоса рукава"}
         };
 
         public static Dictionary<string, string> ArmholeParts = new Dictionary<string, string>
         {
             { ArmholeName, "Выемка под рукав" },
-            { "noArmhole", "Без выемки под рукав" }
+            { "none", "Без выемки под рукав" }
         };
 
 

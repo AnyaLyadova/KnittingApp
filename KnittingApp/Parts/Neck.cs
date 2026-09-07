@@ -6,14 +6,6 @@ namespace KnittingApp.Parts
         int ratio;
         double width;
         double height;
-        /* public Neck(string name, double width, double height, int loopWidth, int loopHeight, bool isFront) 
-             : base(ONeckName, width, height, loopWidth, loopHeight)
-         {
-             if (isFront)
-                 ratio = 2;
-             else
-                 ratio = 4;
-         }*/
 
         public Neck()
            : base(ONeckName, PartPriority.Neck)

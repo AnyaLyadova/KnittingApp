@@ -15,6 +15,8 @@ namespace KnittingApp
             model.AddPart(new SleeveRoll());
             foreach(var str in stringParts)
             {
+                if (str == "none")
+                    continue;
                 Part part = parts.FirstOrDefault(p => p.name == str);
                 if (part == null)
                     throw new InvalidDataException("Требуемая часть отсутсвует в списке "+str);

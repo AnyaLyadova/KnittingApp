@@ -233,13 +233,17 @@ namespace KnittingApp
         void CheckWidth()
         {
             double upperWidth = (parts[0] as Body).BottomWidth/2 - (parts[0] as Body).TopWidth/2;
-            for(int i=1; i<parts.Count-1;++i)
+            for(int i=1; i<parts.Count-2;++i)
             {
                 upperWidth += parts[i].Width;
             }
-            upperWidth += parts[Parts.Count - 1].Width / 2;
+
+            var neck = parts.Where(p => p.GetPriority() == PartPriority.Neck).FirstOrDefault();
             if (upperWidth < (parts[0] as Body).BottomWidth)
-                (parts[parts.Count-1] as Neck).ChangeWidth((parts[0] as Body).BottomWidth/2 - upperWidth);
+                if(neck is Neck)
+                (/*parts[parts.Count-1] as Neck)*/neck as Neck).ChangeWidth((parts[0] as Body).BottomWidth/2 - upperWidth);
+                else
+                    (/*parts[parts.Count-1] as Neck)*/neck as VNeck).ChangeWidth((parts[0] as Body).BottomWidth / 2 - upperWidth);
         }
 
 

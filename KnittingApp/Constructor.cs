@@ -21,16 +21,6 @@ namespace KnittingApp
             this.loopMapService = loopMapService;
         }
 
-        // List<Model> models= new List<Model>{ new ModelBuilder().CreateModel("new",new List<string> { ArmholeName, ONeckName}) };
-        //  Model model;
-        // List<Form> forms = new List<Form>() { new Form("new", Guid.NewGuid(),new List<string> { ArmholeName, ONeckName })};
-
-
-        /*public List<Model> GetModels()
-        {
-            return models;
-        }*/
-
         public async Task<List<Model>> GetModels(Guid userId)
         {
             return await modelService.GetModelsByUser(userId);
@@ -41,30 +31,6 @@ namespace KnittingApp
             return await formService.GetFormsByUser(userId);
         }
 
-        /*public Model ChooseModel(Guid modelId)
-        {
-            this.model = null;  //обнуляем состояние
-            var model = models.Where(m=>m.modelId==modelId).FirstOrDefault();
-            this.model = model;
-            if (model == null)
-                throw new NullReferenceException("Модели с таким индексом не существует");
-            return model;
-        }*/
-
-        /*public Model ChooseForm(Guid formId)
-        {
-            var form=forms.Where(f=>f.formId==formId).FirstOrDefault();
-            var model = CreateNewModel(form.Name, form.Parts);
-            return model;
-        }*/
-
-        /*public async Task<Model> ChooseForm(Guid formId)
-        {
-            var form = await formService.GetForm(formId);
-            var model = CreateNewModel(form.Name, form.Parts);
-            return model;
-        }*/
-
         public async Task<Dictionary<string, double>> ChooseForm(Guid formId, Guid userId)
         {
             var form = await formService.GetForm(formId);
@@ -73,15 +39,6 @@ namespace KnittingApp
             return model.GetMeasures();
         }
 
-
-        /*public Model GetModel()
-        {
-            if (model == null)
-            {
-                throw new NullReferenceException("Модель не выбарана");
-            }
-            return model;
-        }*/
 
         public async Task<Model> GetModel(Guid modelId)
         {
@@ -93,25 +50,11 @@ namespace KnittingApp
             return model;
         }
 
-       /* public Model GetModel(Guid modelId)
-        {
-            var model=models.Where(m=>m.modelId==modelId).FirstOrDefault();
-            if (model == null)
-            {
-                throw new NullReferenceException("Модель не выбарана");
-            }
-            return model;
-        }*/
 
-        Model CreateNewModel(string name, List<string> stringParts, Guid userId/*, Dictionary<string, double> measures,*/
-           /* double height, double width, int loopInHeight, int loopInWidth*/)
+        Model CreateNewModel(string name, List<string> stringParts, Guid userId)
         {
-            /*double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
-            double loopHeight=loopSize[0];
-            double loopWidth=loopSize[1];*/
             KnittingModelBuilder modelBuilder = new KnittingModelBuilder();
-            var model= modelBuilder.CreateModel(name, stringParts, userId/*, loopHeight, loopInWidth*//*, measures*/);
-           // models.Add(model);
+            var model= modelBuilder.CreateModel(name, stringParts, userId);
             return model;
         }
 
@@ -121,24 +64,10 @@ namespace KnittingApp
             return form;
         }
 
-        /*public void InitializeModel(Dictionary<string, double> measures,
-            double height, double width, int loopInHeight, int loopInWidth)
-        {
-            if (model == null)
-                throw new NullReferenceException("Модель не выбрана");
-            double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
-            double loopHeight = loopSize[0];
-            double loopWidth = loopSize[1];
-            double loopInOneHeight= loopSize[2];
-            double loopInOneWidth= loopSize[3];
-            model.InitializeParts(measures,loopWidth, loopHeight, loopInOneWidth, loopInOneHeight);
-        }*/
-
 
         void InitializeModel(Model model,Dictionary<string, double> measures,
           double height, double width, int loopInHeight, int loopInWidth)
         {
-          //  var model= models.Where(m => m.modelId == modelId).FirstOrDefault();
             if (model == null)
                 throw new NullReferenceException("Модель не выбрана");
             double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
@@ -149,33 +78,6 @@ namespace KnittingApp
             model.InitializeParts(measures, loopWidth, loopHeight, loopInOneWidth, loopInOneHeight);
         }
 
-        /*public async Task InitializeModel(Guid modelId, Dictionary<string, double> measures,
-          double height, double width, int loopInHeight, int loopInWidth)
-        {
-            var model = await modelService.GetModel(modelId);
-            if (model == null)
-                throw new NullReferenceException("Модель не выбрана");
-            double[] loopSize = CalculateLoopSize(height, width, loopInHeight, loopInWidth);
-            double loopHeight = loopSize[0];
-            double loopWidth = loopSize[1];
-            double loopInOneHeight = loopSize[2];
-            double loopInOneWidth = loopSize[3];
-            model.InitializeParts(measures, loopWidth, loopHeight, loopInOneWidth, loopInOneHeight);
-            //////////////////////////////////////////
-        }*/
-
-        /*public Dictionary<string, double> GetAllMeasures()
-        {
-            return model.GetMeasures();
-        }*/
-
-        /*public Dictionary<string, double> GetAllMeasures(Guid modelId)
-        {
-            var model = models.Where(m => m.modelId == modelId).FirstOrDefault();
-            if (model == null)
-                throw new NullReferenceException("Модель не выбрана");
-            return model.GetMeasures();
-        }*/
 
         public async Task<Dictionary<string, double>> GetAllMeasures(Guid modelId)
         {
@@ -185,36 +87,16 @@ namespace KnittingApp
             return model.GetMeasures();
         }
 
-        /*public void ChangeMeasure(string mKey, double mValue)
-        {
-            model.ChangeMeasure(mKey, mValue);
-        }*/
 
         public async Task ChangeMeasure(Guid modelId,string mKey, double mValue)
         {
             await modelService.ChangeMeasure(mKey, mValue);
         }
 
-        /* public Draft GetBaseDraft(List<string> stringParts, Dictionary<string, double> measures)
-         {
-             model=new Model(stringParts, measures);
-             return model.CreateDraft();
-         }
- */
-
-
         public Model CopyModel(int modelIndex)
         {
             return new Model("copy", Guid.Empty);
         }
-
-
-        /*public Draft CreateDrafts()
-        {
-            if (model == null)
-                throw new ArgumentNullException("Модель не создана");
-            return model.CreateDrafts();
-        }*/
 
         public async Task<Draft> CreateDrafts(Guid modelId)
         {
@@ -240,27 +122,6 @@ namespace KnittingApp
             model.CreateDrafts();
             return model.frontDraft;
         }
-
-        /* public Draft GetFrontDraft()
-         {
-             if (model == null)
-                 throw new ArgumentNullException("Модель не создана");
-             return model.GetFrontDraft();
-         }
-
-         public Draft GetBackDraft()
-         {
-             if (model == null)
-                 throw new ArgumentNullException("Модель не создана");
-             return model.GetBackDraft();
-         }
-
-         public Draft GetSleeveDraft()
-         {
-             if (model == null)
-                 throw new ArgumentNullException("Модель не создана");
-             return model.GetSleeveDraft();
-         }*/
 
 
         public async Task<Draft> GetFrontDraft(Guid modelId)
