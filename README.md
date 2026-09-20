@@ -7,22 +7,36 @@
 Для запуска приложения необходимо создать файл appsettings.json в папке /KnittingApp со следующей структурой:
 
 {
+
   "ConnectionStrings": {
+  
     "DefaultConnection": "Host= ;Username= ; Password= ;Database= "
+    
   },
   "Jwt": {
+  
     "SecretKey": ",
     "Issuer": "knittingapp.server",
+    
     "Audience": "knittingapp.client",
+    
     "AccessTokenExpirationMinutes": 15,
+    
     "RefreshTokenExpirationDays": 7
+    
   },
+  
   "Logging": {
+  
     "LogLevel": {
+    
       "Default": "Information",
+      
       "Microsoft.AspNetCore": "Warning"
+      
     }
   },
+  
   "AllowedHosts": "*"
 }
 
