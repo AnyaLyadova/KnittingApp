@@ -7,7 +7,6 @@
 Для запуска приложения необходимо создать файл appsettings.json в папке /KnittingApp со следующей структурой:
 
 {
-
   "ConnectionStrings": {
     "DefaultConnection": "Host= ;Username= ; Password= ;Database= "
   },
@@ -21,12 +20,11 @@
     
     "RefreshTokenExpirationDays": 7
   },
-  
   "Logging": {
     "LogLevel": {
     
       "Default": "Information",
-      
+    
       "Microsoft.AspNetCore": "Warning"
     }
   },
