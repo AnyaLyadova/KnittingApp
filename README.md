@@ -9,12 +9,9 @@
 {
 
   "ConnectionStrings": {
-  
     "DefaultConnection": "Host= ;Username= ; Password= ;Database= "
-    
   },
   "Jwt": {
-  
     "SecretKey": ",
     "Issuer": "knittingapp.server",
     
@@ -23,20 +20,16 @@
     "AccessTokenExpirationMinutes": 15,
     
     "RefreshTokenExpirationDays": 7
-    
   },
   
   "Logging": {
-  
     "LogLevel": {
     
       "Default": "Information",
       
       "Microsoft.AspNetCore": "Warning"
-      
     }
   },
-  
   "AllowedHosts": "*"
 }
 
